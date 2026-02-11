@@ -104,6 +104,24 @@ body {
     color: var(--accent-pop);
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
 .nav-cta {
     font-size: 0.875rem;
     font-weight: 500;
