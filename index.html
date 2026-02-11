@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>scale² – KI in EINFACH</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -196,6 +193,53 @@
                         <li>KI-gestützter First-Level-Support</li>
                         <li>Intelligentes Ticket-Routing</li>
                         <li>24/7 Verfügbarkeit ohne Nachtschicht</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schwerpunkte Section -->
+    <section class="section section-entry" id="schwerpunkte">
+        <div class="container">
+            <div class="section-label">Schwerpunkte</div>
+            <h2 class="section-headline reveal">
+                Worauf wir uns<br>
+                <span class="gradient-text">spezialisiert haben.</span>
+            </h2>
+            <div class="entry-grid">
+                <div class="entry-card reveal">
+                    <div class="entry-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                    </div>
+                    <h3>Datenschutz & DSGVO</h3>
+                    <p class="entry-subtitle">KI einsetzen – DSGVO-konform</p>
+                    <p class="entry-text">KI und Datenschutz müssen kein Widerspruch sein. Wir wissen, wie man KI-Systeme so aufsetzt, dass sie rechtssicher funktionieren – ohne Angst vor der nächsten Abmahnung.</p>
+                    <ul class="entry-list">
+                        <li>DSGVO-konforme KI-Implementierung</li>
+                        <li>Datenschutz-Audits für bestehende Tools</li>
+                        <li>Rechtssichere Dokumentation & Prozesse</li>
+                        <li>Praxiserprobte Compliance-Strategien</li>
+                    </ul>
+                </div>
+                <div class="entry-card reveal">
+                    <div class="entry-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                        </svg>
+                    </div>
+                    <h3>KI-Strategie & Orientierung</h3>
+                    <p class="entry-subtitle">Klarheit statt Buzzword-Bingo</p>
+                    <p class="entry-text">Alle reden über KI – aber was davon ist für dein Business wirklich relevant? Wir bringen Ordnung ins Chaos und zeigen, wo KI echten Impact hat und wo sie nur heiße Luft ist.</p>
+                    <ul class="entry-list">
+                        <li>Geschäftsmodell-Analyse mit KI-Fokus</li>
+                        <li>Identifikation der wirkungsvollsten Hebel</li>
+                        <li>Konkrete, umsetzbare Empfehlungen</li>
+                        <li>Priorisierung nach Impact und Aufwand</li>
                     </ul>
                 </div>
             </div>
@@ -413,11 +457,44 @@
             <div class="footer-logo">scale<sup>2</sup></div>
             <div class="footer-text">AI Growth Firm -KI in EINFACH.</div>
             <div class="footer-links">
-                <a href="#">Impressum</a>
-                <a href="#">Datenschutz</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                Wir verwenden Cookies und externe Dienste (Google Fonts), um unsere Website optimal zu gestalten. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+            </div>
+            <div class="cookie-banner-buttons">
+                <button class="cookie-btn cookie-btn-reject" id="cookieReject">Nur notwendige</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Alle akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Analytics (wird nur bei Cookie-Einwilligung geladen) -->
+    <script>
+        function loadGoogleAnalytics() {
+            if (document.getElementById('ga-script')) return;
+            var s = document.createElement('script');
+            s.id = 'ga-script';
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC7Z75NYGX';
+            document.head.appendChild(s);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-FC7Z75NYGX');
+        }
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+            loadGoogleAnalytics();
+        }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>

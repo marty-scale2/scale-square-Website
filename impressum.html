@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum – scale²</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">scale<sup>2</sup></a>
+            <div class="nav-links">
+                <a href="index.html#usecases" class="nav-link">Leistungen</a>
+                <a href="index.html#founder" class="nav-link">Über uns</a>
+                <a href="index.html#cta" class="nav-cta">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Impressum Content -->
+    <section class="section legal-page">
+        <div class="container">
+            <div class="section-label">Rechtliches</div>
+            <h1 class="section-headline">Impressum</h1>
+
+            <div class="legal-content">
+                <h2>Angaben gemäß § 5 TMG</h2>
+                <p>
+                    Martin Thun<br>
+                    Bahnhofstr. 2a<br>
+                    86500 Kutzenhausen
+                </p>
+
+                <h2>Kontakt</h2>
+                <p>
+                    E-Mail: hello@martinthun.com
+                </p>
+
+                <h2>Umsatzsteuer-ID</h2>
+                <p>
+                    Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                    DE353432399
+                </p>
+
+                <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+                <p>
+                    Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                Wir verwenden Cookies und externe Dienste (Google Fonts), um unsere Website optimal zu gestalten. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+            </div>
+            <div class="cookie-banner-buttons">
+                <button class="cookie-btn cookie-btn-reject" id="cookieReject">Nur notwendige</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Alle akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-text">AI Growth Firm – KI in EINFACH.</div>
+            <div class="footer-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Google Analytics (wird nur bei Cookie-Einwilligung geladen) -->
+    <script>
+        function loadGoogleAnalytics() {
+            if (document.getElementById('ga-script')) return;
+            var s = document.createElement('script');
+            s.id = 'ga-script';
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC7Z75NYGX';
+            document.head.appendChild(s);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-FC7Z75NYGX');
+        }
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+            loadGoogleAnalytics();
+        }
+    </script>
+
+    <script>
+        // Cookie Banner
+        (function() {
+            var banner = document.getElementById('cookieBanner');
+            var acceptBtn = document.getElementById('cookieAccept');
+            var rejectBtn = document.getElementById('cookieReject');
+            if (!banner || localStorage.getItem('cookie-consent')) return;
+            setTimeout(function() { banner.classList.add('visible'); }, 500);
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie-consent', 'accepted');
+                banner.classList.remove('visible');
+                if (typeof loadGoogleAnalytics === 'function') loadGoogleAnalytics();
+            });
+            rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('cookie-consent', 'rejected');
+                banner.classList.remove('visible');
+            });
+        })();
+    </script>
+</body>
+</html>

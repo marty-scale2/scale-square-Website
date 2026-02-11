@@ -393,6 +393,41 @@ function animateCounter(element) {
 }
 
 // ==========================================
+// Cookie Banner
+// ==========================================
+function initCookieBanner() {
+    const banner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('cookieAccept');
+    const rejectBtn = document.getElementById('cookieReject');
+
+    if (!banner) return;
+
+    // Check if user already made a choice
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent) return;
+
+    // Show banner after short delay
+    setTimeout(() => {
+        banner.classList.add('visible');
+    }, 1500);
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'accepted');
+            banner.classList.remove('visible');
+            if (typeof loadGoogleAnalytics === 'function') loadGoogleAnalytics();
+        });
+    }
+
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'rejected');
+            banner.classList.remove('visible');
+        });
+    }
+}
+
+// ==========================================
 // Initialize
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -408,4 +443,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initParallax();
     initScrollProgress();
+    initCookieBanner();
 });
