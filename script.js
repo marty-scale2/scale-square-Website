@@ -23,12 +23,12 @@ function initHeroScene() {
     // Icosahedron (geometrischer Körper)
     const geometry = new THREE.IcosahedronGeometry(2, 1);
     const material = new THREE.MeshPhongMaterial({
-        color: 0x2563eb,
-        emissive: 0x0a1628,
+        color: 0x39ff14,
+        emissive: 0x0a1a05,
         shininess: 40,
         wireframe: true,
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.15,
     });
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -36,11 +36,11 @@ function initHeroScene() {
     // Inner Sphere (Glow-Kern)
     const innerGeometry = new THREE.SphereGeometry(1.2, 32, 32);
     const innerMaterial = new THREE.MeshPhongMaterial({
-        color: 0x0ea5e9,
-        emissive: 0x0a1628,
+        color: 0x00e676,
+        emissive: 0x0a1a05,
         shininess: 80,
         transparent: true,
-        opacity: 0.04,
+        opacity: 0.05,
     });
     const innerMesh = new THREE.Mesh(innerGeometry, innerMaterial);
     scene.add(innerMesh);
@@ -54,23 +54,23 @@ function initHeroScene() {
     }
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const particlesMaterial = new THREE.PointsMaterial({
-        color: 0x94a3b8,
+        color: 0x39ff14,
         size: 0.02,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.3,
     });
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0x94a3b8, 0.6);
+    const ambientLight = new THREE.AmbientLight(0x64748b, 0.4);
     scene.add(ambientLight);
 
-    const pointLight1 = new THREE.PointLight(0x2563eb, 1, 20);
+    const pointLight1 = new THREE.PointLight(0x39ff14, 1, 20);
     pointLight1.position.set(5, 3, 5);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0x0ea5e9, 0.6, 20);
+    const pointLight2 = new THREE.PointLight(0x00e676, 0.6, 20);
     pointLight2.position.set(-5, -3, 3);
     scene.add(pointLight2);
 

@@ -1,6 +1,6 @@
 /* ==========================================
    scale² – Landing Page Styles
-   Light Mode, Ultra-modern, Minimalistisch
+   Dark Mode, Bold, Neon Green
    ========================================== */
 
 /* ==========================================
@@ -43,25 +43,25 @@
 }
 
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f7f7f8;
-    --bg-card: #ffffff;
-    --bg-card-hover: #fafafa;
-    --bg-dark: #0a0a0b;
-    --text-primary: #0a0a0b;
-    --text-secondary: #52525b;
-    --text-muted: #a1a1aa;
-    --accent-1: #0a0a0b;
-    --accent-2: #18181b;
-    --accent-3: #3f3f46;
-    --accent-pop: #2563eb;
-    --gradient: linear-gradient(135deg, #0a0a0b, #27272a);
-    --gradient-text: linear-gradient(135deg, #0a0a0b, #3f3f46);
-    --gradient-pop: linear-gradient(135deg, #2563eb, #0ea5e9);
-    --glow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    --glow-strong: 0 8px 40px rgba(0, 0, 0, 0.12);
-    --border: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(0, 0, 0, 0.15);
+    --bg-primary: #0a0a0b;
+    --bg-secondary: #111114;
+    --bg-card: #161619;
+    --bg-card-hover: #1c1c20;
+    --bg-dark: #050506;
+    --text-primary: #f0f0f2;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-1: #f0f0f2;
+    --accent-2: #e2e8f0;
+    --accent-3: #cbd5e1;
+    --accent-pop: #39ff14;
+    --gradient: linear-gradient(135deg, #111114, #1a1a1e);
+    --gradient-text: linear-gradient(135deg, #f0f0f2, #94a3b8);
+    --gradient-pop: linear-gradient(135deg, #39ff14, #00e676);
+    --glow: 0 4px 24px rgba(57, 255, 20, 0.08);
+    --glow-strong: 0 8px 40px rgba(57, 255, 20, 0.12);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.15);
     --radius: 16px;
     --radius-sm: 8px;
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -90,7 +90,7 @@ body {
 }
 
 ::selection {
-    background: rgba(37, 99, 235, 0.15);
+    background: rgba(57, 255, 20, 0.2);
     color: var(--text-primary);
 }
 
@@ -116,7 +116,7 @@ body {
 
 .nav.scrolled {
     padding: 0.75rem 0;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(10, 10, 11, 0.9);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
 }
@@ -173,9 +173,9 @@ body {
 }
 
 .nav-cta:hover {
-    color: var(--text-primary);
-    border-color: var(--text-primary);
-    background: var(--bg-secondary);
+    color: var(--accent-pop);
+    border-color: var(--accent-pop);
+    background: rgba(57, 255, 20, 0.05);
 }
 
 /* ==========================================
@@ -188,7 +188,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--bg-secondary);
+    background: radial-gradient(ellipse at 50% 50%, rgba(57, 255, 20, 0.06) 0%, var(--bg-primary) 70%);
 }
 
 #hero-canvas {
@@ -217,10 +217,10 @@ body {
     letter-spacing: 0.15em;
     color: var(--accent-pop);
     padding: 0.4rem 1rem;
-    border: 1px solid rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(57, 255, 20, 0.2);
     border-radius: 100px;
     margin-bottom: 2rem;
-    background: rgba(37, 99, 235, 0.04);
+    background: rgba(57, 255, 20, 0.04);
 }
 
 .hero-headline {
@@ -267,13 +267,13 @@ body {
     font-family: var(--font);
     font-size: 1rem;
     font-weight: 600;
-    color: #fff;
-    background: var(--bg-dark);
+    color: #0a0a0b;
+    background: var(--accent-pop);
     padding: 1rem 2rem;
     border-radius: 100px;
     text-decoration: none;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(57, 255, 20, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -289,7 +289,7 @@ body {
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 32px rgba(57, 255, 20, 0.35);
 }
 
 .cta-button:hover::before {
@@ -372,16 +372,31 @@ body {
 .logos-strip img {
     height: 44px;
     width: auto;
-    opacity: 1;
-    filter: grayscale(0%);
+    opacity: 0.85;
+    filter: invert(1) brightness(2);
     transition: all 0.4s ease;
     object-fit: contain;
 }
 
 .logos-strip img:hover {
-    opacity: 0.7;
-    filter: grayscale(0%);
+    opacity: 1;
+    filter: invert(1) brightness(2.5);
 }
+
+.logos-strip img.logo-lg {
+    height: 60px;
+}
+
+.logos-strip img.logo-handelsblatt {
+    filter: grayscale(1) invert(1) brightness(2);
+    mix-blend-mode: screen;
+}
+
+.logos-strip img.logo-handelsblatt:hover {
+    filter: grayscale(1) invert(1) brightness(2.5);
+    mix-blend-mode: screen;
+}
+
 
 /* ==========================================
    Sections (Shared)
@@ -437,13 +452,13 @@ body {
 }
 
 .problem-card.highlight {
-    border-color: rgba(37, 99, 235, 0.15);
-    background: rgba(37, 99, 235, 0.02);
+    border-color: rgba(57, 255, 20, 0.15);
+    background: rgba(57, 255, 20, 0.02);
 }
 
 .problem-card.highlight:hover {
-    border-color: rgba(37, 99, 235, 0.3);
-    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
+    border-color: rgba(57, 255, 20, 0.3);
+    box-shadow: 0 8px 32px rgba(57, 255, 20, 0.08);
 }
 
 .problem-icon {
@@ -453,7 +468,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background: var(--bg-primary);
+    background: var(--bg-card);
     margin-bottom: 1.5rem;
 }
 
@@ -463,7 +478,7 @@ body {
 
 .problem-card.highlight .problem-icon {
     color: var(--accent-pop);
-    background: rgba(37, 99, 235, 0.06);
+    background: rgba(57, 255, 20, 0.06);
 }
 
 .problem-card h3 {
@@ -552,7 +567,7 @@ body {
 }
 
 .step-card {
-    background: var(--bg-primary);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 2.5rem;
@@ -601,7 +616,7 @@ body {
     font-size: 0.7rem;
     color: var(--accent-pop);
     padding: 0.3rem 0.75rem;
-    border: 1px solid rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(57, 255, 20, 0.2);
     border-radius: 100px;
     display: inline-block;
     letter-spacing: 0.05em;
@@ -641,7 +656,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: rgba(37, 99, 235, 0.06);
+    background: rgba(57, 255, 20, 0.06);
     color: var(--accent-pop);
     margin-bottom: 1.5rem;
 }
@@ -698,7 +713,7 @@ body {
 }
 
 .entry-card {
-    background: var(--bg-primary);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 2.5rem;
@@ -708,9 +723,9 @@ body {
 }
 
 .entry-card:hover {
-    border-color: rgba(37, 99, 235, 0.25);
+    border-color: rgba(57, 255, 20, 0.25);
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 8px 32px rgba(57, 255, 20, 0.08);
 }
 
 .entry-card::after {
@@ -720,7 +735,7 @@ body {
     left: var(--glow-x, 50%);
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.08), transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -739,7 +754,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: rgba(37, 99, 235, 0.06);
+    background: rgba(57, 255, 20, 0.06);
     color: var(--accent-pop);
     margin-bottom: 1.5rem;
 }
@@ -795,7 +810,7 @@ body {
    ========================================== */
 .section-statement {
     padding: 6rem 0;
-    background: var(--bg-primary);
+    background: radial-gradient(ellipse at 50% 50%, rgba(57, 255, 20, 0.04) 0%, var(--bg-primary) 70%);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -816,7 +831,7 @@ body {
    Track Record Section (Logos only)
    ========================================== */
 .section-trackrecord {
-    background: #ffffff;
+    background: var(--bg-secondary);
 }
 
 .trackrecord-marquee {
@@ -829,7 +844,7 @@ body {
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 25s linear infinite;
+    animation: marquee 30s linear infinite;
 }
 
 .marquee-track:hover {
@@ -839,22 +854,30 @@ body {
 .marquee-content {
     display: flex;
     align-items: center;
-    gap: 5rem;
-    padding-right: 5rem;
+    gap: 1.25rem;
+    padding-right: 1.25rem;
 }
 
-.marquee-content img {
-    height: 60px;
+.trackrecord-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.trackrecord-card img {
+    height: 44px;
     width: auto;
-    max-width: 160px;
+    max-width: 140px;
     object-fit: contain;
-    filter: grayscale(0%);
-    opacity: 1;
-    transition: all 0.4s ease;
 }
 
-.marquee-content img:hover {
-    filter: grayscale(0%);
+.trackrecord-card img.tr-logo-lg {
+    height: 60px;
+    max-width: 160px;
 }
 
 @keyframes marquee {
@@ -1031,12 +1054,12 @@ body {
 }
 
 .fit-card.fit-yes {
-    background: rgba(37, 99, 235, 0.02);
-    border-color: rgba(37, 99, 235, 0.15);
+    background: rgba(57, 255, 20, 0.02);
+    border-color: rgba(57, 255, 20, 0.15);
 }
 
 .fit-card.fit-no {
-    background: var(--bg-primary);
+    background: var(--bg-card);
 }
 
 .fit-header {
@@ -1051,7 +1074,7 @@ body {
 }
 
 .fit-no .fit-header {
-    color: #a1a1aa;
+    color: #64748b;
 }
 
 .fit-header h3 {
@@ -1094,7 +1117,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 2px;
-    background: #d4d4d8;
+    background: #4a4a50;
 }
 
 /* ==========================================
@@ -1157,7 +1180,8 @@ body {
 .cta-block {
     text-align: center;
     padding: 4rem;
-    background: var(--bg-dark);
+    background: linear-gradient(135deg, #0d1a00, #0a1500);
+    border: 1px solid rgba(57, 255, 20, 0.15);
     color: #fff;
     border-radius: var(--radius);
     position: relative;
@@ -1171,7 +1195,7 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1), transparent 50%);
+    background: radial-gradient(circle at center, rgba(57, 255, 20, 0.1), transparent 50%);
     animation: ctaGlow 6s ease-in-out infinite alternate;
 }
 
@@ -1197,12 +1221,12 @@ body {
 
 .cta-block .cta-button {
     position: relative;
-    background: #fff;
-    color: var(--bg-dark);
+    background: var(--accent-pop);
+    color: #0a0a0b;
 }
 
 .cta-block .cta-button:hover {
-    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(57, 255, 20, 0.3);
 }
 
 /* ==========================================
@@ -1261,7 +1285,7 @@ body {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.07), transparent 70%);
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.07), transparent 70%);
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
@@ -1320,7 +1344,7 @@ body {
     left: var(--glow-x, 50%);
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.08), transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -1364,15 +1388,19 @@ body {
     }
 
     .founder-image img {
-        aspect-ratio: 3 / 2;
+        aspect-ratio: 3 / 4;
+        object-position: top;
     }
 
-    .marquee-content {
-        gap: 3rem;
-        padding-right: 3rem;
+    .trackrecord-card {
+        padding: 1rem 1.5rem;
     }
 
-    .marquee-content img {
+    .trackrecord-card img {
+        height: 32px;
+    }
+
+    .trackrecord-card img.tr-logo-lg {
         height: 44px;
     }
 
@@ -1566,12 +1594,12 @@ body {
 }
 
 .cookie-btn-accept {
-    background: #fff;
-    color: var(--bg-dark);
+    background: var(--accent-pop);
+    color: #0a0a0b;
 }
 
 .cookie-btn-accept:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: #2ee60e;
     transform: translateY(-1px);
 }
 
