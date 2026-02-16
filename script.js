@@ -154,7 +154,7 @@ function initCursorGlow() {
 // 3D Card Tilt Effect
 // ==========================================
 function initCardTilt() {
-    const cards = document.querySelectorAll('.problem-card, .step-card, .usecase-card, .proof-card');
+    const cards = document.querySelectorAll('.problem-card, .step-card, .usecase-card, .proof-card, .tool-card');
 
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -281,9 +281,9 @@ function initScrollProgress() {
 // Card Hover Glow (light follows cursor on cards)
 // ==========================================
 function initCardGlow() {
-    const cards = document.querySelectorAll('.problem-card, .step-card, .usecase-card, .proof-card');
+    const glowCards = document.querySelectorAll('.problem-card, .step-card, .usecase-card, .proof-card, .tool-card');
 
-    cards.forEach(card => {
+    glowCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -494,6 +494,30 @@ function initContactModal() {
 }
 
 // ==========================================
+// Mobile Hamburger Menu
+// ==========================================
+function initMobileMenu() {
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+}
+
+// ==========================================
 // Initialize
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -511,4 +535,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initCookieBanner();
     initContactModal();
+    initMobileMenu();
 });

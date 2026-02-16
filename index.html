@@ -11,11 +11,16 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="#" class="nav-logo">scale<sup>2</sup></a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="#usecases" class="nav-link">Leistungen</a>
                 <a href="#founder" class="nav-link">Über uns</a>
                 <a href="#cta" class="nav-cta">Kontakt</a>
             </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -141,51 +146,6 @@
         </div>
     </section>
 
-    <!-- Ideal Fit Section -->
-    <section class="section section-fit" id="fit">
-        <div class="container">
-            <div class="section-label">Klingt nach dir?</div>
-            <h2 class="section-headline reveal">
-                Wir sind nicht für jeden.<br>
-                <span class="gradient-text">Aber vielleicht genau für dich.</span>
-            </h2>
-            <div class="fit-grid">
-                <div class="fit-card fit-yes reveal">
-                    <div class="fit-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        <h3>Das passt</h3>
-                    </div>
-                    <ul class="fit-list">
-                        <li>Du führst ein etabliertes Unternehmen mit funktionierendem Geschäftsmodell</li>
-                        <li>Du hast ein Team, aber zu viele Prozesse laufen noch manuell</li>
-                        <li>Du willst KI nicht als Spielerei, sondern als echten Wachstumshebel</li>
-                        <li>Du denkst in Systemen, nicht in Quick Fixes</li>
-                        <li>Du bist bereit, in Infrastruktur zu investieren – nicht in Experimente</li>
-                    </ul>
-                </div>
-                <div class="fit-card fit-no reveal">
-                    <div class="fit-header">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M15 9l-6 6M9 9l6 6"/>
-                        </svg>
-                        <h3>Das passt nicht</h3>
-                    </div>
-                    <ul class="fit-list">
-                        <li>Du suchst eine billige Chatbot-Lösung von der Stange</li>
-                        <li>Du willst "irgendwas mit KI machen", weißt aber nicht wozu</li>
-                        <li>Du erwartest Ergebnisse ohne eigenes Commitment</li>
-                        <li>Du brauchst erst noch ein funktionierendes Geschäftsmodell</li>
-                        <li>Du suchst nach dem nächsten Shiny Object</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Use Cases Section -->
     <section class="section section-usecases" id="usecases">
         <div class="container">
@@ -249,8 +209,8 @@
         <div class="container">
             <div class="section-label">Schwerpunkte</div>
             <h2 class="section-headline reveal">
-                Worauf wir uns<br>
-                <span class="gradient-text">spezialisiert haben.</span>
+                Bevor es losgeht.<br>
+                <span class="gradient-text">Zwei Themen. Null Verhandlung.</span>
             </h2>
             <div class="entry-grid">
                 <div class="entry-card reveal">
@@ -286,6 +246,73 @@
                         <li>Konkrete, umsetzbare Empfehlungen</li>
                         <li>Priorisierung nach Impact und Aufwand</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Werkzeuge Section -->
+    <section class="section section-tools" id="werkzeuge">
+        <div class="container">
+            <div class="section-label">So setzen wir es um</div>
+            <h2 class="section-headline reveal">
+                Kein Hexenwerk.<br>
+                <span class="gradient-text">Drei Bausteine. Eins greift ins andere.</span>
+            </h2>
+            <p class="tools-intro reveal">
+                Du musst nicht verstehen, wie ein Motor funktioniert, um Auto zu fahren. Trotzdem gut zu wissen, was unter der Haube steckt.
+            </p>
+            <div class="tools-grid">
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2a4 4 0 014 4v1a1 1 0 01-1 1H9a1 1 0 01-1-1V6a4 4 0 014-4z"/>
+                            <path d="M8 7v1a4 4 0 008 0V7"/>
+                            <circle cx="12" cy="17" r="4"/>
+                            <path d="M12 21v1M8 17H3M21 17h-5"/>
+                        </svg>
+                    </div>
+                    <div class="tool-label">Baustein 1</div>
+                    <h3>KI-Agenten</h3>
+                    <p class="tool-subtitle">Wie ein Kollege, der mitdenkt – nur schneller</p>
+                    <p class="tool-text">Stell dir jemanden vor, der mit dir am Tisch sitzt. Der versteht, was du willst, und es umsetzt. KI-Agenten sind keine dummen Bots – sie denken mit, treffen Entscheidungen und liefern Ergebnisse. Eigenständig. Als wäre ein neuer Kollege da, der einfach macht.</p>
+                    <div class="tool-example">
+                        <span class="tool-example-label">Beispiel:</span> Du sagst "Erstell mir eine Präsentation zum Quartalsergebnis" – und der Agent zieht sich die Zahlen, baut die Slides und liefert dir ein fertiges Deck. Während du dich um Wichtigeres kümmerst.
+                    </div>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="16 3 21 3 21 8"/>
+                            <line x1="4" y1="20" x2="21" y2="3"/>
+                            <polyline points="21 16 21 21 16 21"/>
+                            <line x1="15" y1="15" x2="21" y2="21"/>
+                            <line x1="4" y1="4" x2="9" y2="9"/>
+                        </svg>
+                    </div>
+                    <div class="tool-label">Baustein 2</div>
+                    <h3>Automationen</h3>
+                    <p class="tool-subtitle">Nicht nur "wenn-dann" – sondern intelligent</p>
+                    <p class="tool-text">Klassische Automatisierung: Wenn A, dann B. Unsere Automationen gehen weiter. Wir bauen KI-Modelle direkt in den Workflow ein – die lesen, verstehen und entscheiden. Das heißt: Auch komplexe Aufgaben, die bisher einen Menschen gebraucht haben, laufen plötzlich von allein.</p>
+                    <div class="tool-example">
+                        <span class="tool-example-label">Beispiel:</span> Eine Bewerbung geht ein → die KI liest den Lebenslauf, gleicht ihn mit deinem Anforderungsprofil ab, bewertet die Passung und schickt dir nur die Top-Kandidaten – inklusive Zusammenfassung, warum.
+                    </div>
+                </div>
+                <div class="tool-card reveal">
+                    <div class="tool-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                            <line x1="14" y1="4" x2="10" y2="20"/>
+                        </svg>
+                    </div>
+                    <div class="tool-label">Baustein 3</div>
+                    <h3>Maßgeschneiderte Software</h3>
+                    <p class="tool-subtitle">Genau das, was du brauchst – nichts weniger</p>
+                    <p class="tool-text">Manchmal gibt's kein Tool, das passt. Dann bauen wir es. Individuelle Dashboards, interne Tools, Schnittstellen – entwickelt mit modernsten KI-Methoden, in einem Bruchteil der Zeit und Kosten einer klassischen Softwareentwicklung.</p>
+                    <div class="tool-example">
+                        <span class="tool-example-label">Beispiel:</span> Ein internes Dashboard, das Umsatz, Pipeline und Team-Performance live zusammenzieht – statt 5 verschiedene Tabs offen zu haben.
+                    </div>
                 </div>
             </div>
         </div>
@@ -332,30 +359,6 @@
         </div>
     </section>
 
-    <!-- Founder Section -->
-    <section class="section section-founder" id="founder">
-        <div class="container">
-            <div class="founder-grid">
-                <div class="founder-image reveal">
-                    <img src="martin.jpg" alt="Martin – Gründer von scale²">
-                </div>
-                <div class="founder-content reveal">
-                    <div class="section-label">Über uns</div>
-                    <h2 class="section-headline">
-                        Von Marketing-Tech zu KI & Bewusstsein.
-                    </h2>
-                    <p>Mein Weg hat im Marketing und in der Technik angefangen – Funnels, Automationen, Infrastrukturen. In den letzten Jahren habe ich für über ein Dutzend Unternehmen Systeme gebaut, Prozesse automatisiert und KI dort eingesetzt, wo sie echten Impact hat (nicht dort, wo sie gut klingt).</p>
-                    <p>Aber je tiefer ich in die Welt der künstlichen Intelligenz eingetaucht bin, desto klarer wurde: <strong>Technologie ohne Bewusstsein ist blind.</strong> Deshalb beschäftige ich mich heute genauso intensiv mit Datensouveränität, KI-Ethik und der Frage, wie wir diese Werkzeuge verantwortungsvoll einsetzen – nicht nur effizient.</p>
-                    <p>Unser Ansatz ist einfach: <strong>Kein Overengineering.</strong> Dort ansetzen, wo der Schuh am meisten drückt, und bewährte Systeme bauen, die Probleme eliminieren. Fertig.</p>
-                    <p>scale<sup>2</sup> ist keine klassische Agentur. Wir sind ein kleines Team aus drei Leuten – und das ist Absicht. Von KI-Automationen über autonome Agenten bis hin zu individuellen Software-Lösungen ergänzen wir uns perfekt. Keine Abstimmungsschleifen. Nur Leute, die liefern.</p>
-                    <div class="founder-signature">
-                        <span class="founder-name">Gründer von scale<sup>2</sup></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Social Proof / Metrics Section -->
     <section class="section section-proof" id="proof">
         <div class="container">
@@ -388,8 +391,32 @@
             <div class="proof-quote reveal">
                 <blockquote>
                     "Wachstum braucht nicht &bdquo;mehr&ldquo;.<br>
-                    Es braucht intelligente Systeme, die liefern – ohne zu meckern."
+                    Es braucht intelligente Systeme, die liefern, ohne zu meckern."
                 </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="section section-founder" id="founder">
+        <div class="container">
+            <div class="founder-grid">
+                <div class="founder-image reveal">
+                    <img src="martin.jpg" alt="Martin – Gründer von scale²">
+                </div>
+                <div class="founder-content reveal">
+                    <div class="section-label">Über uns</div>
+                    <h2 class="section-headline">
+                        Von Marketing-Tech zu KI & Bewusstsein.
+                    </h2>
+                    <p>Mein Weg hat im Marketing und in der Technik angefangen – Funnels, Automationen, Infrastrukturen. In den letzten Jahren habe ich für über ein Dutzend Unternehmen Systeme gebaut, Prozesse automatisiert und KI dort eingesetzt, wo sie echten Impact hat (nicht dort, wo sie gut klingt).</p>
+                    <p>Aber je tiefer ich in die Welt der künstlichen Intelligenz eingetaucht bin, desto klarer wurde: <strong>Technologie ohne Bewusstsein ist blind.</strong> Deshalb beschäftige ich mich heute genauso intensiv mit Datensouveränität, KI-Ethik und der Frage, wie wir diese Werkzeuge verantwortungsvoll einsetzen – nicht nur effizient.</p>
+                    <p>Unser Ansatz ist einfach: <strong>Kein Overengineering.</strong> Dort ansetzen, wo der Schuh am meisten drückt, und bewährte Systeme bauen, die Probleme eliminieren. Fertig.</p>
+                    <p>scale<sup>2</sup> ist keine klassische Agentur. Wir sind ein kleines Team aus drei Leuten – und das ist Absicht. Von KI-Automationen über autonome Agenten bis hin zu individuellen Software-Lösungen ergänzen wir uns perfekt. Keine Abstimmungsschleifen. Nur Leute, die liefern.</p>
+                    <div class="founder-signature">
+                        <span class="founder-name">Gründer von scale<sup>2</sup></span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -418,6 +445,51 @@
                 </div>
             </div>
             <p class="foerderung-hint reveal">Heißt konkret: Deine KI-Infrastruktur könnte dich am Ende nur einen Bruchteil kosten – oder sogar komplett gefördert werden.</p>
+        </div>
+    </section>
+
+    <!-- Ideal Fit Section -->
+    <section class="section section-fit" id="fit">
+        <div class="container">
+            <div class="section-label">Klingt nach dir?</div>
+            <h2 class="section-headline reveal">
+                Wir sind nicht für jeden.<br>
+                <span class="gradient-text">Aber vielleicht genau für dich.</span>
+            </h2>
+            <div class="fit-grid">
+                <div class="fit-card fit-yes reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <h3>Das passt</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Du führst ein etabliertes Unternehmen mit funktionierendem Geschäftsmodell</li>
+                        <li>Du hast ein Team, aber zu viele Prozesse laufen noch manuell</li>
+                        <li>Du willst KI nicht als Spielerei, sondern als echten Wachstumshebel</li>
+                        <li>Du denkst in Systemen, nicht in Quick Fixes</li>
+                        <li>Du bist bereit, in Infrastruktur zu investieren – nicht in Experimente</li>
+                    </ul>
+                </div>
+                <div class="fit-card fit-no reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M15 9l-6 6M9 9l6 6"/>
+                        </svg>
+                        <h3>Das passt nicht</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Du suchst eine billige Chatbot-Lösung von der Stange</li>
+                        <li>Du willst "irgendwas mit KI machen", weißt aber nicht wozu</li>
+                        <li>Du erwartest Ergebnisse ohne eigenes Commitment</li>
+                        <li>Du brauchst erst noch ein funktionierendes Geschäftsmodell</li>
+                        <li>Du suchst nach dem nächsten Shiny Object</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -178,6 +178,44 @@ body {
     background: rgba(57, 255, 20, 0.05);
 }
 
+/* Hamburger Button */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 110;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ==========================================
    Hero Section
    ========================================== */
@@ -803,6 +841,119 @@ body {
     height: 6px;
     border-radius: 50%;
     background: var(--accent-pop);
+}
+
+/* ==========================================
+   Werkzeuge / Tools Section
+   ========================================== */
+.section-tools {
+    background: var(--bg-primary);
+}
+
+.tools-intro {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.tool-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card:hover {
+    border-color: rgba(57, 255, 20, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(57, 255, 20, 0.08);
+}
+
+.tool-card::after {
+    content: '';
+    position: absolute;
+    top: var(--glow-y, 50%);
+    left: var(--glow-x, 50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.08), transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tool-card:hover::after {
+    opacity: 1;
+}
+
+.tool-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(57, 255, 20, 0.06);
+    color: var(--accent-pop);
+    margin-bottom: 1.5rem;
+}
+
+.tool-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-pop);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.tool-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tool-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+}
+
+.tool-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.tool-example {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding: 1rem 1.25rem;
+    background: rgba(57, 255, 20, 0.02);
+    border-left: 2px solid rgba(57, 255, 20, 0.2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.tool-example-label {
+    font-weight: 600;
+    color: var(--accent-pop);
 }
 
 /* ==========================================
@@ -1482,13 +1633,58 @@ body {
    Responsive
    ========================================== */
 @media (max-width: 768px) {
+    /* Mobile Navigation */
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 11, 0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 105;
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-links .nav-link {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary) !important;
+    }
+
+    .nav-links .nav-cta {
+        font-size: 1.25rem;
+        padding: 0.75rem 2rem;
+        color: var(--accent-pop);
+        border-color: var(--accent-pop);
+    }
+
+    /* Grid Layouts */
     .problem-grid,
     .steps-grid,
     .proof-grid,
     .usecases-grid,
     .entry-grid,
     .fit-grid,
-    .founder-grid {
+    .founder-grid,
+    .tools-grid {
         grid-template-columns: 1fr;
     }
 
