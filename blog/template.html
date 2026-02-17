@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} – scale² Blog</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
+    <link rel="canonical" href="https://scale-square.com/blog/{{slug}}.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://scale-square.com/blog/{{slug}}.html">
+    <meta property="og:title" content="{{title}} – scale² Blog">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="scale²">
+    <meta property="article:published_time" content="{{date_iso}}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{title}} – scale² Blog">
+    <meta name="twitter:description" content="{{description}}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{title}}",
+        "description": "{{description}}",
+        "datePublished": "{{date_iso}}",
+        "author": {
+            "@type": "Person",
+            "name": "Martin"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "scale²",
+            "url": "https://scale-square.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://scale-square.com/blog/{{slug}}.html"
+        },
+        "keywords": "{{keywords}}"
+    }
+    </script>
+
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">scale<sup>2</sup></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Blog</a>
+                <a href="../index.html#usecases" class="nav-link">Leistungen</a>
+                <a href="../index.html#founder" class="nav-link">Über uns</a>
+                <a href="../index.html#cta" class="nav-cta">Kontakt</a>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <a href="index.html" class="back-to-blog">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Zurück zum Blog
+            </a>
+            <div class="article-meta">
+                <span class="article-category">{{category}}</span>
+                <span class="article-date">{{date}}</span>
+                <span class="article-readtime">– Min. Lesezeit</span>
+            </div>
+            <h1 class="article-title">{{title}}</h1>
+            <p class="article-description">{{description}}</p>
+        </div>
+    </header>
+
+    <!-- Article Body -->
+    <article class="article-body">
+        {{content}}
+    </article>
+
+    <!-- CTA -->
+    <section class="article-cta">
+        <div class="article-cta-block reveal">
+            <h2>Klingt spannend? Lass uns reden.</h2>
+            <p>Kein Sales-Pitch. Nur ein Gespräch darüber, wie KI in deinem Unternehmen echten Impact haben kann.</p>
+            <a href="../index.html#cta" class="cta-button">
+                <span>Verfügbarkeit checken</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-text">AI Growth Partner - KI in EINFACH.</div>
+            <div class="footer-links">
+                <a href="../impressum.html">Impressum</a>
+                <a href="../datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+        <div class="container footer-transparency">
+            KI-Transparenzhinweis: Diese Website wurde zu 100% mit Claude Code vibe-gecodet. Kein überteuerter Webdesigner wurde für die Erstellung dieser Website beauftragt.
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html>
