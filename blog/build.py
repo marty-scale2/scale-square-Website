@@ -97,7 +97,7 @@ def build_article(md_path: Path, template: str) -> dict:
 
 def build_article_card(article: dict) -> str:
     """Generiert eine Blog-Karte für die Übersichtsseite."""
-    return f'''            <a href="{article['slug']}.html" class="blog-card reveal">
+    return f'''            <a href="{article['slug']}.html" class="blog-card reveal" data-category="{article['category']}">
                 <div class="blog-card-image-placeholder">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -129,8 +129,16 @@ def build_index(articles: list, template: str):
     # Artikel nach Datum sortieren (neueste zuerst)
     articles_sorted = sorted(articles, key=lambda a: a["date"], reverse=True)
 
+    # Filter-Buttons aus vorhandenen Kategorien generieren
+    categories = sorted(set(a["category"] for a in articles))
+    filters_html = "\n".join(
+        f'            <button class="filter-btn" data-category="{cat}">{cat}</button>'
+        for cat in categories
+    )
+
     cards_html = "\n".join(build_article_card(a) for a in articles_sorted)
-    html = template.replace("{{articles}}", cards_html)
+    html = template.replace("{{filters}}", filters_html)
+    html = html.replace("{{articles}}", cards_html)
 
     INDEX_OUTPUT_PATH.write_text(html, encoding="utf-8")
     print(f"  ✓ index.html ({len(articles)} Artikel)")

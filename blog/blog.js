@@ -87,6 +87,34 @@ function initScrollProgress() {
 }
 
 // ==========================================
+// Category Filter
+// ==========================================
+function initCategoryFilter() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.blog-card');
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category;
+
+            // Active-State wechseln
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Karten filtern
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
+
+// ==========================================
 // Lesedauer berechnen und anzeigen
 // ==========================================
 function initReadingTime() {
@@ -109,4 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initScrollProgress();
     initReadingTime();
+    initCategoryFilter();
 });

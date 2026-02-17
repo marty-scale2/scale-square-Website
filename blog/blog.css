@@ -276,6 +276,47 @@ body {
 }
 
 /* ==========================================
+   Category Filter
+   ========================================== */
+.blog-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 2rem 0 0;
+}
+
+.filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+}
+
+.filter-btn.active {
+    color: #0a0a0b;
+    background: var(--accent-pop);
+    border-color: var(--accent-pop);
+}
+
+/* Hidden state for filtered cards */
+.blog-card.hidden {
+    display: none;
+}
+
+/* ==========================================
    Artikel-Grid (Übersichtsseite)
    ========================================== */
 .blog-grid {
