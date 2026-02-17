@@ -7,6 +7,7 @@ Generiert die Blog-Übersichtsseite und aktualisiert die Sitemap.
 
 import os
 import re
+import sys
 import yaml
 import markdown
 from datetime import datetime
@@ -214,9 +215,13 @@ def main():
     print(f"\n📋 Übersichtsseite generieren\n")
     build_index(articles, index_template)
 
-    # Sitemap aktualisieren
-    print(f"\n🗺️  Sitemap aktualisieren\n")
-    update_sitemap(articles)
+    # Sitemap aktualisieren (nur mit --publish Flag)
+    if "--publish" in sys.argv:
+        print(f"\n🗺️  Sitemap aktualisieren\n")
+        update_sitemap(articles)
+    else:
+        print(f"\n⏸️  Sitemap NICHT aktualisiert (Blog ist noch im Draft-Modus)")
+        print(f"   → Nutze 'python build.py --publish' wenn der Blog live gehen soll")
 
     print(f"\n✅ Build abgeschlossen! {len(articles)} Artikel generiert.\n")
 
