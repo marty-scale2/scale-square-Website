@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Für Agenturinhaber – KI als Rettungsanker | scale²</title>
+    <meta name="description" content="Deine Kunden machen es selbst. Deine Margen brechen weg. KI-Implementierung speziell für Online-Marketing Agenturen – von jemandem, der selbst da war.">
+    <meta name="keywords" content="KI Agentur, Marketing Agentur KI, KI Implementierung Agentur, Agentur Transformation, KI Beratung Agenturen">
+    <link rel="canonical" href="https://scale-square.com/agenturen">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scale-square.com/agenturen">
+    <meta property="og:title" content="KI für Agenturen – scale²">
+    <meta property="og:description" content="Deine Kunden machen es jetzt selbst. Herzlich willkommen im Albtraum. Und hier ist, wie du rauskommst.">
+    <meta property="og:image" content="https://scale-square.com/og-image.jpg">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="scale²">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Preconnect für externe Ressourcen -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.web3forms.com">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Agenturen-spezifische Styles */
+        .hero-agenturen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 60% 40%, rgba(57, 255, 20, 0.07) 0%, transparent 60%),
+                        radial-gradient(ellipse at 20% 70%, rgba(57, 255, 20, 0.04) 0%, transparent 50%),
+                        var(--bg-primary);
+        }
+
+        .hero-agenturen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(57, 255, 20, 0.02) 80px,
+                    rgba(57, 255, 20, 0.02) 81px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(57, 255, 20, 0.02) 80px,
+                    rgba(57, 255, 20, 0.02) 81px
+                );
+            pointer-events: none;
+        }
+
+        .hero-agenturen .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        /* Founder Grid umgekehrt – Text links, Bild rechts */
+        .founder-grid-reversed {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .founder-grid-reversed {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .founder-grid-reversed .founder-image {
+                order: -1;
+            }
+        }
+
+        /* Schmerz-Grid 2×2 */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: rgba(57, 255, 20, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .pain-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .pain-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Wege-Grid */
+        .wege-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .wege-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">scale<sup>2</sup></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#leistungen" class="nav-link">Leistungen</a>
+                <a href="#story" class="nav-link">Über mich</a>
+                <a href="#" class="nav-cta" id="openContactModal">Gespräch</a>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-agenturen" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Für Agenturinhaber</div>
+            <h1 class="hero-headline">
+                Deine Kunden machen es jetzt selbst.<br>
+                <span class="gradient-text">Herzlich willkommen im Albtraum.</span>
+            </h1>
+            <p class="hero-subline">
+                ChatGPT, Claude, Midjourney. Die Tools, die du als Geheimwaffe hattest,
+                sind jetzt in den Händen deiner Kunden. Content, Ads, Texte, Designs –
+                sie bauen es intern. Billiger. Schneller. Ohne dich.
+                <span class="hero-accent">Ich weiß genau, wie sich das anfühlt. Und ich weiß, wie man da rauskommt.</span>
+            </p>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- "Ich war da" – Martins Story -->
+    <section class="section section-founder" id="story">
+        <div class="container">
+            <div class="founder-grid-reversed">
+                <div class="founder-content reveal">
+                    <div class="section-label">Ich war da</div>
+                    <h2 class="section-headline">
+                        Freelancer. Kleines Team.<br>
+                        <span class="gradient-text">Dann der gleiche Druck.</span>
+                    </h2>
+                    <p>Ich erzähl dir nicht, was ich gelesen hab. Ich erzähl dir, was ich selbst erlebt hab.</p>
+                    <p>Ich hab als Freelancer angefangen. Marketing, Funnels, Automationen. Irgendwann hatte ich ein 4-Personen-Team, feste Kunden, laufende Retainer. Und dann kam KI. Nicht als Chance – erst mal als Problem. Kunden, die plötzlich fragten, warum sie noch Geld für Dinge zahlen sollen, die ChatGPT für sie macht.</p>
+                    <p>Ich hätte genauso reagieren können wie viele Agenturen: abwarten, hoffen, auf Bestandskunden setzen. Stattdessen hab ich mich entschieden, das Ding zu <strong>verstehen und einzusetzen</strong> – bevor es mich einsetzt.</p>
+                    <p>Heute bau ich KI-Infrastruktur für Unternehmen und Agenturen. Nicht als Berater, der Konzepte vorliest. Sondern als jemand, der es selbst eingebaut hat – in die eigene Arbeit, in echte Kundenprojekte, mit echten Ergebnissen.</p>
+                    <div class="founder-signature">
+                        <span class="founder-name">Martin, Gründer von scale<sup>2</sup></span>
+                    </div>
+                </div>
+                <div class="founder-image reveal">
+                    <img src="martin.jpg" alt="Martin – Gründer von scale²">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "Was gerade passiert" – Der Schmerz -->
+    <section class="section section-problem" id="problem">
+        <div class="container">
+            <div class="section-label">Was gerade passiert</div>
+            <h2 class="section-headline reveal">
+                Das ist kein vorübergehender Trend.<br>
+                <span class="gradient-text">Das ist die neue Realität.</span>
+            </h2>
+            <div class="pain-grid">
+                <div class="pain-card reveal">
+                    <h3>"Das mach ich jetzt selbst mit ChatGPT."</h3>
+                    <p>Deine Kunden kündigen nicht, weil sie unzufrieden sind. Sie kündigen, weil sie glauben, sie können es selbst. Manchmal haben sie sogar recht. Das ist das Ehrlichste, was ich dir sagen kann.</p>
+                </div>
+                <div class="pain-card reveal">
+                    <h3>Preisdruck von unten</h3>
+                    <p>Neue Wettbewerber dumpen die Preise, weil KI ihnen erlaubt, mit einem Bruchteil deiner Teamgröße den gleichen Output zu liefern. Dein Stundensatz ist plötzlich erklärungsbedürftig.</p>
+                </div>
+                <div class="pain-card reveal">
+                    <h3>Dein Können ist zur Commodity geworden</h3>
+                    <p>Was du als Differenzierungsmerkmal hattest – Texte, Designs, Kampagnen – ist jetzt skalierbar. Nicht für alle gut. Aber für den Markt gut genug. Die Frage ist: Was ist jetzt dein Vorteil?</p>
+                </div>
+                <div class="pain-card reveal">
+                    <h3>Die Burnout-Falle</h3>
+                    <p>Du arbeitest mehr, für weniger. Das Team ist erschöpft. Und trotzdem sinken die Umsätze. Das ist der gefährlichste Moment – weil er wie eine Flaute aussieht, aber eigentlich ein Wendepunkt ist.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement Divider -->
+    <section class="section-statement">
+        <div class="container">
+            <p class="statement-text reveal">Das ist kein Ende. Das ist eine Weggabelung.</p>
+        </div>
+    </section>
+
+    <!-- "Die zwei Wege" – Reframe -->
+    <section class="section section-fit" id="wege">
+        <div class="container">
+            <div class="section-label">Die Entscheidung</div>
+            <h2 class="section-headline reveal">
+                Zwei Wege.<br>
+                <span class="gradient-text">Einer davon führt irgendwohin.</span>
+            </h2>
+            <div class="wege-grid">
+                <div class="fit-card fit-no reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M15 9l-6 6M9 9l6 6"/>
+                        </svg>
+                        <h3>Weg A: Ignorieren</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Abwarten, bis sich das "wieder normalisiert"</li>
+                        <li>Weiter auf Bestandskunden hoffen</li>
+                        <li>Mit Preisnachlässen um Kunden kämpfen</li>
+                        <li>In zwei Jahren verdrängt sein</li>
+                    </ul>
+                </div>
+                <div class="fit-card fit-yes reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <h3>Weg B: Integrieren</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>KI in die eigene Lieferung einbauen, bevor es jemand anderes tut</li>
+                        <li>Mit dem gleichen Team 3× den Output liefern</li>
+                        <li>KI selbst als Produkt anbieten – neuer Umsatzstrom</li>
+                        <li>Unschlagbar werden, statt verdrängt zu werden</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "Was ich konkret tue" – 3 Use Cases -->
+    <section class="section section-framework" id="leistungen">
+        <div class="container">
+            <div class="section-label">Was ich konkret tue</div>
+            <h2 class="section-headline reveal">
+                Drei Hebel.<br>
+                <span class="gradient-text">Spezifisch für Agenturen.</span>
+            </h2>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-number">01</div>
+                    <h3>KI in der Lieferung</h3>
+                    <p>Content, Ads, SEO, Creatives – alles, was du heute manuell produzierst. Wir bauen Workflows, die das in einem Bruchteil der Zeit erledigen. <strong>Gleiche Qualität, zehnfache Geschwindigkeit, höhere Marge.</strong> Dein Team arbeitet weniger – und liefert mehr.</p>
+                    <div class="step-tag">Mehr Output, gleiche Teamgröße</div>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-number">02</div>
+                    <h3>KI in Operations</h3>
+                    <p>Reporting, Projektmanagement, Kundenkommunikation, Onboarding. Alles, was intern Zeit frisst, ohne direkten Kundenwert zu schaffen. <strong>Wir automatisieren den Overhead</strong>, damit dein Team sich auf das konzentriert, wofür Kunden zahlen.</p>
+                    <div class="step-tag">Weniger Overhead, mehr Fokus</div>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-number">03</div>
+                    <h3>KI als neues Produkt</h3>
+                    <p>Deine Kunden wollen KI. Sie wissen nur nicht, wie. Statt Dienstleister für Content zu sein, wirst du <strong>Dienstleister für KI-Infrastruktur</strong>. Neues Angebot, neuer Preispunkt, neuer Umsatzstrom – aufgebaut auf dem, was du eh schon kannst.</p>
+                    <div class="step-tag">Neuer Umsatzstrom</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "Wie es abläuft" – 3 Schritte -->
+    <section class="section section-usecases" id="ablauf">
+        <div class="container">
+            <div class="section-label">Wie es abläuft</div>
+            <h2 class="section-headline reveal">
+                Kein langer Prozess.<br>
+                <span class="gradient-text">Drei Schritte. Fertig.</span>
+            </h2>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-number">01</div>
+                    <h3>Analyse-Workshop</h3>
+                    <p>Ein halber Tag. Wir schauen uns gemeinsam an, wo bei euch die meiste Zeit für den wenigsten Ertrag draufgeht. <strong>Wir finden den einen Hebel, der alles verändert</strong> – nicht fünf Baustellen gleichzeitig.</p>
+                    <div class="step-tag">~4 Stunden</div>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-number">02</div>
+                    <h3>Implementierung</h3>
+                    <p>Direkt in euren Workflow, ohne monatelange Projektphasen. Konkret, schnell, praxistauglich. <strong>Keine PowerPoints, keine Konzeptpapiere</strong> – wir bauen das, was ihr tatsächlich nutzt.</p>
+                    <div class="step-tag">Direkt einsatzbereit</div>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-number">03</div>
+                    <h3>Übergabe & Eigenständigkeit</h3>
+                    <p>Ihr werdet selbst damit arbeiten können. <strong>Kein Dependency-Lock</strong>, keine ewige Agenturbeziehung. Ziel ist, dass ihr das Ding eigenständig bedienen und weiterentwickeln könnt.</p>
+                    <div class="step-tag">Kein Lock-in</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualifikations-Filter -->
+    <section class="section section-fit" id="passt">
+        <div class="container">
+            <div class="section-label">Klingt nach dir?</div>
+            <h2 class="section-headline reveal">
+                Ich arbeite nicht mit jeder Agentur.<br>
+                <span class="gradient-text">Aber vielleicht mit deiner.</span>
+            </h2>
+            <div class="fit-grid">
+                <div class="fit-card fit-yes reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <h3>Das passt</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Deine Agentur läuft, hat Kunden – aber die Margen brechen weg</li>
+                        <li>Du bist offen für KI, weißt nur nicht, wo anfangen</li>
+                        <li>Du willst dich differenzieren, nicht im Preiskampf konkurrieren</li>
+                        <li>Du willst das Ding verstehen, nicht nur auslagern</li>
+                        <li>Du bist bereit, eine echte Veränderung anzugehen, keine halben Sachen</li>
+                    </ul>
+                </div>
+                <div class="fit-card fit-no reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M15 9l-6 6M9 9l6 6"/>
+                        </svg>
+                        <h3>Das passt nicht</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Deine Agentur ist noch nicht profitabel – erst das Fundament, dann KI</li>
+                        <li>"KI mal ausprobieren" ohne echtes Commitment</li>
+                        <li>Dein Hauptmotiv ist Kostensparen, nicht Wachstum</li>
+                        <li>Du willst eine fertige Lösung von der Stange</li>
+                        <li>Du brauchst jemanden, der das für dich macht – ohne dich dabei</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-cta" id="cta">
+        <div class="container">
+            <div class="cta-block reveal">
+                <h2>20 Minuten. Kein Pitch.</h2>
+                <p>Ich schau mir kurz an, was bei dir der größte Hebel wäre. Kein Sales-Gespräch, kein Konzeptpapier, keine Agenda. Wenn ich nicht helfen kann, sag ich's. Versprochen.</p>
+                <button type="button" class="cta-button cta-large" id="openContactModal">
+                    <span>Gespräch buchen</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-text">AI Growth Partner - KI in EINFACH.</div>
+            <div class="footer-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </div>
+        </div>
+        <div class="container footer-transparency">
+            KI-Transparenzhinweis: Diese Website wurde zu 100% mit Claude Code vibe-gecodet. Kein überteuerter Webdesigner wurde für die Erstellung dieser Website beauftragt.
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <strong>Cookie-Einstellungen</strong><br>
+                Wir verwenden technisch notwendige Cookies sowie optionale Analyse-Cookies (Google Analytics), um unsere Website zu verbessern. Analyse-Cookies werden nur mit deiner Zustimmung gesetzt. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+            </div>
+            <div class="cookie-banner-buttons">
+                <button class="cookie-btn cookie-btn-reject" id="cookieReject">Ablehnen</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Analytics (wird nur bei Cookie-Einwilligung geladen) -->
+    <script>
+        function loadGoogleAnalytics() {
+            if (document.getElementById('ga-script')) return;
+            var s = document.createElement('script');
+            s.id = 'ga-script';
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC7Z75NYGX';
+            document.head.appendChild(s);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-FC7Z75NYGX');
+        }
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+            loadGoogleAnalytics();
+        }
+    </script>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal">
+            <button type="button" class="modal-close" id="closeContactModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <h3 class="modal-title">Lass uns sprechen.</h3>
+            <p class="modal-subtitle">Kein Sales-Pitch. Nur ein kurzes Gespräch, ob und wie ich dir helfen kann.</p>
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="4231b42f-05e1-4230-8d5f-f52272c7efe0">
+                <input type="hidden" name="subject" value="Neue Anfrage über scale²-Website (Agenturen)">
+                <input type="hidden" name="from_name" value="scale² Website – Agenturen">
+                <div class="form-group">
+                    <label for="contactName">Name</label>
+                    <input type="text" id="contactName" name="name" required placeholder="Dein Name">
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">E-Mail</label>
+                    <input type="email" id="contactEmail" name="email" required placeholder="deine@email.de">
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Deine Anfrage</label>
+                    <textarea id="contactMessage" name="message" required placeholder="Erzähl kurz, wo deine Agentur gerade steht und was dich beschäftigt." rows="4"></textarea>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="contactConsent" name="consent" required>
+                    <label for="contactConsent">Ich willige ein, an meine angegebene E-Mail-Adresse bezüglich meiner Anfrage kontaktiert zu werden.</label>
+                </div>
+                <button type="submit" class="cta-button cta-large form-submit">
+                    <span>Absenden</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="form-success" id="formSuccess">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <h3>Anfrage gesendet!</h3>
+                <p>Ich melde mich zeitnah bei dir.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
