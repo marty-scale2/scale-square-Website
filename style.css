@@ -141,6 +141,7 @@ body {
 .nav-logo sup {
     font-size: 0.7em;
     color: var(--accent-pop);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.3);
 }
 
 .nav-links {
@@ -1491,15 +1492,8 @@ body {
 }
 
 .footer-logo {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-}
-
-.footer-logo sup {
-    color: var(--accent-pop);
-    font-size: 0.7em;
+    display: flex;
+    align-items: center;
 }
 
 .footer-text {
