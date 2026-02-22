@@ -228,7 +228,7 @@ body {
     left: 0;
     height: 3px;
     width: 0%;
-    background: var(--gradient-pop);
+    background: var(--accent-pop);
     z-index: 200;
     transition: width 0.05s linear;
 }
