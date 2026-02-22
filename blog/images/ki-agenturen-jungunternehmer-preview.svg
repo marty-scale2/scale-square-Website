@@ -30,9 +30,6 @@
     <line x1="600" y1="0" x2="600" y2="400"/>
   </g>
 
-  <!-- Top label -->
-  <text x="40" y="36" font-family="-apple-system, sans-serif" font-size="10" font-weight="800" fill="#a78bfa" letter-spacing="3" opacity="0.6">SCALE² · RANDOM</text>
-
   <!-- ═══════════════════════════════════ -->
   <!-- PIXEL FIGURE  (14×14 blocks, 16px step) -->
   <!-- x = 160 + col×16,  y = 30 + row×16  -->
@@ -167,17 +164,4 @@
   <rect x="160" y="150" width="250" height="1.5" fill="#a78bfa" opacity="0.12"/>
   <rect x="172" y="225" width="210" height="1"   fill="#a78bfa" opacity="0.09"/>
 
-  <!-- ─────────────────────────── -->
-  <!-- RIGHT SIDE TEXT             -->
-  <!-- ─────────────────────────── -->
-  <text x="468" y="148" font-family="-apple-system, sans-serif" font-size="28" font-weight="800" fill="#ffffff" opacity="0.92">Gute Nachricht:</text>
-  <text x="468" y="180" font-family="-apple-system, sans-serif" font-size="14" fill="#94a3b8" opacity="0.65">Es gibt hunderte KI-Agenturen.</text>
-
-  <line x1="468" y1="202" x2="762" y2="202" stroke="rgba(167,139,250,0.14)" stroke-width="1"/>
-
-  <text x="468" y="232" font-family="-apple-system, sans-serif" font-size="28" font-weight="800" fill="#a78bfa" opacity="0.92">Schlechte Nachricht:</text>
-  <text x="468" y="264" font-family="-apple-system, sans-serif" font-size="14" fill="#94a3b8" opacity="0.65">Das ist genau das Problem.</text>
-
-  <!-- Bottom right label -->
-  <text x="762" y="380" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b" opacity="0.4">scale-square.com</text>
 </svg>

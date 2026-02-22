@@ -240,6 +240,33 @@ body {
     padding: 10rem 0 4rem;
     text-align: center;
     background: radial-gradient(ellipse at 50% 50%, rgba(57, 255, 20, 0.04) 0%, var(--bg-primary) 70%);
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-hero-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.blog-hero-bg img {
+    position: absolute;
+    width: 52%;
+    opacity: 0.07;
+    object-fit: cover;
+}
+
+.blog-hero-bg img:nth-child(1) { left: -6%; top: 50%; transform: translateY(-50%); }
+.blog-hero-bg img:nth-child(2) { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.blog-hero-bg img:nth-child(3) { right: -6%; top: 50%; transform: translateY(-50%); }
+
+.blog-hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .blog-hero-label {
