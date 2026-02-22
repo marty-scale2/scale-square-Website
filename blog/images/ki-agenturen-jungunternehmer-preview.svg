@@ -1,21 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
   <defs>
-    <radialGradient id="bg2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#141418"/>
-      <stop offset="100%" stop-color="#0a0a0d"/>
+    <radialGradient id="bg3" cx="30%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#140e1e"/>
+      <stop offset="100%" stop-color="#08080c"/>
     </radialGradient>
-    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#a78bfa"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
-    </linearGradient>
-    <filter id="glow2">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="400" fill="url(#bg2)"/>
+  <rect width="800" height="400" fill="url(#bg3)"/>
+
+  <!-- Purple aura behind figure -->
+  <ellipse cx="228" cy="192" rx="130" ry="170" fill="url(#aura)"/>
 
   <!-- Subtle grid -->
   <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
@@ -30,47 +33,151 @@
   <!-- Top label -->
   <text x="40" y="36" font-family="-apple-system, sans-serif" font-size="10" font-weight="800" fill="#a78bfa" letter-spacing="3" opacity="0.6">SCALE² · RANDOM</text>
 
-  <!-- Row of identical grey agency boxes -->
-  <g opacity="0.22" fill="#64748b">
-    <rect x="60"  y="120" width="52" height="68" rx="4"/>
-    <rect x="124" y="120" width="52" height="68" rx="4"/>
-    <rect x="188" y="120" width="52" height="68" rx="4"/>
-    <rect x="252" y="120" width="52" height="68" rx="4"/>
-    <rect x="316" y="120" width="52" height="68" rx="4"/>
-    <rect x="380" y="120" width="52" height="68" rx="4"/>
-    <rect x="444" y="120" width="52" height="68" rx="4"/>
-    <rect x="508" y="120" width="52" height="68" rx="4"/>
-    <rect x="572" y="120" width="52" height="68" rx="4"/>
-    <rect x="636" y="120" width="52" height="68" rx="4"/>
-    <rect x="700" y="120" width="52" height="68" rx="4"/>
+  <!-- ═══════════════════════════════════ -->
+  <!-- PIXEL FIGURE  (14×14 blocks, 16px step) -->
+  <!-- x = 160 + col×16,  y = 30 + row×16  -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- SOLID blocks — left half of figure -->
+  <g fill="#a78bfa" filter="url(#glow3)">
+    <!-- HEAD cols 4-5  rows 1-2 -->
+    <rect x="224" y="46"  width="14" height="14" rx="1" opacity="0.95"/>
+    <rect x="240" y="46"  width="14" height="14" rx="1" opacity="0.95"/>
+    <rect x="224" y="62"  width="14" height="14" rx="1" opacity="0.95"/>
+    <rect x="240" y="62"  width="14" height="14" rx="1" opacity="0.95"/>
+    <!-- NECK col 5 row 3 -->
+    <rect x="240" y="78"  width="14" height="14" rx="1" opacity="0.95"/>
+    <!-- SHOULDERS LEFT cols 2-5 rows 4-5 -->
+    <rect x="192" y="94"  width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="208" y="94"  width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="94"  width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="94"  width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="192" y="110" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="208" y="110" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="110" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="110" width="14" height="14" rx="1" opacity="0.90"/>
+    <!-- LEFT ARM cols 0-1 rows 6-8 -->
+    <rect x="160" y="126" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="176" y="126" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="160" y="142" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="176" y="142" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="160" y="158" width="14" height="14" rx="1" opacity="0.82"/>
+    <rect x="176" y="158" width="14" height="14" rx="1" opacity="0.82"/>
+    <!-- TORSO cols 4-5 rows 6-11 -->
+    <rect x="224" y="126" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="126" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="142" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="142" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="158" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="158" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="174" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="174" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="190" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="190" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="206" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="206" width="14" height="14" rx="1" opacity="0.90"/>
+    <!-- HIPS LEFT cols 3-5 rows 12-13 -->
+    <rect x="208" y="222" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="222" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="222" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="208" y="238" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="238" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="240" y="238" width="14" height="14" rx="1" opacity="0.90"/>
+    <!-- LEFT LEG cols 3-4 rows 14-18 -->
+    <rect x="208" y="254" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="254" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="208" y="270" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="224" y="270" width="14" height="14" rx="1" opacity="0.90"/>
+    <rect x="208" y="286" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="224" y="286" width="14" height="14" rx="1" opacity="0.88"/>
+    <rect x="208" y="302" width="14" height="14" rx="1" opacity="0.85"/>
+    <rect x="224" y="302" width="14" height="14" rx="1" opacity="0.85"/>
+    <rect x="208" y="318" width="14" height="14" rx="1" opacity="0.80"/>
+    <rect x="224" y="318" width="14" height="14" rx="1" opacity="0.80"/>
   </g>
 
-  <!-- Identical label in boxes -->
-  <g opacity="0.13" fill="#ffffff" font-family="monospace" font-size="7" font-weight="700" letter-spacing="0.5">
-    <text x="86"  y="152" text-anchor="middle">KI</text>
-    <text x="150" y="152" text-anchor="middle">KI</text>
-    <text x="214" y="152" text-anchor="middle">KI</text>
-    <text x="278" y="152" text-anchor="middle">KI</text>
-    <text x="342" y="152" text-anchor="middle">KI</text>
-    <text x="406" y="152" text-anchor="middle">KI</text>
-    <text x="470" y="152" text-anchor="middle">KI</text>
-    <text x="534" y="152" text-anchor="middle">KI</text>
-    <text x="598" y="152" text-anchor="middle">KI</text>
-    <text x="662" y="152" text-anchor="middle">KI</text>
-    <text x="726" y="152" text-anchor="middle">KI</text>
+  <!-- DISSOLVING blocks — right half (col 6+), still partly in place -->
+  <g fill="#a78bfa">
+    <!-- Head col 6 (slightly right) -->
+    <rect x="258" y="46"  width="14" height="14" rx="1" opacity="0.65"/>
+    <rect x="260" y="62"  width="14" height="14" rx="1" opacity="0.55"/>
+    <!-- Right shoulder col 6-8 -->
+    <rect x="258" y="94"  width="14" height="14" rx="1" opacity="0.55"/>
+    <rect x="275" y="92"  width="14" height="14" rx="1" opacity="0.35"/>
+    <rect x="292" y="96"  width="13" height="13" rx="1" opacity="0.18"/>
+    <rect x="258" y="110" width="14" height="14" rx="1" opacity="0.50"/>
+    <rect x="276" y="108" width="12" height="12" rx="1" opacity="0.28"/>
+    <!-- Right torso col 6 -->
+    <rect x="258" y="126" width="14" height="14" rx="1" opacity="0.55"/>
+    <rect x="260" y="142" width="13" height="13" rx="1" opacity="0.48"/>
+    <rect x="259" y="158" width="13" height="13" rx="1" opacity="0.42"/>
+    <rect x="261" y="174" width="12" height="12" rx="1" opacity="0.35"/>
+    <rect x="260" y="190" width="12" height="12" rx="1" opacity="0.28"/>
+    <rect x="259" y="206" width="11" height="11" rx="1" opacity="0.22"/>
+    <!-- Right hip -->
+    <rect x="258" y="222" width="14" height="14" rx="1" opacity="0.40"/>
+    <rect x="275" y="225" width="12" height="12" rx="1" opacity="0.22"/>
+    <rect x="259" y="238" width="13" height="13" rx="1" opacity="0.32"/>
+    <rect x="276" y="241" width="10" height="10" rx="1" opacity="0.15"/>
+    <!-- Right leg -->
+    <rect x="258" y="254" width="14" height="14" rx="1" opacity="0.38"/>
+    <rect x="276" y="257" width="12" height="12" rx="1" opacity="0.20"/>
+    <rect x="260" y="270" width="13" height="13" rx="1" opacity="0.28"/>
+    <rect x="278" y="274" width="10" height="10" rx="1" opacity="0.14"/>
+    <rect x="261" y="286" width="12" height="12" rx="1" opacity="0.20"/>
+    <rect x="262" y="302" width="10" height="10" rx="1" opacity="0.14"/>
   </g>
 
-  <!-- "Alle gleich" brace label -->
-  <line x1="60" y1="205" x2="752" y2="205" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-  <text x="406" y="222" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2" opacity="0.5">ALLE GLEICH. ALLE POLISHED. ALLE AUSTAUSCHBAR.</text>
+  <!-- DEBRIS — pixels flying off to the right -->
+  <g fill="#a78bfa">
+    <!-- Right arm that broke off entirely — drifting upper-right -->
+    <rect x="312" y="112" width="14" height="14" rx="1" opacity="0.28"/>
+    <rect x="334" y="100" width="12" height="12" rx="1" opacity="0.22"/>
+    <rect x="354" y="118" width="11" height="11" rx="1" opacity="0.17"/>
+    <rect x="372" y="104" width="10" height="10" rx="1" opacity="0.13"/>
+    <rect x="394" y="128" width="8"  height="8"  rx="1" opacity="0.09"/>
+    <rect x="318" y="143" width="12" height="12" rx="1" opacity="0.24"/>
+    <rect x="344" y="158" width="10" height="10" rx="1" opacity="0.18"/>
+    <rect x="368" y="148" width="9"  height="9"  rx="1" opacity="0.13"/>
+    <rect x="390" y="162" width="7"  height="7"  rx="1" opacity="0.09"/>
+    <!-- Mid torso / hip debris drifting right -->
+    <rect x="298" y="168" width="11" height="11" rx="1" opacity="0.20"/>
+    <rect x="320" y="186" width="10" height="10" rx="1" opacity="0.16"/>
+    <rect x="344" y="200" width="9"  height="9"  rx="1" opacity="0.13"/>
+    <rect x="365" y="215" width="8"  height="8"  rx="1" opacity="0.10"/>
+    <rect x="308" y="232" width="10" height="10" rx="1" opacity="0.16"/>
+    <rect x="333" y="248" width="9"  height="9"  rx="1" opacity="0.13"/>
+    <rect x="356" y="262" width="7"  height="7"  rx="1" opacity="0.09"/>
+    <!-- Lower scatter -->
+    <rect x="297" y="280" width="9"  height="9"  rx="1" opacity="0.16"/>
+    <rect x="318" y="298" width="8"  height="8"  rx="1" opacity="0.12"/>
+    <rect x="338" y="312" width="7"  height="7"  rx="1" opacity="0.09"/>
+    <!-- Far dust -->
+    <rect x="414" y="152" width="6"  height="6"  rx="1" opacity="0.07"/>
+    <rect x="432" y="188" width="5"  height="5"  rx="1" opacity="0.06"/>
+    <rect x="408" y="218" width="6"  height="6"  rx="1" opacity="0.06"/>
+    <rect x="425" y="244" width="5"  height="5"  rx="1" opacity="0.05"/>
+  </g>
 
-  <!-- Main headline -->
-  <text x="40" y="278" font-family="-apple-system, sans-serif" font-size="26" font-weight="800" fill="#ffffff" opacity="0.92">Gute Nachricht: Es gibt hunderte</text>
-  <text x="40" y="310" font-family="-apple-system, sans-serif" font-size="26" font-weight="800" fill="url(#accent2)" filter="url(#glow2)">KI-Agenturen.</text>
+  <!-- Vertical crack line down figure center -->
+  <path d="M248,80 L242,140 L250,202 L240,262 L246,332"
+    fill="none" stroke="rgba(167,139,250,0.22)" stroke-width="1.5" stroke-dasharray="3,9"/>
 
-  <!-- Subline -->
-  <text x="40" y="345" font-family="-apple-system, sans-serif" font-size="13" fill="#64748b" opacity="0.6">Schlechte Nachricht: Das ist genau das Problem.</text>
+  <!-- Glitch scan lines -->
+  <rect x="160" y="150" width="250" height="1.5" fill="#a78bfa" opacity="0.12"/>
+  <rect x="172" y="225" width="210" height="1"   fill="#a78bfa" opacity="0.09"/>
+
+  <!-- ─────────────────────────── -->
+  <!-- RIGHT SIDE TEXT             -->
+  <!-- ─────────────────────────── -->
+  <text x="468" y="148" font-family="-apple-system, sans-serif" font-size="28" font-weight="800" fill="#ffffff" opacity="0.92">Gute Nachricht:</text>
+  <text x="468" y="180" font-family="-apple-system, sans-serif" font-size="14" fill="#94a3b8" opacity="0.65">Es gibt hunderte KI-Agenturen.</text>
+
+  <line x1="468" y1="202" x2="762" y2="202" stroke="rgba(167,139,250,0.14)" stroke-width="1"/>
+
+  <text x="468" y="232" font-family="-apple-system, sans-serif" font-size="28" font-weight="800" fill="#a78bfa" opacity="0.92">Schlechte Nachricht:</text>
+  <text x="468" y="264" font-family="-apple-system, sans-serif" font-size="14" fill="#94a3b8" opacity="0.65">Das ist genau das Problem.</text>
 
   <!-- Bottom right label -->
-  <text x="760" y="380" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b" opacity="0.4">scale-square.com</text>
+  <text x="762" y="380" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b" opacity="0.4">scale-square.com</text>
 </svg>
