@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Das kleine 1×1 des KI-Datenschutzes – Was Unternehmen jetzt wissen müssen</title>
-    <meta name="description" content="Mehr als die Hälfte aller Mitarbeiter nutzt KI-Tools ohne Wissen des Unternehmens. Was das rechtlich bedeutet – und was du als Unternehmen jetzt tun musst.">
+    <title>Welcher KI-Anbieter darf welche Daten sehen? Die 5 Schutzstufen für LLMs</title>
+    <meta name="description" content="ChatGPT, Mistral oder eigene Server – welches LLM ist für welche Unternehmensdaten geeignet? Die 5 Schutzstufen für den datenschutzkonformen Einsatz von KI-Sprachmodellen.">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://scale-square.com/blog/ki-datenschutz-1x1.html">
-    <meta property="og:title" content="Das kleine 1×1 des KI-Datenschutzes – Was Unternehmen jetzt wissen müssen">
-    <meta property="og:description" content="Mehr als die Hälfte aller Mitarbeiter nutzt KI-Tools ohne Wissen des Unternehmens. Was das rechtlich bedeutet – und was du als Unternehmen jetzt tun musst.">
+    <meta property="og:title" content="Welcher KI-Anbieter darf welche Daten sehen? Die 5 Schutzstufen für LLMs">
+    <meta property="og:description" content="ChatGPT, Mistral oder eigene Server – welches LLM ist für welche Unternehmensdaten geeignet? Die 5 Schutzstufen für den datenschutzkonformen Einsatz von KI-Sprachmodellen.">
     <meta property="og:locale" content="de_DE">
     <meta property="og:site_name" content="scale²">
     <meta property="article:published_time" content="2026-02-22">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Das kleine 1×1 des KI-Datenschutzes">
-    <meta name="twitter:description" content="Mehr als die Hälfte aller Mitarbeiter nutzt KI-Tools ohne Wissen des Unternehmens. Was das rechtlich bedeutet – und was du jetzt tun musst.">
+    <meta name="twitter:title" content="Welcher KI-Anbieter darf welche Daten sehen?">
+    <meta name="twitter:description" content="ChatGPT, Mistral oder eigene Server – welches LLM ist für welche Daten geeignet? Die 5 Schutzstufen einfach erklärt.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -250,19 +250,17 @@
                 <span class="article-date">22. Februar 2026</span>
                 <span class="article-readtime">~ 7 Min. Lesezeit</span>
             </div>
-            <h1 class="article-title">Das kleine 1×1 des KI&#8209;Datenschutzes</h1>
-            <p class="article-description">Mehr als die Hälfte aller Mitarbeiter in Deutschland nutzt KI-Tools ohne Wissen des Unternehmens. 80 Prozent der Firmen sind betroffen. Und die meisten haben keinen Plan, was das rechtlich bedeutet.</p>
+            <h1 class="article-title">Welcher KI&#8209;Anbieter darf welche Daten sehen?</h1>
+            <p class="article-description">ChatGPT, Mistral oder eigene Server – die Wahl des richtigen LLMs ist die wichtigste Datenschutzentscheidung beim KI-Einsatz. Dieser Artikel erklärt die 5 Schutzstufen und welche für welche Daten geeignet ist.</p>
         </div>
     </header>
 
     <!-- Article Body -->
     <article class="article-body">
 
-        <p><em><strong>Hinweis:</strong> Dieser Artikel konzentriert sich auf einen spezifischen Aspekt des KI-Datenschutzes – nämlich die datenschutzkonforme Auswahl und Nutzung von Large Language Models (LLMs). Er behandelt nicht alle Datenschutzpflichten eines Unternehmens und ersetzt keine Rechtsberatung.</em></p>
+        <p>ChatGPT, Copilot, Gemini, Claude – KI-Sprachmodelle (LLMs) sind aus dem Arbeitsalltag nicht mehr wegzudenken. Die meisten nutzen sie einfach. Und das ist erst mal gut so. Das Problem ist ein anderes: Die wenigsten stellen sich dabei die entscheidende Frage – <strong>wo landen meine Daten eigentlich?</strong></p>
 
-        <p>ChatGPT, Copilot, Gemini, Claude – KI-Tools sind aus dem Arbeitsalltag nicht mehr wegzudenken. Das Problem: Während die Nutzung explodiert, hinkt die rechtliche Absicherung weit hinterher. Und die Bußgelder sind längst in der Realität angekommen.</p>
-
-        <p>Schauen wir uns die nackten Zahlen an:</p>
+        <p>Schauen wir uns an, wie es gerade in deutschen Unternehmen aussieht:</p>
 
         <ul>
             <li><strong>54 %</strong> der Wissensarbeiter in Deutschland nutzen KI-Tools eigenmächtig – ohne Wissen oder Freigabe des Unternehmens. (Software AG, Sep. 2024, n=2.000)</li>
@@ -271,18 +269,16 @@
             <li><strong>1,2 Milliarden Euro</strong> DSGVO-Bußgelder wurden allein 2024 europaweit verhängt – Tendenz steigend. (DLA Piper, Jan. 2025)</li>
         </ul>
 
-        <p>Das ist kein theoretisches Problem. Das passiert gerade, in diesem Moment, in Unternehmen jeder Größe. Mitarbeitende tippen Kundendaten in ChatGPT, fassen interne Strategiepapiere zusammen, lassen Bewerbungsunterlagen analysieren – und niemand hat je geprüft, ob das rechtlich überhaupt in Ordnung ist.</p>
+        <p>Das passiert gerade, in diesem Moment, in Unternehmen jeder Größe. Mitarbeitende tippen Kundendaten in ChatGPT, fassen interne Strategiepapiere zusammen, lassen Bewerbungsunterlagen analysieren – ohne sich zu fragen, wo diese Informationen dabei eigentlich landen.</p>
 
-        <h2 id="was-das-problem-wirklich-ist">Was das Problem wirklich ist</h2>
+        <h2 id="was-das-problem-wirklich-ist">Die eine Frage, die sich fast niemand stellt</h2>
 
-        <p>Datenschutz im KI-Kontext wird oft missverstanden. Viele denken: „Solange nichts geleakt wird, sind wir auf der sicheren Seite." Das ist falsch.</p>
+        <p>Wenn du Text in ein LLM eingibst, schickst du diese Information an einen Server – irgendwo auf der Welt, betrieben von einem Unternehmen mit eigenen Geschäftsbedingungen, unter einem bestimmten Rechtssystem. Wer Zugriff auf diese Daten hat, welche Gesetze dort gelten und ob fremde Behörden Zugriff verlangen können, hängt direkt davon ab, <strong>welchen Anbieter du nutzt</strong>.</p>
 
-        <p>Die DSGVO verlangt eine <strong>Rechtsgrundlage für jede Datenverarbeitung</strong> – egal, ob etwas „passiert" oder nicht. Wer Daten verarbeitet, muss nachweisen können, dass er dazu berechtigt ist. Beim Einsatz externer KI-Tools bedeutet das konkret: Gibt es einen Auftragsverarbeitungsvertrag (AVV) mit dem KI-Anbieter? Ist dokumentiert, welche Datenkategorien die KI verarbeitet? Wurde eine Datenschutz-Folgeabschätzung durchgeführt? Liegt der Anbieter außerhalb der EU – und auf welcher Basis erfolgt die Übermittlung?</p>
-
-        <p>Klingt alles kompliziert oder? Keine Sorge, wir gehen das in diesem Artikel alles Schritt für Schritt durch.</p>
+        <p>Das ist keine abstrakte Rechtsfrage. Das ist eine ganz konkrete Entscheidung, die du jeden Tag triffst – bewusst oder unbewusst.</p>
 
         <blockquote>
-            <p>Das Risiko liegt nicht darin, dass ChatGPT „böse" ist. Das Risiko liegt darin, dass personenbezogene Daten ohne Rechtsgrundlage an einen ausländischen Anbieter übermittelt werden – ohne AVV, ohne Datenschutzfolgeabschätzung, ohne jedes dokumentierte Verfahren.</p>
+            <p>Das Risiko liegt nicht darin, dass ChatGPT „böse" ist. Das Risiko liegt darin, dass du nicht weißt, was mit deinen Daten passiert – und dass du die Wahl hättest, es besser zu machen.</p>
         </blockquote>
 
         <h2 id="die-fuenf-stufen">Die 5 Schutzstufen: Wo steht dein Unternehmen?</h2>
@@ -542,32 +538,32 @@
 
         <p>Stufe 5 ist nicht für jeden sinnvoll – und das muss auch nicht sein. Für die meisten mittelständischen Unternehmen liegt die richtige Lösung zwischen Stufe 2 und 4, je nach Datensensitivität und vorhandener Infrastruktur.</p>
 
-        <h2 id="was-du-jetzt-tun-solltest">Was du jetzt konkret tun solltest</h2>
+        <h2 id="was-du-jetzt-tun-solltest">So wendest du das jetzt an</h2>
 
-        <p>Der Weg zur rechtskonformen KI-Nutzung ist kein Hexenwerk. Es braucht keine monatelangen Projekte. Was es braucht, ist eine klare Struktur – und den Willen, das Thema ernstzunehmen.</p>
+        <p>Die 5 Stufen sind kein theoretisches Konstrukt. Sie sind ein praktisches Entscheidungsframework. So setzt du es um:</p>
 
-        <h3 id="bestandsaufnahme">1. Bestandsaufnahme: Welche KI-Tools werden genutzt?</h3>
-        <p>Bevor man regeln kann, muss man wissen, was los ist. Shadow AI bedeutet: Mitarbeitende haben schon entschieden – mit oder ohne Strategie des Unternehmens. Eine ehrliche Inventur ist der erste Schritt.</p>
+        <h3 id="bestandsaufnahme">1. Inventur: Welche LLMs werden im Team genutzt?</h3>
+        <p>Shadow AI ist Realität – 54 % der Mitarbeitenden nutzen KI-Tools ohne Wissen des Unternehmens. Fang damit an herauszufinden, was tatsächlich im Einsatz ist. Erst dann kannst du sinnvoll steuern.</p>
 
-        <h3 id="datenkategorien">2. Datenkategorien definieren</h3>
-        <p>Nicht alle Daten sind gleich. Was verarbeitet die KI – interne Notizen, Kundennamen, Gesundheitsdaten, Finanzzahlen? Je höher die Sensitivität, desto höher die Anforderungen an Anbieter und Infrastruktur.</p>
+        <h3 id="datenkategorien">2. Daten klassifizieren: Was geht da eigentlich rein?</h3>
+        <p>Interne Notizen ohne Personenbezug? Stufe 1 ist oft ausreichend. Kundendaten, Finanzzahlen, HR-Informationen? Dann mindestens Stufe 2 oder 3. Je sensibler die Daten, desto weiter rechts auf der Skala sollte dein Anbieter liegen.</p>
 
-        <h3 id="anbieter-auswaehlen">3. Anbieter nach Schutzstufe auswählen</h3>
-        <p>Die fünf Stufen geben die Orientierung. Wer bereits mit Microsoft Azure arbeitet, kann oft mit überschaubarem Aufwand auf EU-Regionen umsteigen – und gewinnt damit erheblich an Rechtssicherheit.</p>
+        <h3 id="anbieter-auswaehlen">3. Anbieter bewusst wählen – nicht per Default</h3>
+        <p>Die meisten Teams landen bei ChatGPT, weil es das Bekannteste ist – nicht weil es das Richtige ist. Wenn du weißt, welche Daten du verarbeitest, kannst du den passenden Anbieter gezielt auswählen. Stufe 2 bis 4 ist für viele Unternehmen mit wenig Mehraufwand erreichbar.</p>
 
-        <h3 id="avv">4. Auftragsverarbeitungsvertrag abschließen</h3>
-        <p>Für jeden KI-Anbieter, der personenbezogene Daten verarbeitet, ist ein AVV Pflicht. Die meisten seriösen Anbieter stellen diese bereit. Wer keinen anbietet: rote Flagge.</p>
+        <h3 id="avv">4. Prüfen, ob ein Auftragsverarbeitungsvertrag vorliegt</h3>
+        <p>Ein AVV (Auftragsverarbeitungsvertrag) ist das schriftliche Fundament: Er regelt, was der Anbieter mit deinen Daten darf – und was nicht. Seriöse Anbieter stellen diesen bereit. Wer das verweigert oder keinen hat: das ist eine rote Flagge und reicht als alleinige Maßnahme nicht aus – aber es ist der erste Schritt.</p>
 
-        <h3 id="mitarbeitende-schulen">5. Mitarbeitende informieren – nicht nur verbieten</h3>
-        <p>49 Prozent würden KI auch bei Verbot weiter nutzen. Verbote allein funktionieren nicht. Was funktioniert: eine klare, verständliche Richtlinie, die erklärt, was erlaubt ist und warum – und die gleichzeitig gute, freigegebene Alternativen anbietet.</p>
+        <h3 id="richtlinie">5. Klare Leitlinie für das Team – kein Verbot, sondern Orientierung</h3>
+        <p>49 % der Mitarbeitenden würden KI auch bei explizitem Verbot weiter nutzen. Verbote funktionieren nicht. Was funktioniert: eine einfache, verständliche Richtlinie, die sagt welches Tool für welche Daten erlaubt ist – und warum. Am besten kombiniert mit freigegebenen Alternativen.</p>
 
         <h2 id="fazit">Fazit</h2>
 
-        <p>Die Datenschutzbehörden sind sensibilisiert. Die Bußgelder steigen. Und die technischen Hürden, KI rechtskonform einzusetzen, sind längst nicht mehr prohibitiv hoch. Deutsche und europäische Anbieter haben massiv aufgeholt.</p>
+        <p>Du musst kein Datenschutzexperte sein, um die richtige Entscheidung zu treffen. Du musst nur eine Frage stellen: <strong>Wo landen meine Daten?</strong></p>
 
-        <p>Die Frage ist also nicht mehr: <em>„Können wir KI datenschutzkonform nutzen?"</em><br>Die Frage ist: <em>„Wollen wir es endlich angehen?"</em></p>
+        <p>Die 5 Stufen in diesem Artikel geben dir dafür das Framework. Stufe 1 für allgemeine Aufgaben ohne sensible Daten – kein Problem. Stufe 1 für Kundendaten oder interne Strategieinhalte – das ist vermeidbar, und die Alternative ist nicht weit.</p>
 
-        <p>Wer jetzt handelt, schützt nicht nur sein Unternehmen vor Bußgeldern. Er schafft auch Vertrauen – bei Kunden, bei Mitarbeitenden, bei Geschäftspartnern. Und das ist, langfristig gesehen, der weitaus größere Gewinn.</p>
+        <p>Deutsche und europäische Anbieter haben massiv aufgeholt. Die technische Hürde, es besser zu machen, ist kleiner als die meisten denken.</p>
 
         <hr>
 
