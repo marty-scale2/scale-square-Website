@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <radialGradient id="bg2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#0a0a0d"/>
+    </radialGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg2)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+  </g>
+
+  <!-- Top label -->
+  <text x="40" y="36" font-family="-apple-system, sans-serif" font-size="10" font-weight="800" fill="#a78bfa" letter-spacing="3" opacity="0.6">SCALE² · RANDOM</text>
+
+  <!-- Row of identical grey agency boxes -->
+  <g opacity="0.22" fill="#64748b">
+    <rect x="60"  y="120" width="52" height="68" rx="4"/>
+    <rect x="124" y="120" width="52" height="68" rx="4"/>
+    <rect x="188" y="120" width="52" height="68" rx="4"/>
+    <rect x="252" y="120" width="52" height="68" rx="4"/>
+    <rect x="316" y="120" width="52" height="68" rx="4"/>
+    <rect x="380" y="120" width="52" height="68" rx="4"/>
+    <rect x="444" y="120" width="52" height="68" rx="4"/>
+    <rect x="508" y="120" width="52" height="68" rx="4"/>
+    <rect x="572" y="120" width="52" height="68" rx="4"/>
+    <rect x="636" y="120" width="52" height="68" rx="4"/>
+    <rect x="700" y="120" width="52" height="68" rx="4"/>
+  </g>
+
+  <!-- Identical label in boxes -->
+  <g opacity="0.13" fill="#ffffff" font-family="monospace" font-size="7" font-weight="700" letter-spacing="0.5">
+    <text x="86"  y="152" text-anchor="middle">KI</text>
+    <text x="150" y="152" text-anchor="middle">KI</text>
+    <text x="214" y="152" text-anchor="middle">KI</text>
+    <text x="278" y="152" text-anchor="middle">KI</text>
+    <text x="342" y="152" text-anchor="middle">KI</text>
+    <text x="406" y="152" text-anchor="middle">KI</text>
+    <text x="470" y="152" text-anchor="middle">KI</text>
+    <text x="534" y="152" text-anchor="middle">KI</text>
+    <text x="598" y="152" text-anchor="middle">KI</text>
+    <text x="662" y="152" text-anchor="middle">KI</text>
+    <text x="726" y="152" text-anchor="middle">KI</text>
+  </g>
+
+  <!-- "Alle gleich" brace label -->
+  <line x1="60" y1="205" x2="752" y2="205" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="406" y="222" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2" opacity="0.5">ALLE GLEICH. ALLE POLISHED. ALLE AUSTAUSCHBAR.</text>
+
+  <!-- Main headline -->
+  <text x="40" y="278" font-family="-apple-system, sans-serif" font-size="26" font-weight="800" fill="#ffffff" opacity="0.92">Gute Nachricht: Es gibt hunderte</text>
+  <text x="40" y="310" font-family="-apple-system, sans-serif" font-size="26" font-weight="800" fill="url(#accent2)" filter="url(#glow2)">KI-Agenturen.</text>
+
+  <!-- Subline -->
+  <text x="40" y="345" font-family="-apple-system, sans-serif" font-size="13" fill="#64748b" opacity="0.6">Schlechte Nachricht: Das ist genau das Problem.</text>
+
+  <!-- Bottom right label -->
+  <text x="760" y="380" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b" opacity="0.4">scale-square.com</text>
+</svg>
