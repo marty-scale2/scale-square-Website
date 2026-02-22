@@ -33,19 +33,195 @@
         "headline": "Das kleine 1×1 des KI-Datenschutzes",
         "description": "Mehr als die Hälfte aller Mitarbeiter nutzt KI-Tools ohne Wissen des Unternehmens. Was das rechtlich bedeutet – und was du als Unternehmen jetzt tun musst.",
         "datePublished": "2026-02-22",
-        "author": {
-            "@type": "Person",
-            "name": "Martin"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "scale²",
-            "url": "https://scale-square.com"
-        }
+        "author": { "@type": "Person", "name": "Martin" },
+        "publisher": { "@type": "Organization", "name": "scale²", "url": "https://scale-square.com" }
     }
     </script>
 
     <link rel="stylesheet" href="blog.css">
+
+    <style>
+        /* ── Visualisierungs-Styles (inline, da Custom-Komponenten) ── */
+        .viz-block {
+            margin: 48px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* Schutzstufen-Übersicht */
+        .scale-overview {
+            background: #0e0e12;
+            padding: 48px 40px;
+        }
+
+        .scale-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            margin-bottom: 40px;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .scale-bar-segment {
+            padding: 18px 12px 16px;
+            text-align: center;
+        }
+
+        .scale-bar-num {
+            font-family: var(--font-mono, monospace);
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .scale-bar-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.75;
+        }
+
+        .seg-1 { background: rgba(255,69,69,0.12); color: #ff7070; }
+        .seg-2 { background: rgba(255,170,0,0.12); color: #ffcc55; }
+        .seg-3 { background: rgba(59,130,246,0.12); color: #7eb3ff; }
+        .seg-4 { background: rgba(57,255,20,0.10); color: #39ff14; }
+        .seg-5 { background: rgba(168,85,247,0.12); color: #c084fc; }
+
+        .scale-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 36px;
+            color: var(--text-muted, #64748b);
+            font-size: 12px;
+            font-family: var(--font-mono, monospace);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .scale-arrow-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #ff4545, #ffaa00, #3b82f6, #39ff14, #a855f7);
+            opacity: 0.5;
+        }
+
+        .scale-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted, #64748b);
+            margin-bottom: 4px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.02);
+            transition: border-color 0.2s;
+        }
+
+        .legend-item:hover { border-color: rgba(255,255,255,0.12); }
+
+        .legend-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-item-text { flex: 1; }
+        .legend-item-name { font-size: 13px; font-weight: 700; color: var(--text-primary, #f0f0f2); }
+        .legend-item-sub { font-size: 11px; color: var(--text-muted, #64748b); margin-top: 2px; }
+
+        /* Stufen Cards */
+        .layer-card {
+            background: #0e0e12;
+            padding: 36px 40px;
+        }
+
+        .lc-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .lc-badge {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-family: var(--font-mono, monospace);
+            white-space: nowrap;
+        }
+
+        .lc-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary, #f0f0f2);
+            line-height: 1.2;
+        }
+
+        .lc-analogy {
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 24px;
+            border-left-width: 3px;
+            border-left-style: solid;
+            color: var(--text-secondary, #94a3b8);
+        }
+
+        .lc-analogy strong { font-weight: 700; }
+
+        .lc-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .lc-feature {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .lc-feature:hover { border-color: rgba(255,255,255,0.14); }
+
+        .lc-feature-icon { font-size: 22px; margin-bottom: 8px; }
+        .lc-feature-name { font-size: 13px; font-weight: 700; color: var(--text-primary, #f0f0f2); margin-bottom: 4px; }
+        .lc-feature-text { font-size: 12px; color: var(--text-muted, #64748b); line-height: 1.5; }
+
+        @media (max-width: 640px) {
+            .scale-overview { padding: 32px 24px; }
+            .scale-bar { grid-template-columns: repeat(5, 1fr); }
+            .scale-bar-num { font-size: 20px; }
+            .scale-bar-label { display: none; }
+            .layer-card { padding: 28px 24px; }
+            .lc-features { grid-template-columns: 1fr 1fr; }
+            .lc-title { font-size: 17px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -72,7 +248,7 @@
             <div class="article-meta">
                 <span class="article-category">Basics</span>
                 <span class="article-date">22. Februar 2026</span>
-                <span class="article-readtime">~ 6 Min. Lesezeit</span>
+                <span class="article-readtime">~ 7 Min. Lesezeit</span>
             </div>
             <h1 class="article-title">Das kleine 1×1 des KI&#8209;Datenschutzes</h1>
             <p class="article-description">Mehr als die Hälfte aller Mitarbeiter in Deutschland nutzt KI-Tools ohne Wissen des Unternehmens. 80 Prozent der Firmen sind betroffen. Und die meisten haben keinen Plan, was das rechtlich bedeutet.</p>
@@ -104,27 +280,265 @@
         <p>Klingt alles kompliziert oder? Keine Sorge, wir gehen das in diesem Artikel alles Schritt für Schritt durch.</p>
 
         <blockquote>
-            <p>Das Risiko liegt nicht darin, dass ChatGPT „böse" ist. Das Risiko liegt darin, dass personenbezogene Daten ohne Rechtsgrundlage an einen US-amerikanischen Anbieter übermittelt werden – ohne AVV, ohne Datenschutzfolgeabschätzung, ohne jedes dokumentierte Verfahren.</p>
+            <p>Das Risiko liegt nicht darin, dass ChatGPT „böse" ist. Das Risiko liegt darin, dass personenbezogene Daten ohne Rechtsgrundlage an einen ausländischen Anbieter übermittelt werden – ohne AVV, ohne Datenschutzfolgeabschätzung, ohne jedes dokumentierte Verfahren.</p>
         </blockquote>
 
-        <h2 id="die-fuenf-stufen">Die 5 Stufen: Wo steht dein Unternehmen?</h2>
+        <h2 id="die-fuenf-stufen">Die 5 Schutzstufen: Wo steht dein Unternehmen?</h2>
 
-        <p>Nicht jede KI-Nutzung ist gleich riskant. Es kommt darauf an, welche Daten du verarbeitest und welche Infrastruktur du dafür nutzt. Je sensibler die Daten, desto höher muss die Schutzstufe sein.</p>
+        <p>Nicht jede KI-Nutzung ist gleich riskant. Es kommt darauf an, welche Daten du verarbeitest und welche Infrastruktur du dafür nutzt. Je sensibler die Daten, desto höher muss die Schutzstufe sein. Wir unterscheiden fünf Stufen – von „praktisch einsetzbar, aber rechtlich heikel" bis hin zu „maximale Datensouveränität".</p>
 
-        <h3 id="stufe-1">Stufe 1 – Direkte US-API (OpenAI, Anthropic, Google)</h3>
-        <p>Daten landen auf Servern in den USA. Als US-Unternehmen unterliegen diese Anbieter dem CLOUD Act – US-Behörden können theoretisch Zugriff auf Daten verlangen, auch wenn diese auf EU-Servern liegen. Für allgemeine Aufgaben ohne personenbezogene Daten tolerierbar. Für Kundendaten, HR oder Finanzen: <strong>nicht geeignet</strong>.</p>
+        <!-- SCHAUBILD: Übersicht der 5 Stufen -->
+        <div class="viz-block">
+            <div class="scale-overview">
+                <div class="scale-bar">
+                    <div class="scale-bar-segment seg-1">
+                        <div class="scale-bar-num">1</div>
+                        <div class="scale-bar-label">Extern</div>
+                    </div>
+                    <div class="scale-bar-segment seg-2">
+                        <div class="scale-bar-num">2</div>
+                        <div class="scale-bar-label">EU-Anbieter</div>
+                    </div>
+                    <div class="scale-bar-segment seg-3">
+                        <div class="scale-bar-num">3</div>
+                        <div class="scale-bar-label">EU-Server</div>
+                    </div>
+                    <div class="scale-bar-segment seg-4">
+                        <div class="scale-bar-num">4</div>
+                        <div class="scale-bar-label">DE-Cloud</div>
+                    </div>
+                    <div class="scale-bar-segment seg-5">
+                        <div class="scale-bar-num">5</div>
+                        <div class="scale-bar-label">On-Premise</div>
+                    </div>
+                </div>
+                <div class="scale-arrow">
+                    <span>Niedriger Datenschutz</span>
+                    <div class="scale-arrow-line"></div>
+                    <span>Maximale Souveränität</span>
+                </div>
+                <div class="scale-legend">
+                    <div class="legend-title">Die 5 Stufen</div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ff4545;"></div>
+                        <div class="legend-item-text">
+                            <div class="legend-item-name">Stufe 1 – Externe KI-Dienste (Abo oder API)</div>
+                            <div class="legend-item-sub">Anbieter außerhalb der EU. Kein garantierter Datenschutz nach europäischem Standard.</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ffaa00;"></div>
+                        <div class="legend-item-text">
+                            <div class="legend-item-name">Stufe 2 – Europäische KI-Anbieter</div>
+                            <div class="legend-item-sub">EU-Unternehmen mit EU-Recht. Kein CLOUD Act, DSGVO-konform by design.</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#3b82f6;"></div>
+                        <div class="legend-item-text">
+                            <div class="legend-item-name">Stufe 3 – US-Cloud mit EU-Rechenzentrum</div>
+                            <div class="legend-item-sub">Daten physisch in Europa, Muttergesellschaft außerhalb. CLOUD Act Restrisiko bleibt.</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#39ff14;"></div>
+                        <div class="legend-item-text">
+                            <div class="legend-item-name">Stufe 4 – Deutsche Cloud-Infrastruktur</div>
+                            <div class="legend-item-sub">100 % deutsches Unternehmen, deutsches Recht, zertifizierte Rechenzentren in DE.</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#a855f7;"></div>
+                        <div class="legend-item-text">
+                            <div class="legend-item-name">Stufe 5 – On-Premise (eigene Server)</div>
+                            <div class="legend-item-sub">Maximale Kontrolle. Kein Drittanbieter. Daten verlassen niemals das Unternehmen.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <h3 id="stufe-2">Stufe 2 – Europäischer Anbieter (z.B. Mistral AI, Frankreich)</h3>
-        <p>EU-Unternehmen, kein CLOUD Act, DSGVO-konform by design. Starke Modelle, besonders gut für deutsche Texte. Guter Kompromiss für Geschäftsdaten mit Schutzbedarf – mit Auftragsverarbeitungsvertrag und klarer EU-Jurisdiktion.</p>
+        <p>Gehen wir jede Stufe im Detail durch.</p>
 
-        <h3 id="stufe-3">Stufe 3 – US-Cloud mit EU-Rechenzentrum (Azure, AWS, Google Vertex)</h3>
-        <p>Top-Modelle auf europäischen Servern. Daten verlassen die EU nicht – aber die Muttergesellschaft bleibt ein US-Unternehmen. Das CLOUD Act Restrisiko besteht theoretisch weiter. Für viele Enterprise-Anwendungen ein praktikabler Kompromiss, für hochsensible Branchen ggf. nicht ausreichend.</p>
+        <h2 id="stufe-1">Stufe 1 – Externe KI-Dienste: Abo oder API</h2>
 
-        <h3 id="stufe-4">Stufe 4 – 100 % Deutsche Cloud (STACKIT oder IONOS)</h3>
-        <p>Volle Datensouveränität, deutsches Recht, kein CLOUD Act. Open-Source-Modelle wie Llama oder Mistral auf zertifizierter Infrastruktur in Deutschland. Ideal für regulierte Branchen: Gesundheit, Finanzen, öffentliche Hand. Die Qualitätslücke zu proprietären Modellen ist für die meisten Unternehmensanwendungen irrelevant.</p>
+        <p>Das ist die Realität in den meisten Unternehmen heute. Jemand hat ein ChatGPT-Plus-Abo abgeschlossen, Kollegen nutzen es, Daten fließen – ohne dass irgendjemand gefragt hat, was das eigentlich rechtlich bedeutet.</p>
 
-        <h3 id="stufe-5">Stufe 5 – On-Premise (eigene Server)</h3>
-        <p>Maximale Kontrolle. Keine Daten verlassen das Unternehmen. Erfordert IT-Expertise und Hardware-Investment. Richtig für Hochsicherheitsanforderungen oder Umgebungen ohne Internetzugang – für die meisten KMU aber überdimensioniert.</p>
+        <!-- VISUALISIERUNG: Stufe 1 -->
+        <div class="viz-block">
+            <div class="layer-card">
+                <div class="lc-header">
+                    <span class="lc-badge" style="background:rgba(255,69,69,0.12);color:#ff7070;border:1px solid rgba(255,69,69,0.25);">Stufe 1</span>
+                    <div class="lc-title">Externe KI-Dienste – Abo-Modelle &amp; API</div>
+                </div>
+                <div class="lc-analogy" style="background:rgba(255,69,69,0.04);border-left-color:#ff4545;">
+                    <strong style="color:#ff7070;">Wie es sich anfühlt:</strong> Du schickst einen Brief an eine Firma in einem anderen Land. Technisch kommt er an, aber welche Gesetze dort gelten, wer ihn lesen darf und ob die lokale Regierung Zugriff verlangen kann – das liegt komplett außerhalb deiner Kontrolle.
+                </div>
+                <div class="lc-features">
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">💳</div>
+                        <div class="lc-feature-name">Abo-Modelle</div>
+                        <div class="lc-feature-text">ChatGPT Plus, Claude Pro, Gemini Advanced – monatliche Flatrate, Nutzung direkt über den Browser. Einfachster Einstieg, aber auch das geringste Maß an Kontrolle über deine Daten.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🔌</div>
+                        <div class="lc-feature-name">API-Zugang (Pay-per-Token)</div>
+                        <div class="lc-feature-text">Die API ist vereinfacht gesagt eine technische Schnittstelle, über die Software direkt mit dem KI-Modell kommuniziert – ohne Browser. Du zahlst pro Nutzung, nicht pauschal. Typisch für eigene Anwendungen oder Automatisierungen.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🌍</div>
+                        <div class="lc-feature-name">Hauptsächlich US &amp; China</div>
+                        <div class="lc-feature-text">OpenAI, Anthropic, Google, Meta – alles US-Unternehmen unter dem CLOUD Act. Dazu kommen chinesische Anbieter wie DeepSeek oder Alibabas Qwen, die unter dem chinesischen Geheimdienstgesetz stehen. Unterschiedliche Risiken, ähnliche Kontrollverluste.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Für allgemeine Aufgaben ohne personenbezogene Daten – Texte formulieren, Ideen entwickeln, öffentliche Informationen zusammenfassen – ist Stufe 1 in der Praxis oft tolerierbar. Sobald aber Kundendaten, HR-Informationen, Finanzzahlen oder interne Strategiedokumente ins Spiel kommen, wird es juristisch problematisch.</p>
+
+        <h2 id="stufe-2">Stufe 2 – Europäische KI-Anbieter</h2>
+
+        <p>Der entscheidende Unterschied zu Stufe 1 ist nicht die Technologie – es ist das Rechtssystem. Ein EU-Unternehmen unterliegt der DSGVO, dem EU AI Act und dem europäischen Datenschutzrecht. Es gibt keinen CLOUD Act, kein chinesisches Geheimdienstgesetz, keine Schrems-II-Problematik.</p>
+
+        <!-- VISUALISIERUNG: Stufe 2 -->
+        <div class="viz-block">
+            <div class="layer-card">
+                <div class="lc-header">
+                    <span class="lc-badge" style="background:rgba(255,170,0,0.12);color:#ffcc55;border:1px solid rgba(255,170,0,0.25);">Stufe 2</span>
+                    <div class="lc-title">Europäische KI-Anbieter – EU-Recht als Fundament</div>
+                </div>
+                <div class="lc-analogy" style="background:rgba(255,170,0,0.04);border-left-color:#ffaa00;">
+                    <strong style="color:#ffcc55;">Was das konkret bedeutet:</strong> Du arbeitest mit einem Unternehmen, das denselben Gesetzen unterliegt wie du. Wenn etwas nicht stimmt, greift europäisches Recht. Kein fremdes Gericht, kein Behördenauftrag aus Übersee, keine Grauzone.
+                </div>
+                <div class="lc-features">
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🇪🇺</div>
+                        <div class="lc-feature-name">Kein CLOUD Act</div>
+                        <div class="lc-feature-text">EU-Unternehmen können nicht per US-Gesetz zur Herausgabe von Daten verpflichtet werden. Das eliminiert eines der größten rechtlichen Risiken von Stufe 1 vollständig.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">📄</div>
+                        <div class="lc-feature-name">AVV auf EU-Basis</div>
+                        <div class="lc-feature-text">Auftragsverarbeitungsverträge nach DSGVO-Standard. Keine komplizierten Drittlandübermittlungen, keine Standardvertragsklauseln – die Rechtsgrundlage ist direkt und klar.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🏢</div>
+                        <div class="lc-feature-name">Bekannte Anbieter</div>
+                        <div class="lc-feature-text">Mistral AI (Frankreich), Aleph Alpha (Deutschland), Silo AI (Finnland). Die europäische KI-Landschaft wächst – und die Modellqualität schließt zunehmend zur US-Konkurrenz auf.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Stufe 2 ist der empfohlene Startpunkt für Unternehmen, die Geschäftsdaten mit KI verarbeiten wollen, ohne in ein aufwändiges Enterprise-Setup zu investieren. Der Kompromiss zwischen Rechtssicherheit, Aufwand und Kosten ist hier oft am günstigsten.</p>
+
+        <h2 id="stufe-3">Stufe 3 – US-Cloud mit EU-Rechenzentrum</h2>
+
+        <p>Microsoft Azure, AWS und Google Cloud bieten seit einigen Jahren die Möglichkeit, KI-Modelle in europäischen Rechenzentren zu betreiben. Die Daten verlassen die EU physisch nicht – aber das Unternehmen dahinter bleibt amerikanisch.</p>
+
+        <!-- VISUALISIERUNG: Stufe 3 -->
+        <div class="viz-block">
+            <div class="layer-card">
+                <div class="lc-header">
+                    <span class="lc-badge" style="background:rgba(59,130,246,0.12);color:#7eb3ff;border:1px solid rgba(59,130,246,0.25);">Stufe 3</span>
+                    <div class="lc-title">US-Hyperscaler mit EU-Region – Bestes aus beiden Welten, mit Restrisiko</div>
+                </div>
+                <div class="lc-analogy" style="background:rgba(59,130,246,0.04);border-left-color:#3b82f6;">
+                    <strong style="color:#7eb3ff;">Das Dilemma:</strong> Stell dir vor, ein amerikanisches Unternehmen mietet ein Lagerhaus in Deutschland. Deine Pakete lagern in Deutschland – aber das Unternehmen, dem das Lager gehört, ist weiterhin US-amerikanischem Recht unterworfen. Im Streitfall entscheidet US-Gesetz.
+                </div>
+                <div class="lc-features">
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🏗️</div>
+                        <div class="lc-feature-name">Top-Modelle in der EU</div>
+                        <div class="lc-feature-text">GPT-4o über Azure OpenAI, Claude über AWS Bedrock, Gemini über Google Vertex – alle in EU-Regionen buchbar. Volle Modellqualität, Datenstandort EU.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">⚠️</div>
+                        <div class="lc-feature-name">CLOUD Act Restrisiko</div>
+                        <div class="lc-feature-text">Theoretisch können US-Behörden auch auf EU-Servern von US-Unternehmen Zugriff verlangen. Praktisch ist das selten passiert – aber das Risiko besteht und ist rechtlich nicht abschließend geklärt.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🏢</div>
+                        <div class="lc-feature-name">Enterprise-Features</div>
+                        <div class="lc-feature-text">Umfangreiche Compliance-Zertifizierungen (ISO 27001, BSI C5, SOC 2), Zugriffsmanagement, Logging und Zero Data Retention. Für viele regulierte Branchen ausreichend.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Stufe 3 ist der pragmatische Enterprise-Standard. Wer ohnehin Azure oder AWS nutzt, kann mit überschaubarem Aufwand auf EU-Regionen umsteigen und gewinnt damit erheblich an Rechtssicherheit – ohne das vertraute Ökosystem zu verlassen.</p>
+
+        <h2 id="stufe-4">Stufe 4 – Deutsche Cloud-Infrastruktur</h2>
+
+        <p>Hier gibt es keine Grauzone mehr. Anbieter wie STACKIT (der Cloud-Arm der Schwarz Gruppe, also Lidl und Kaufland) oder IONOS sind deutsche Unternehmen, betreiben deutsche Rechenzentren und unterliegen ausschließlich deutschem und europäischem Recht.</p>
+
+        <!-- VISUALISIERUNG: Stufe 4 -->
+        <div class="viz-block">
+            <div class="layer-card">
+                <div class="lc-header">
+                    <span class="lc-badge" style="background:rgba(57,255,20,0.08);color:#39ff14;border:1px solid rgba(57,255,20,0.2);">Stufe 4</span>
+                    <div class="lc-title">Deutsche Cloud – Volle Datensouveränität, kein Restrisiko</div>
+                </div>
+                <div class="lc-analogy" style="background:rgba(57,255,20,0.03);border-left-color:#39ff14;">
+                    <strong style="color:#39ff14;">Was das bedeutet:</strong> Alles passiert in Deutschland, nach deutschem Recht, bei einem deutschen Unternehmen. Kein ausländisches Gesetz kann Zugriff erzwingen. Für Branchen mit strengen Compliance-Anforderungen ist das oft der einzig akzeptable Weg.
+                </div>
+                <div class="lc-features">
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🇩🇪</div>
+                        <div class="lc-feature-name">100 % deutsches Recht</div>
+                        <div class="lc-feature-text">STACKIT und IONOS sind deutsche Unternehmen. Kein CLOUD Act, kein Drittlandtransfer, keine Schrems-II-Problematik. ISO 27001-zertifiziert, BSI C5-konform.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🤖</div>
+                        <div class="lc-feature-name">Open-Source-Modelle</div>
+                        <div class="lc-feature-text">Llama (Meta), Mistral, Qwen, Gemma – leistungsstarke Open-Source-Modelle, die auf diesen Plattformen gehostet werden. Für die meisten Unternehmensaufgaben absolut ausreichend.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🏥</div>
+                        <div class="lc-feature-name">Ideal für regulierte Branchen</div>
+                        <div class="lc-feature-text">Gesundheitswesen, Finanzbranche, öffentliche Verwaltung, Rechtsanwälte – überall dort, wo strenge Datenschutzauflagen gelten, ist Stufe 4 die sichere Wahl.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Der häufige Einwand: „Aber die Modelle sind schlechter." Das stimmt bei den absoluten Spitzenmodellen – für spezialisierte, gut gestaltete Unternehmensanwendungen spielt dieser Unterschied in der Praxis kaum eine Rolle.</p>
+
+        <h2 id="stufe-5">Stufe 5 – On-Premise: Die eigenen Server</h2>
+
+        <p>Maximale Kontrolle bedeutet: Kein Drittanbieter, keine Cloud, keine externe Abhängigkeit. Das KI-Modell läuft auf eigener Hardware im eigenen Rechenzentrum. Was reingeht, bleibt drin.</p>
+
+        <!-- VISUALISIERUNG: Stufe 5 -->
+        <div class="viz-block">
+            <div class="layer-card">
+                <div class="lc-header">
+                    <span class="lc-badge" style="background:rgba(168,85,247,0.12);color:#c084fc;border:1px solid rgba(168,85,247,0.25);">Stufe 5</span>
+                    <div class="lc-title">On-Premise – Absolute Kontrolle, maximaler Aufwand</div>
+                </div>
+                <div class="lc-analogy" style="background:rgba(168,85,247,0.04);border-left-color:#a855f7;">
+                    <strong style="color:#c084fc;">Die Analogie:</strong> Statt in eine Bank zu gehen, baust du dir deinen eigenen Tresor. Maximale Sicherheit, absolute Kontrolle – aber du bist selbst für Wartung, Aufrüstung und Betrieb verantwortlich.
+                </div>
+                <div class="lc-features">
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">🔒</div>
+                        <div class="lc-feature-name">Null Datenabfluss</div>
+                        <div class="lc-feature-text">Kein einziges Byte verlässt das Unternehmen. Für Air-Gapped-Umgebungen, geheimschutzrelevante Informationen oder streng regulierte Hochsicherheitsbereiche die einzig mögliche Option.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">💻</div>
+                        <div class="lc-feature-name">Hardware-Investment</div>
+                        <div class="lc-feature-text">Leistungsfähige Modelle brauchen GPU-Hardware. Eine NVIDIA A100 GPU kostet ab ca. 15.000 €. Kleinere Modelle (7B Parameter) laufen auch auf günstigerer Consumer-Hardware.</div>
+                    </div>
+                    <div class="lc-feature">
+                        <div class="lc-feature-icon">👨‍💻</div>
+                        <div class="lc-feature-name">IT-Expertise nötig</div>
+                        <div class="lc-feature-text">Deployment, Updates, Sicherheitspatches – das alles liegt im Verantwortungsbereich des eigenen IT-Teams. Für KMU ohne dedizierte IT-Abteilung meist überdimensioniert.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Stufe 5 ist nicht für jeden sinnvoll – und das muss auch nicht sein. Für die meisten mittelständischen Unternehmen liegt die richtige Lösung zwischen Stufe 2 und 4, je nach Datensensitivität und vorhandener Infrastruktur.</p>
 
         <h2 id="was-du-jetzt-tun-solltest">Was du jetzt konkret tun solltest</h2>
 
@@ -137,7 +551,7 @@
         <p>Nicht alle Daten sind gleich. Was verarbeitet die KI – interne Notizen, Kundennamen, Gesundheitsdaten, Finanzzahlen? Je höher die Sensitivität, desto höher die Anforderungen an Anbieter und Infrastruktur.</p>
 
         <h3 id="anbieter-auswaehlen">3. Anbieter nach Schutzstufe auswählen</h3>
-        <p>Die fünf Stufen oben geben die Orientierung. Wer bereits mit Microsoft Azure arbeitet, kann oft mit relativ geringem Aufwand auf EU-Regionen umsteigen – und gewinnt damit erheblich an Rechtssicherheit.</p>
+        <p>Die fünf Stufen geben die Orientierung. Wer bereits mit Microsoft Azure arbeitet, kann oft mit überschaubarem Aufwand auf EU-Regionen umsteigen – und gewinnt damit erheblich an Rechtssicherheit.</p>
 
         <h3 id="avv">4. Auftragsverarbeitungsvertrag abschließen</h3>
         <p>Für jeden KI-Anbieter, der personenbezogene Daten verarbeitet, ist ein AVV Pflicht. Die meisten seriösen Anbieter stellen diese bereit. Wer keinen anbietet: rote Flagge.</p>
