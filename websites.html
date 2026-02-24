@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website in 3 Tagen – scale² | Premium Websites mit KI</title>
+    <meta name="description" content="Hochwertige, blitzschnelle Websites – KI-erstellt, in 3 Werktagen geliefert. Kein Agentur-Overhead, kein Kompromiss beim Design.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scale-square.com/websites">
+    <meta property="og:title" content="Deine neue Website. In 3 Tagen. – scale²">
+    <meta property="og:description" content="Hochwertige, blitzschnelle Websites – KI-erstellt, in 3 Werktagen geliefert.">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="scale²">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ── Page-specific styles ── */
+
+        /* Hero */
+        .ws-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ws-hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(57,255,20,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(57,255,20,0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .ws-hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .ws-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .ws-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(57,255,20,0.08);
+            border: 1px solid rgba(57,255,20,0.2);
+            border-radius: 50px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #39ff14;
+            font-family: var(--font-mono);
+            margin-bottom: 2rem;
+        }
+
+        .ws-hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #39ff14;
+            box-shadow: 0 0 8px #39ff14;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .ws-hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .ws-hero-sub {
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .ws-hero-sub strong {
+            color: var(--text-primary);
+        }
+
+        .ws-hero-cta-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ws-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .ws-cta-secondary:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* 3-Tage-Ticker */
+        .ws-ticker {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .ws-ticker-item {
+            text-align: center;
+        }
+
+        .ws-ticker-num {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            color: #39ff14;
+            line-height: 1;
+            text-shadow: 0 0 30px rgba(57,255,20,0.4);
+        }
+
+        .ws-ticker-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .ws-ticker-sep {
+            font-size: 3rem;
+            font-weight: 200;
+            color: var(--border);
+            align-self: center;
+            padding-bottom: 1.2rem;
+        }
+
+        /* Problem Section */
+        .ws-problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ws-pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .ws-pain-card:hover { border-color: var(--border-hover); }
+
+        .ws-pain-icon {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .ws-pain-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ws-pain-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .ws-pain-tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ff5050;
+            background: rgba(255,80,80,0.08);
+            border: 1px solid rgba(255,80,80,0.2);
+            border-radius: 50px;
+            padding: 3px 10px;
+            font-family: var(--font-mono);
+        }
+
+        /* Vergleich-Statement */
+        .ws-compare {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .ws-compare-side { text-align: center; }
+
+        .ws-compare-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+
+        .ws-compare-label.bad { color: #ff5050; }
+        .ws-compare-label.good { color: #39ff14; }
+
+        .ws-compare-val {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .ws-compare-val.bad { color: #ff7070; }
+        .ws-compare-val.good { color: #39ff14; text-shadow: 0 0 20px rgba(57,255,20,0.3); }
+
+        .ws-compare-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .ws-compare-divider {
+            font-size: 1.5rem;
+            color: var(--border);
+            font-weight: 200;
+        }
+
+        /* Features Grid */
+        .ws-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ws-feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ws-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(57,255,20,0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ws-feature-card:hover { border-color: rgba(57,255,20,0.2); transform: translateY(-2px); }
+        .ws-feature-card:hover::before { opacity: 1; }
+
+        .ws-feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(57,255,20,0.06);
+            border: 1px solid rgba(57,255,20,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: #39ff14;
+        }
+
+        .ws-feature-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ws-feature-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 3-Tage-Prozess */
+        .ws-days {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .ws-days::before {
+            content: '';
+            position: absolute;
+            top: 3rem;
+            left: calc(33.33% - 1px);
+            right: calc(33.33% - 1px);
+            height: 1px;
+            background: linear-gradient(90deg, rgba(57,255,20,0.3), rgba(57,255,20,0.1), rgba(57,255,20,0.3));
+        }
+
+        .ws-day-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .ws-day-card:hover { border-color: rgba(57,255,20,0.2); }
+
+        .ws-day-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(57,255,20,0.08);
+            border: 1px solid rgba(57,255,20,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #39ff14;
+        }
+
+        .ws-day-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ws-day-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Fit Section */
+        .ws-fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Garantie Block */
+        .ws-guarantee {
+            background: linear-gradient(135deg, rgba(57,255,20,0.04) 0%, rgba(57,255,20,0.01) 100%);
+            border: 1px solid rgba(57,255,20,0.15);
+            border-radius: var(--radius);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .ws-guarantee-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(57,255,20,0.08);
+            border: 1px solid rgba(57,255,20,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: #39ff14;
+        }
+
+        .ws-guarantee h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .ws-guarantee p {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Metrics row */
+        .ws-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ws-metric {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .ws-metric-val {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            color: #39ff14;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(57,255,20,0.25);
+        }
+
+        .ws-metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .ws-cta-section {
+            padding: 6rem 2rem;
+        }
+
+        .ws-cta-block {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(57,255,20,0.12);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ws-cta-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #39ff14, transparent);
+        }
+
+        .ws-cta-block h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .ws-cta-block p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Form */
+        .ws-form {
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        /* Statement block */
+        .ws-statement {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .ws-statement-text {
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .ws-statement-text strong {
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ws-compare {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .ws-compare-divider { display: none; }
+            .ws-days {
+                grid-template-columns: 1fr;
+            }
+            .ws-days::before { display: none; }
+            .ws-fit-grid {
+                grid-template-columns: 1fr;
+            }
+            .ws-metrics {
+                grid-template-columns: 1fr;
+            }
+            .ws-cta-block {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">scale<sup>2</sup></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#usecases" class="nav-link">Leistungen</a>
+                <a href="index.html#founder" class="nav-link">Über uns</a>
+                <a href="blog/" class="nav-link">Blog</a>
+                <a href="#anfragen" class="nav-cta">Jetzt anfragen</a>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="ws-hero">
+        <div class="ws-hero-bg"></div>
+        <div class="ws-hero-grid"></div>
+        <div class="ws-hero-content">
+            <div class="ws-hero-badge">Website-Service</div>
+            <h1>
+                Deine neue Website.<br>
+                <span class="gradient-text">In 3 Tagen.</span>
+            </h1>
+            <p class="ws-hero-sub">
+                Keine Wartelisten. Kein Agentur-Overhead. Kein Kompromiss beim Design.
+                Wir bauen dir eine Website, die <strong>schnell lädt, professionell aussieht</strong>
+                und Kunden überzeugt, bevor sie überhaupt scrollen.
+            </p>
+            <div class="ws-hero-cta-row">
+                <a href="#anfragen" class="cta-button">
+                    <span>Jetzt anfragen</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#wie-es-laeuft" class="ws-cta-secondary">
+                    Wie es läuft
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="ws-ticker">
+                <div class="ws-ticker-item">
+                    <div class="ws-ticker-num">3</div>
+                    <div class="ws-ticker-label">Werktage</div>
+                </div>
+                <div class="ws-ticker-sep">·</div>
+                <div class="ws-ticker-item">
+                    <div class="ws-ticker-num">95<span style="font-size:2rem">+</span></div>
+                    <div class="ws-ticker-label">Pagespeed</div>
+                </div>
+                <div class="ws-ticker-sep">·</div>
+                <div class="ws-ticker-item">
+                    <div class="ws-ticker-num">0</div>
+                    <div class="ws-ticker-label">Templates</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-label">Das Problem</div>
+            <h2 class="section-headline reveal">
+                Die meisten Websites<br>
+                <span class="gradient-text">kosten zu viel und liefern zu wenig.</span>
+            </h2>
+            <p class="tools-intro reveal">
+                Du kennst das. Entweder zahlst du 15.000 Euro bei einer Agentur (davon 12.000 für Overhead),
+                wartest 6 Wochen bei einem Freelancer, oder du bastelst dir selbst etwas zusammen, das nach Baukasten aussieht.
+                Keine dieser Optionen ist gut...
+            </p>
+
+            <div class="ws-problem-grid">
+                <div class="ws-pain-card reveal">
+                    <div class="ws-pain-icon">🏢</div>
+                    <div class="ws-pain-title">Die klassische Agentur</div>
+                    <p class="ws-pain-text">Angebot: 18.000 Euro. Projektstart: in 8 Wochen. Revisionen: 2 inklusive. Und am Ende bekommst du ein WordPress-Theme, das du genauso selbst hättest kaufen können.</p>
+                    <span class="ws-pain-tag">Zu teuer</span>
+                </div>
+                <div class="ws-pain-card reveal">
+                    <div class="ws-pain-icon">💻</div>
+                    <div class="ws-pain-title">Der Freelancer</div>
+                    <p class="ws-pain-text">Günstig in der Offerte, teuer in der Realität. Schlechte Erreichbarkeit, drei Revisionsschleifen, sechs Wochen Wartezeit, und am Ende bist du trotzdem nicht ganz zufrieden.</p>
+                    <span class="ws-pain-tag">Zu langsam</span>
+                </div>
+                <div class="ws-pain-card reveal">
+                    <div class="ws-pain-icon">🧱</div>
+                    <div class="ws-pain-title">Baukastensysteme</div>
+                    <p class="ws-pain-text">Wix, Squarespace, Webflow. Sehen nach Baukasten aus, laden wie Baukasten, fühlen sich nach Baukasten an. Und der Monatsbeitrag läuft weiter, egal ob deine Seite funktioniert oder nicht.</p>
+                    <span class="ws-pain-tag">Zu generisch</span>
+                </div>
+                <div class="ws-pain-card reveal">
+                    <div class="ws-pain-icon">🔌</div>
+                    <div class="ws-pain-title">WordPress</div>
+                    <p class="ws-pain-text">Plugin-Chaos, Sicherheitslücken, langsame Ladezeiten. 85 % aller WordPress-Sites werden nie gepatcht. Und jedes Plugin, das du installierst, kostet dich Pagespeed-Punkte.</p>
+                    <span class="ws-pain-tag">Zu riskant</span>
+                </div>
+            </div>
+
+            <div class="ws-compare reveal">
+                <div class="ws-compare-side">
+                    <div class="ws-compare-label bad">Klassische Agentur</div>
+                    <div class="ws-compare-val bad">8 Wo.</div>
+                    <div class="ws-compare-desc">durchschnittliche Lieferzeit</div>
+                </div>
+                <div class="ws-compare-divider">vs.</div>
+                <div class="ws-compare-side">
+                    <div class="ws-compare-label good">scale²</div>
+                    <div class="ws-compare-val good">3 Tage</div>
+                    <div class="ws-compare-desc">garantierte Lieferzeit</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement -->
+    <section class="ws-statement">
+        <div class="container">
+            <p class="ws-statement-text reveal">
+                KI hat das Spielfeld verändert. Was früher Wochen brauchte,
+                geht heute in <strong>Tagen</strong>, ohne Abstriche beim Ergebnis.
+            </p>
+        </div>
+    </section>
+
+    <!-- Was du bekommst -->
+    <section class="section" id="leistungen">
+        <div class="container">
+            <div class="section-label">Was du bekommst</div>
+            <h2 class="section-headline reveal">
+                Kein Template.<br>
+                <span class="gradient-text">Kein Kompromiss.</span>
+            </h2>
+            <p class="tools-intro reveal">
+                Wir nutzen KI, um schneller zu bauen. Der Anspruch bleibt derselbe wie bei einer 20.000-Euro-Agenturlösung,
+                der Preis nicht.
+            </p>
+
+            <div class="ws-features-grid">
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="3"/>
+                            <path d="M3 9h18M9 21V9"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">Custom Design</div>
+                    <p class="ws-feature-text">Kein Template von der Stange. Deine Website wird auf dein Branding, deine Zielgruppe und deinen Stil zugeschnitten. Individuell, professionell, unverwechselbar.</p>
+                </div>
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">Pagespeed 95+</div>
+                    <p class="ws-feature-text">Sauberer Code, keine überflüssigen Plugins, optimierte Assets. Deine Website lädt in unter einer Sekunde. Das ist kein Versprechen, das ist messbar.</p>
+                </div>
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="5" y="2" width="14" height="20" rx="2"/>
+                            <line x1="12" y1="18" x2="12" y2="18.01"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">Mobile-First</div>
+                    <p class="ws-feature-text">Über 60 % deiner Besucher kommen vom Smartphone. Deine Website sieht auf jedem Gerät perfekt aus, nicht nur auf dem Desktop deines Designers.</p>
+                </div>
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">SEO-Grundstruktur</div>
+                    <p class="ws-feature-text">Semantisch korrektes HTML, saubere Meta-Tags, strukturierte Daten. Die technische Grundlage, damit Google dich findet, ist von Anfang an eingebaut.</p>
+                </div>
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">Kein CMS-Overhead</div>
+                    <p class="ws-feature-text">Kein WordPress, kein Plugin-Chaos, keine Sicherheitslücken. Reiner, schlanker Code. Was nicht da ist, kann auch nicht kaputt gehen.</p>
+                </div>
+                <div class="ws-feature-card reveal">
+                    <div class="ws-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <div class="ws-feature-title">Conversion-optimiert</div>
+                    <p class="ws-feature-text">Design nach verkaufspsychologischen Prinzipien. Klare Struktur, starke CTAs, das richtige Nutzerverhalten am richtigen Punkt. Deine Website soll nicht nur gut aussehen, sie soll auch verkaufen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-Tage-Prozess -->
+    <section class="section" id="wie-es-laeuft">
+        <div class="container">
+            <div class="section-label">So läuft es ab</div>
+            <h2 class="section-headline reveal">
+                3 Tage.<br>
+                <span class="gradient-text">3 Schritte. Fertig.</span>
+            </h2>
+            <p class="tools-intro reveal">
+                Kein langer Onboarding-Prozess. Kein wochenlanger E-Mail-Ping-Pong.
+                Wir brauchen von dir: ein Briefing, dein Branding, deine Inhalte. Den Rest übernehmen wir.
+            </p>
+
+            <div class="ws-days">
+                <div class="ws-day-card reveal">
+                    <div class="ws-day-num">01</div>
+                    <div class="ws-day-title">Tag 1: Briefing & Konzept</div>
+                    <p class="ws-day-text">Du füllst unser Briefing aus. Wir analysieren dein Business, deine Zielgruppe und deine Ziele. Am Ende von Tag 1 liegt das Konzept auf dem Tisch.</p>
+                </div>
+                <div class="ws-day-card reveal">
+                    <div class="ws-day-num">02</div>
+                    <div class="ws-day-title">Tag 2: Design & Umsetzung</div>
+                    <p class="ws-day-text">Wir bauen. Vollständig, sauber, nach deinem Branding. Du bekommst am Abend eine Preview, kannst Feedback geben, wir setzen es um.</p>
+                </div>
+                <div class="ws-day-card reveal">
+                    <div class="ws-day-num">03</div>
+                    <div class="ws-day-title">Tag 3: Finalisierung & Übergabe</div>
+                    <p class="ws-day-text">Letzte Feinschliffe, Performance-Check, SEO-Überprüfung. Dann gehört die Website dir. Live, fertig, professionell.</p>
+                </div>
+            </div>
+
+            <div class="ws-guarantee reveal">
+                <div class="ws-guarantee-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                    </svg>
+                </div>
+                <h3>3-Tage-Garantie</h3>
+                <p>Wenn wir nicht in 3 Werktagen liefern, bekommst du einen Teil der Investition zurück. Punkt. Das Versprechen ist kein Marketing, sondern unser Anspruch an uns selbst.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics -->
+    <section class="section">
+        <div class="container">
+            <div class="section-label">In Zahlen</div>
+            <h2 class="section-headline reveal">
+                Nicht reden.<br>
+                <span class="gradient-text">Messen.</span>
+            </h2>
+            <div class="ws-metrics">
+                <div class="ws-metric reveal">
+                    <div class="ws-metric-val">95+</div>
+                    <div class="ws-metric-label">Google Pagespeed Score</div>
+                </div>
+                <div class="ws-metric reveal">
+                    <div class="ws-metric-val">&lt;1s</div>
+                    <div class="ws-metric-label">Ladezeit (First Contentful Paint)</div>
+                </div>
+                <div class="ws-metric reveal">
+                    <div class="ws-metric-val">3</div>
+                    <div class="ws-metric-label">Werktage bis zur Übergabe</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Für wen -->
+    <section class="section" id="fuer-wen">
+        <div class="container">
+            <div class="section-label">Klingt nach dir?</div>
+            <h2 class="section-headline reveal">
+                Wir sind nicht für jeden.<br>
+                <span class="gradient-text">Aber vielleicht genau für dich.</span>
+            </h2>
+            <div class="ws-fit-grid">
+                <div class="fit-card fit-yes reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <h3>Das passt</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Du willst eine professionelle Online-Präsenz, ohne monatelang auf einen Freelancer zu warten</li>
+                        <li>Du bist Unternehmer, Berater, Coach oder Dienstleister mit klarem Angebot</li>
+                        <li>Deine aktuelle Website schämt dich, wenn du den Link verschickst</li>
+                        <li>Du willst Qualität, aber kein Agentur-Budget verschwenden</li>
+                        <li>Du weißt, was du willst, und kannst ein Briefing ausfüllen</li>
+                    </ul>
+                </div>
+                <div class="fit-card fit-no reveal">
+                    <div class="fit-header">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M15 9l-6 6M9 9l6 6"/>
+                        </svg>
+                        <h3>Das passt nicht</h3>
+                    </div>
+                    <ul class="fit-list">
+                        <li>Du brauchst einen Online-Shop mit hunderten Produkten</li>
+                        <li>Du brauchst ein komplexes Buchungssystem oder eine SaaS-Plattform</li>
+                        <li>Du willst selbst täglich Inhalte im Backend pflegen (ohne uns)</li>
+                        <li>Du hast noch kein klares Angebot oder Ziel für die Website</li>
+                        <li>Du suchst das günstigste Angebot, unabhängig vom Ergebnis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Reversal -->
+    <section class="section section-risk">
+        <div class="container">
+            <div class="risk-block reveal">
+                <div class="section-label">Kein Risiko</div>
+                <h2 class="section-headline">
+                    <span class="gradient-text">Kein Kleingedrucktes.</span>
+                </h2>
+                <p class="risk-copy">
+                    Du siehst das Design, bevor du zahlst. Kein blindes Vorleisten, keine bösen Überraschungen.
+                    Erst wenn du zufrieden bist, wird die Website live geschaltet.
+                </p>
+                <div class="risk-points">
+                    <div class="risk-point">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Kostenloses Erstgespräch vor jedem Auftrag</span>
+                    </div>
+                    <div class="risk-point">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Design-Preview vor der finalen Zahlung</span>
+                    </div>
+                    <div class="risk-point">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>3-Tage-Garantie, schriftlich festgehalten</span>
+                    </div>
+                    <div class="risk-point">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Voller Quellcode-Zugang, kein Lock-in</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Anfrage -->
+    <section class="ws-cta-section" id="anfragen">
+        <div class="container">
+            <div class="ws-cta-block reveal">
+                <h2>Bereit für deine neue Website?</h2>
+                <p>Kurzes Gespräch, klare Antworten. Wir schauen gemeinsam, ob und wie wir dir helfen können. Kein Sales-Pitch, kein Druck.</p>
+
+                <form id="wsContactForm" action="https://api.web3forms.com/submit" method="POST" class="ws-form">
+                    <input type="hidden" name="access_key" value="4231b42f-05e1-4230-8d5f-f52272c7efe0">
+                    <input type="hidden" name="subject" value="Website-Anfrage über scale²/websites">
+                    <input type="hidden" name="from_name" value="scale² Website-Service">
+
+                    <div class="form-group">
+                        <label for="wsName">Name</label>
+                        <input type="text" id="wsName" name="name" required placeholder="Dein Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="wsEmail">E-Mail</label>
+                        <input type="email" id="wsEmail" name="email" required placeholder="deine@email.de">
+                    </div>
+                    <div class="form-group">
+                        <label for="wsUrl">Aktuelle Website (falls vorhanden)</label>
+                        <input type="text" id="wsUrl" name="website" placeholder="www.meinewebsite.de">
+                    </div>
+                    <div class="form-group">
+                        <label for="wsMessage">Was soll die neue Website leisten?</label>
+                        <textarea id="wsMessage" name="message" required placeholder="Wer bist du, was machst du, wen willst du ansprechen? Kurz reicht." rows="4"></textarea>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="wsConsent" name="consent" required>
+                        <label for="wsConsent">Ich willige ein, an meine angegebene E-Mail-Adresse bezüglich meiner Anfrage kontaktiert zu werden.</label>
+                    </div>
+                    <button type="submit" class="cta-button cta-large form-submit" style="width:100%;justify-content:center;">
+                        <span>Anfrage absenden</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="form-success" id="wsFormSuccess" style="display:none;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    <h3>Anfrage gesendet!</h3>
+                    <p>Ich melde mich innerhalb von 24 Stunden bei dir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-links">
+                <a href="index.html">Startseite</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+        <div class="container footer-transparency">
+            KI-Transparenzhinweis: Diese Website wurde zu 100% mit Claude Code vibe-gecodet. Kein überteuerter Webdesigner wurde für die Erstellung dieser Website beauftragt.
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        // Form Submit
+        const wsForm = document.getElementById('wsContactForm');
+        const wsSuccess = document.getElementById('wsFormSuccess');
+        if (wsForm) {
+            wsForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = wsForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.querySelector('span').textContent = 'Wird gesendet...';
+                try {
+                    const res = await fetch(wsForm.action, {
+                        method: 'POST',
+                        body: new FormData(wsForm)
+                    });
+                    if (res.ok) {
+                        wsForm.style.display = 'none';
+                        wsSuccess.style.display = 'flex';
+                        wsSuccess.style.flexDirection = 'column';
+                        wsSuccess.style.alignItems = 'center';
+                        wsSuccess.style.gap = '1rem';
+                    }
+                } catch {
+                    btn.disabled = false;
+                    btn.querySelector('span').textContent = 'Anfrage absenden';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
