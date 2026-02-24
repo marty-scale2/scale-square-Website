@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#0a0a0d"/>
+    </radialGradient>
+    <linearGradient id="spectrum" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#ff4545"/>
+      <stop offset="25%"  stop-color="#ffaa00"/>
+      <stop offset="50%"  stop-color="#3b82f6"/>
+      <stop offset="75%"  stop-color="#39ff14"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="160" y1="0" x2="160" y2="400"/>
+    <line x1="320" y1="0" x2="320" y2="400"/>
+    <line x1="480" y1="0" x2="480" y2="400"/>
+    <line x1="640" y1="0" x2="640" y2="400"/>
+  </g>
+
+  <!-- Spectrum bar -->
+  <rect x="80" y="170" width="640" height="8" rx="4" fill="url(#spectrum)" opacity="0.7" filter="url(#glow)"/>
+
+  <!-- Stufe markers -->
+  <!-- Stufe 1 -->
+  <circle cx="144" cy="174" r="18" fill="rgba(255,69,69,0.08)" stroke="#ff4545" stroke-width="1.5" opacity="0.8"/>
+  <text x="144" y="179" text-anchor="middle" font-family="monospace" font-size="14" font-weight="800" fill="#ff7070">1</text>
+
+  <!-- Stufe 2 -->
+  <circle cx="304" cy="174" r="18" fill="rgba(255,170,0,0.08)" stroke="#ffaa00" stroke-width="1.5" opacity="0.8"/>
+  <text x="304" y="179" text-anchor="middle" font-family="monospace" font-size="14" font-weight="800" fill="#ffcc55">2</text>
+
+  <!-- Stufe 3 -->
+  <circle cx="400" cy="174" r="18" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+  <text x="400" y="179" text-anchor="middle" font-family="monospace" font-size="14" font-weight="800" fill="#7eb3ff">3</text>
+
+  <!-- Stufe 4 -->
+  <circle cx="496" cy="174" r="18" fill="rgba(57,255,20,0.06)" stroke="#39ff14" stroke-width="1.5" opacity="0.8"/>
+  <text x="496" y="179" text-anchor="middle" font-family="monospace" font-size="14" font-weight="800" fill="#39ff14">4</text>
+
+  <!-- Stufe 5 -->
+  <circle cx="656" cy="174" r="18" fill="rgba(168,85,247,0.08)" stroke="#a855f7" stroke-width="1.5" opacity="0.8"/>
+  <text x="656" y="179" text-anchor="middle" font-family="monospace" font-size="14" font-weight="800" fill="#c084fc">5</text>
+
+  <!-- Arrow below bar -->
+  <line x1="80" y1="200" x2="720" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <polygon points="720,196 730,200 720,204" fill="rgba(255,255,255,0.15)"/>
+
+  <!-- Labels below -->
+  <text x="80" y="222" font-family="monospace" font-size="8" font-weight="700" fill="#ff7070" letter-spacing="1" opacity="0.7">WENIG KONTROLLE</text>
+  <text x="720" y="222" text-anchor="end" font-family="monospace" font-size="8" font-weight="700" fill="#a855f7" letter-spacing="1" opacity="0.7">MAX. SOUVERÄNITÄT</text>
+
+  <!-- Label descriptions -->
+  <text x="144" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="#64748b" opacity="0.7">Extern</text>
+  <text x="304" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="#64748b" opacity="0.7">US+EU</text>
+  <text x="400" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="#64748b" opacity="0.7">EU-Anbieter</text>
+  <text x="496" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="#64748b" opacity="0.7">DE-Cloud</text>
+  <text x="656" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="9" fill="#64748b" opacity="0.7">On-Premise</text>
+
+  <!-- Title area -->
+  <text x="400" y="100" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#ffffff" letter-spacing="3" opacity="0.25">DIE 5 SCHUTZSTUFEN</text>
+
+  <!-- Bottom subtitle -->
+  <text x="720" y="380" text-anchor="end" font-family="-apple-system, sans-serif" font-size="11" fill="#64748b" opacity="0.4">KI souverän einsetzen: Das kleine 1×1 des KI-Datenschutzes</text>
+</svg>
