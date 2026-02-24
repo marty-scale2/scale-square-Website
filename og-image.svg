@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <filter id="glow-hard" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark Background -->
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Centered Logo Group -->
+  <g transform="translate(370, 220)">
+    <!-- Icon Mark -->
+    <rect x="0" y="8" width="84" height="84" rx="18" fill="#111114"/>
+    <rect x="0" y="8" width="84" height="84" rx="18" fill="none" stroke="#39ff14" stroke-width="1" opacity="0.3"/>
+
+    <!-- Bar 1 -->
+    <rect x="12" y="75" width="15" height="11" rx="3" fill="#39ff14" opacity="0.50"/>
+    <!-- Bar 2 -->
+    <rect x="34" y="56" width="15" height="30" rx="3" fill="#39ff14" opacity="0.10"/>
+    <!-- Bar 3 -->
+    <rect x="57" y="18" width="17" height="68" rx="4" fill="#39ff14" filter="url(#glow-hard)"/>
+
+    <!-- Wordmark -->
+    <text font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-weight="700">
+      <tspan x="105" y="63" font-size="54" fill="#f0f0f2">scale</tspan><tspan font-size="29" fill="#39ff14" dy="-20" dx="3" filter="url(#glow-soft)">2</tspan>
+    </text>
+
+    <!-- Tagline -->
+    <text x="107" y="87" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-weight="400" font-size="14" fill="#64748b" letter-spacing="3.5">WACHSTUMSPARTNER FÜR BRANDS</text>
+  </g>
+
+  <!-- Subtle accent line -->
+  <rect x="450" y="420" width="300" height="1" fill="#39ff14" opacity="0.15" rx="1"/>
+</svg>

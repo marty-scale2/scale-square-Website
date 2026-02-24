@@ -214,7 +214,29 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
-            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 72" width="227" height="58" role="img" aria-label="scale² – Wachstumspartner für Brands">
+                  <defs>
+                    <filter id="footer-glow-hard" x="-80%" y="-80%" width="260%" height="260%">
+                      <feGaussianBlur stdDeviation="4" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="footer-glow-soft" x="-40%" y="-40%" width="180%" height="180%">
+                      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <rect x="0" y="8" width="56" height="56" rx="12" fill="#111114"/>
+                  <rect x="0" y="8" width="56" height="56" rx="12" fill="none" stroke="#39ff14" stroke-width="0.75" opacity="0.3"/>
+                  <rect x="8"  y="53" width="10" height="7"  rx="2"   fill="#39ff14" opacity="0.50"/>
+                  <rect x="23" y="40" width="10" height="20" rx="2"   fill="#39ff14" opacity="0.10"/>
+                  <rect x="38" y="15" width="11" height="45" rx="2.5" fill="#39ff14" filter="url(#footer-glow-hard)"/>
+                  <text font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700">
+                    <tspan x="70" y="47" font-size="36" fill="#f0f0f2">scale</tspan><tspan font-size="19" fill="#39ff14" dy="-13" dx="2" filter="url(#footer-glow-soft)">2</tspan>
+                  </text>
+                  <text x="71" y="62" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="400" font-size="8" fill="#64748b" letter-spacing="2">WACHSTUMSPARTNER FÜR BRANDS</text>
+                </svg>
+            </div>
             <div class="footer-text">Wachstumspartner für Brands – KI in EINFACH.</div>
             <div class="footer-links">
                 <a href="../impressum.html">Impressum</a>
