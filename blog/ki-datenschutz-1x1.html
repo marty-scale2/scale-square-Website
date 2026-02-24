@@ -273,11 +273,12 @@
         .lc-verdict-con li::before { content: '–'; color: #ff7070; }
 
         @media (max-width: 640px) {
-            .scale-overview { padding: 32px 24px; }
-            .scale-bar { grid-template-columns: repeat(5, 1fr); }
-            .scale-bar-num { font-size: 20px; }
+            .scale-overview { padding: 32px 20px; }
+            .scale-bar { grid-template-columns: repeat(5, 1fr); gap: 2px; }
+            .scale-bar-segment { padding: 12px 4px 10px; }
+            .scale-bar-num { font-size: 18px; }
             .scale-bar-label { display: none; }
-            .layer-card { padding: 28px 24px; }
+            .layer-card { padding: 28px 20px; }
             .lc-features { grid-template-columns: 1fr 1fr; }
             .lc-title { font-size: 17px; }
             .lc-verdict { grid-template-columns: 1fr; }
