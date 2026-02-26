@@ -561,6 +561,99 @@
             font-size: clamp(1.6rem, 3vw, 2.2rem);
         }
 
+        /* Switching-Falle / Migration */
+        .ws-switch-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+        }
+
+        .ws-switch-insight {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .ws-switch-quote {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 2px solid rgba(255,80,80,0.4);
+            padding-left: 1rem;
+            margin-top: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .ws-switch-quote-label {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: #ff7070;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .ws-switch-right {
+            background: rgba(57,255,20,0.03);
+            border: 1px solid rgba(57,255,20,0.15);
+            border-radius: calc(var(--radius) - 4px);
+            padding: 2rem;
+        }
+
+        .ws-switch-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #39ff14;
+            margin-bottom: 1.5rem;
+        }
+
+        .ws-switch-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .ws-switch-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .ws-switch-list li::before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(57,255,20,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2339ff14' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 11px no-repeat;
+            border: 1px solid rgba(57,255,20,0.25);
+            flex-shrink: 0;
+        }
+
+        .ws-switch-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(57,255,20,0.1);
+            padding-top: 1rem;
+            line-height: 1.6;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .ws-compare { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -570,6 +663,7 @@
             .ws-fit-grid { grid-template-columns: 1fr; }
             .ws-metrics { grid-template-columns: 1fr; }
             .ws-cta-block { padding: 2.5rem 1.5rem; }
+            .ws-switch-block { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -786,6 +880,50 @@
         </div>
     </section>
 
+    <!-- Switching-Falle / Migration -->
+    <section class="section" id="migration">
+        <div class="container">
+            <div class="section-label">Switching-Falle</div>
+            <h2 class="section-headline reveal">
+                Keine Lust auf den ganzen Aufwand?<br>
+                <span class="gradient-text">Genau damit rechnen die Anbieter.</span>
+            </h2>
+
+            <div class="ws-switch-block reveal">
+                <div class="ws-switch-left">
+                    <p class="ws-switch-insight">
+                        Die meisten bleiben bei ihrem CRM. Nicht weil es gut ist, sondern weil der Gedanke schon nervt: Tausende Kontakte, alle Tags, individuelle Bezeichnungen, Pipelines, Automationen, das klingt nach einem Wochenendprojekt mit ungewissem Ausgang. Also bleibt man. Und CRM-Anbieter kalkulieren genau das ein, weshalb die Preise jedes Jahr steigen und niemand ernsthaft wechselt.
+                    </p>
+                    <p class="ws-switch-insight">
+                        Das ist kein Zufall. Das Geschäftsmodell heißt: einmal rein, nie mehr raus. Je tiefer du im System steckst, desto teurer kannst du gemacht werden. Du zahlst nicht für Software. Du zahlst für die Schwierigkeit, sie zu verlassen.
+                    </p>
+                    <div class="ws-switch-quote">
+                        „Wir haben das System seit Jahren. Den Aufwand, das alles umzuziehen..."
+                        <span class="ws-switch-quote-label">Jeder CRM-Anbieter hört das täglich. Und erhöht danach die Preise.</span>
+                    </div>
+                </div>
+                <div class="ws-switch-right">
+                    <div class="ws-switch-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        Wir übernehmen die komplette Migration
+                    </div>
+                    <ul class="ws-switch-list">
+                        <li>Alle Kontakte und Unternehmensdaten</li>
+                        <li>Tags und individuelle Bezeichnungen</li>
+                        <li>Pipelines und Phasen-Definitionen</li>
+                        <li>Custom Fields und eigene Felder</li>
+                        <li>Notizen und Aktivitäten-Historie</li>
+                        <li>Automationen und Workflows</li>
+                        <li>Benutzerrechte und Team-Struktur</li>
+                    </ul>
+                    <p class="ws-switch-note">Du wechselst, ohne irgendetwas zu verlieren. Kein Neustart auf der grünen Wiese, kein Datenverlust, keine wochenlange Eigenarbeit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Prozess -->
     <section class="section" id="wie-es-laeuft">
         <div class="container">
@@ -878,6 +1016,7 @@
                         <li>Datenschutz und DSGVO sind für dich keine Nebensache</li>
                         <li>Du willst ein System, das dir gehört und nicht vom Anbieter geändert werden kann</li>
                         <li>Du bist bereit, einmal zu investieren, statt dauerhaft zu mieten</li>
+                        <li>Du willst wechseln, willst aber nicht wochenlang alles selbst umziehen</li>
                     </ul>
                 </div>
                 <div class="fit-card fit-no reveal">
@@ -940,6 +1079,13 @@
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
                         <span>Potenziell förderbar über den Digitalbonus</span>
+                    </div>
+                    <div class="risk-point">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Komplette Datenmigration inklusive, kein Datenverlust beim Wechsel</span>
                     </div>
                 </div>
             </div>
