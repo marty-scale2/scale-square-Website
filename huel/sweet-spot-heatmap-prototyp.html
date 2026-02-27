@@ -842,9 +842,161 @@
             .detail-panel { display: none; }
             .header-title { display: none; }
         }
+
+        /* ─── Password Gate ─── */
+        #pw-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #08090f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, sans-serif;
+            transition: opacity 0.3s ease;
+        }
+        .pw-card {
+            background: #111827;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 48px 40px 40px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+        }
+        .pw-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(13,159,110,0.1);
+            border: 1px solid rgba(13,159,110,0.22);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #0d9f6e;
+            letter-spacing: 0.05em;
+            margin-bottom: 22px;
+        }
+        .pw-title {
+            font-size: 21px;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin-bottom: 5px;
+        }
+        .pw-sub {
+            font-size: 13.5px;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+        .pw-input-wrap {
+            margin-bottom: 10px;
+        }
+        .pw-input-wrap input {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 15px;
+            color: #f1f5f9;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
+            letter-spacing: 0.12em;
+        }
+        .pw-input-wrap input::placeholder { color: #334155; letter-spacing: 0; }
+        .pw-input-wrap input:focus { border-color: rgba(13,159,110,0.45); }
+        .pw-input-wrap input.shake {
+            animation: pwShake 0.38s ease;
+            border-color: #ef4444 !important;
+        }
+        @keyframes pwShake {
+            0%,100% { transform: translateX(0); }
+            20%     { transform: translateX(-7px); }
+            40%     { transform: translateX(7px); }
+            60%     { transform: translateX(-4px); }
+            80%     { transform: translateX(4px); }
+        }
+        .pw-btn {
+            width: 100%;
+            background: #0d9f6e;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.18s, transform 0.1s;
+            margin-top: 2px;
+        }
+        .pw-btn:hover  { background: #0a8a5e; }
+        .pw-btn:active { transform: scale(0.98); }
+        .pw-error {
+            display: none;
+            margin-top: 13px;
+            font-size: 13px;
+            color: #f87171;
+            background: rgba(239,68,68,0.07);
+            border: 1px solid rgba(239,68,68,0.18);
+            border-radius: 8px;
+            padding: 9px 14px;
+        }
     </style>
 </head>
 <body>
+
+<!-- Password Gate -->
+<div id="pw-overlay">
+    <div class="pw-card">
+        <div class="pw-badge">&#128274; Zugang geschützt</div>
+        <div class="pw-title">Sweet Spot Analyse</div>
+        <div class="pw-sub">Huel Deutschland &middot; Prototyp</div>
+        <div class="pw-input-wrap">
+            <input type="password" id="pw-input" placeholder="Passwort eingeben" autocomplete="off" autofocus>
+        </div>
+        <button class="pw-btn" id="pw-btn">Zugang freischalten</button>
+        <div class="pw-error" id="pw-error">Falsches Passwort. Bitte nochmal versuchen.</div>
+    </div>
+</div>
+<script>
+(function() {
+    var overlay = document.getElementById('pw-overlay');
+    var input   = document.getElementById('pw-input');
+    var btn     = document.getElementById('pw-btn');
+    var error   = document.getElementById('pw-error');
+
+    function unlock() {
+        overlay.style.opacity = '0';
+        setTimeout(function() { overlay.style.display = 'none'; }, 300);
+        sessionStorage.setItem('ss_auth', '1');
+    }
+
+    function check() {
+        if (input.value === 'sweetspot26') {
+            unlock();
+        } else {
+            error.style.display = 'block';
+            input.value = '';
+            input.classList.remove('shake');
+            void input.offsetWidth; // reflow für Animation-Reset
+            input.classList.add('shake');
+            setTimeout(function() { input.classList.remove('shake'); input.focus(); }, 420);
+        }
+    }
+
+    if (sessionStorage.getItem('ss_auth') === '1') {
+        overlay.style.display = 'none';
+    }
+
+    btn.addEventListener('click', check);
+    input.addEventListener('keydown', function(e) { if (e.key === 'Enter') check(); });
+})();
+</script>
 
 <!-- Header -->
 <div class="header">
