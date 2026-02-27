@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Spot Analyse — Huel Deutschland</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent: #0d9f6e;
+            --accent-light: #d1fae5;
+            --accent-dark: #065f46;
+            --bg: #f8fafb;
+            --card: #ffffff;
+            --text: #1a2332;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 4px 16px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06);
+            --radius: 10px;
+            --dim-kaufkraft: #0d9f6e;
+            --dim-lifestyle: #f59e0b;
+            --dim-fitness: #3b82f6;
+            --dim-demografie: #8b5cf6;
+            --dim-wettbewerb: #06b6d4;
+            --dim-digital: #ec4899;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-square {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 8px;
+            padding-left: 16px;
+            border-left: 1px solid var(--border);
+        }
+
+        .header-badge {
+            margin-left: auto;
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Layout */
+        .app-layout {
+            display: flex;
+            height: calc(100vh - 61px);
+        }
+
+        /* Left Panel — Map + Filters + Top-List */
+        .main-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* Dimension Filters */
+        .filter-bar {
+            background: var(--card);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 4px;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 2px solid;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .filter-btn .weight {
+            font-size: 10px;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .filter-btn.active {
+            color: white;
+        }
+
+        .filter-btn:not(.active) {
+            background: transparent;
+        }
+
+        .filter-btn[data-dim="kaufkraft"]       { border-color: var(--dim-kaufkraft); color: var(--dim-kaufkraft); }
+        .filter-btn[data-dim="kaufkraft"].active { background: var(--dim-kaufkraft); }
+        .filter-btn[data-dim="lifestyle"]        { border-color: var(--dim-lifestyle); color: var(--dim-lifestyle); }
+        .filter-btn[data-dim="lifestyle"].active  { background: var(--dim-lifestyle); }
+        .filter-btn[data-dim="fitness"]          { border-color: var(--dim-fitness); color: var(--dim-fitness); }
+        .filter-btn[data-dim="fitness"].active    { background: var(--dim-fitness); }
+        .filter-btn[data-dim="demografie"]       { border-color: var(--dim-demografie); color: var(--dim-demografie); }
+        .filter-btn[data-dim="demografie"].active { background: var(--dim-demografie); }
+        .filter-btn[data-dim="wettbewerb"]       { border-color: var(--dim-wettbewerb); color: var(--dim-wettbewerb); }
+        .filter-btn[data-dim="wettbewerb"].active { background: var(--dim-wettbewerb); }
+        .filter-btn[data-dim="digital"]          { border-color: var(--dim-digital); color: var(--dim-digital); }
+        .filter-btn[data-dim="digital"].active    { background: var(--dim-digital); }
+
+        /* Map Container */
+        .map-wrapper {
+            flex: 1;
+            position: relative;
+            min-height: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .leaflet-container { background: #eef2f6; }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(248, 250, 251, 0.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 800;
+            transition: opacity 0.4s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Error Message */
+        .error-message {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card);
+            border: 1px solid #fecaca;
+            border-radius: var(--radius);
+            padding: 24px 32px;
+            text-align: center;
+            z-index: 800;
+            display: none;
+        }
+
+        .error-message h3 { color: #dc2626; margin-bottom: 8px; }
+        .error-message p { color: var(--text-muted); font-size: 13px; }
+
+        /* Bottom Panel — Top Regionen */
+        .top-panel {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-panel-header {
+            padding: 10px 20px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-panel-header h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-panel-scroll {
+            flex: 1;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .top-card {
+            flex: 0 0 180px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .top-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(13, 159, 110, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .top-card.active {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .top-card-rank {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .top-card-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 4px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .top-card-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-card-score-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .top-card-score-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .top-card-score-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            min-width: 28px;
+            text-align: right;
+        }
+
+        /* Mini dimension bars in top-card */
+        .top-card-dims {
+            display: flex;
+            gap: 2px;
+            margin-top: 6px;
+        }
+
+        .top-card-dim-bar {
+            flex: 1;
+            height: 3px;
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        /* Right Detail Panel */
+        .detail-panel {
+            width: 320px;
+            background: var(--card);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .detail-panel.collapsed {
+            width: 0;
+            border-left: none;
+        }
+
+        .detail-panel-placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .detail-panel-placeholder svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--border);
+            margin-bottom: 12px;
+        }
+
+        .detail-panel-placeholder p {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .detail-content {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .detail-content.visible {
+            display: flex;
+        }
+
+        .detail-header {
+            padding: 20px 20px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-region-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .detail-region-type {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-score-hero {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, var(--accent-light), #f0fdf4);
+            margin: 0;
+        }
+
+        .detail-score-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .detail-score-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .detail-score-meta .rank {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .detail-score-meta .percentile {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Dimensions Breakdown */
+        .detail-dims {
+            padding: 16px 20px;
+            flex: 1;
+        }
+
+        .detail-dims h4 {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .dim-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dim-row-label {
+            font-size: 12px;
+            font-weight: 500;
+            width: 100px;
+            flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dim-row-bar {
+            flex: 1;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dim-row-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+
+        .dim-row-val {
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 28px;
+            text-align: right;
+        }
+
+        /* Strengths & Weaknesses */
+        .detail-insights {
+            padding: 0 20px 20px;
+        }
+
+        .detail-insights h4 {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .insight-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 0 4px 6px 0;
+        }
+
+        .insight-tag.strength {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .insight-tag.weakness {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        /* Custom Leaflet Tooltip */
+        .region-tooltip {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            box-shadow: var(--shadow-lg);
+            font-family: 'Inter', sans-serif;
+            min-width: 200px;
+        }
+
+        .region-tooltip .tt-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .region-tooltip .tt-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .region-tooltip .tt-score {
+            font-size: 14px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        .region-tooltip .tt-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .region-tooltip .tt-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .region-tooltip .tt-bar-label {
+            font-size: 9px;
+            font-weight: 600;
+            width: 58px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .region-tooltip .tt-bar-track {
+            flex: 1;
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .region-tooltip .tt-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        .region-tooltip .tt-bar-val {
+            font-size: 9px;
+            font-weight: 700;
+            width: 20px;
+            text-align: right;
+            color: var(--text);
+        }
+
+        /* Leaflet tooltip overrides */
+        .leaflet-tooltip.custom-tooltip {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .leaflet-tooltip.custom-tooltip::before {
+            display: none;
+        }
+
+        /* Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            z-index: 700;
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .map-legend-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .map-legend-gradient {
+            width: 160px;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #ef4444, #f59e0b, #22c55e);
+        }
+
+        .map-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4px;
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Scrollbar Styling */
+        .top-panel-scroll::-webkit-scrollbar,
+        .detail-content::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .top-panel-scroll::-webkit-scrollbar-track,
+        .detail-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .top-panel-scroll::-webkit-scrollbar-thumb,
+        .detail-content::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .top-panel-scroll::-webkit-scrollbar-thumb:hover,
+        .detail-content::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Store Markers */
+        .store-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            font-size: 10px;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        .store-marker:hover { transform: scale(1.3); }
+        .store-marker.rewe { background: #cc0000; }
+        .store-marker.edeka { background: #0066b3; }
+
+        .marker-cluster {
+            background: rgba(255,255,255,0.9) !important;
+            border: 2px solid var(--accent) !important;
+        }
+
+        .marker-cluster div {
+            background: var(--accent) !important;
+            color: white !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 12px !important;
+        }
+
+        /* Store toggle in filter bar */
+        .store-toggle {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 2px solid #94a3b8;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            background: transparent;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+
+        .store-toggle.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .store-toggle .store-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .store-toggle .store-dot.rewe { background: #cc0000; }
+        .store-toggle .store-dot.edeka { background: #0066b3; }
+
+        /* Store detail panel content */
+        .store-detail-chain {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .store-detail-chain.rewe { background: #cc0000; }
+        .store-detail-chain.edeka { background: #0066b3; }
+
+        .store-info-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 12px;
+            padding: 16px 20px;
+            font-size: 12px;
+        }
+
+        .store-info-grid .label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .store-info-grid .value {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Store tooltip */
+        .store-tooltip {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: var(--shadow-lg);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .store-tooltip .st-chain {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .store-tooltip .st-chain.rewe { color: #cc0000; }
+        .store-tooltip .st-chain.edeka { color: #0066b3; }
+
+        .store-tooltip .st-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px 0;
+        }
+
+        .store-tooltip .st-score {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .store-tooltip .st-score strong {
+            color: var(--text);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .detail-panel { width: 280px; }
+            .top-card { flex: 0 0 160px; }
+        }
+
+        @media (max-width: 768px) {
+            .detail-panel { display: none; }
+            .header-title { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <div class="logo-square">s2</div>
+        scale<sup>2</sup>
+    </div>
+    <div class="header-title">Sweet Spot Analyse — Huel Deutschland</div>
+    <div class="header-badge">Prototyp</div>
+</div>
+
+<!-- App Layout -->
+<div class="app-layout">
+
+    <!-- Main Area (Map + Filters + Top List) -->
+    <div class="main-area">
+
+        <!-- Dimension Filters -->
+        <div class="filter-bar">
+            <span class="filter-label">Dimensionen:</span>
+            <button class="filter-btn active" data-dim="kaufkraft" onclick="toggleDimension('kaufkraft')">
+                Kaufkraft <span class="weight">25%</span>
+            </button>
+            <button class="filter-btn active" data-dim="lifestyle" onclick="toggleDimension('lifestyle')">
+                Lifestyle <span class="weight">20%</span>
+            </button>
+            <button class="filter-btn active" data-dim="fitness" onclick="toggleDimension('fitness')">
+                Fitness <span class="weight">20%</span>
+            </button>
+            <button class="filter-btn active" data-dim="demografie" onclick="toggleDimension('demografie')">
+                Demografie <span class="weight">15%</span>
+            </button>
+            <button class="filter-btn active" data-dim="wettbewerb" onclick="toggleDimension('wettbewerb')">
+                Wettbewerb <span class="weight">10%</span>
+            </button>
+            <button class="filter-btn active" data-dim="digital" onclick="toggleDimension('digital')">
+                Digital <span class="weight">10%</span>
+            </button>
+            <button class="store-toggle active" id="storeToggle" onclick="window._toggleStores()">
+                <span class="store-dot rewe"></span><span class="store-dot edeka"></span>
+                1.000 Filialen
+            </button>
+        </div>
+
+        <!-- Map -->
+        <div class="map-wrapper">
+            <div id="map"></div>
+
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Lade Landkreis-Daten...</div>
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                <h3>Daten konnten nicht geladen werden</h3>
+                <p>Die GeoJSON-Datei konnte nicht abgerufen werden.<br>Bitte prüfe deine Internetverbindung.</p>
+            </div>
+
+            <!-- Legend -->
+            <div class="map-legend">
+                <div class="map-legend-title">Sweet Spot Score</div>
+                <div class="map-legend-gradient"></div>
+                <div class="map-legend-labels" id="legendLabels">
+                    <span>Niedrig</span>
+                    <span>Mittel</span>
+                    <span>Hoch</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Regionen -->
+        <div class="top-panel">
+            <div class="top-panel-header">
+                <h3>&#127942; Top 20 Regionen</h3>
+                <span style="font-size: 11px; color: var(--text-muted);" id="regionCount">— Regionen</span>
+            </div>
+            <div class="top-panel-scroll" id="topList"></div>
+        </div>
+    </div>
+
+    <!-- Detail Panel (right sidebar) -->
+    <div class="detail-panel" id="detailPanel">
+        <div class="detail-panel-placeholder" id="detailPlaceholder">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            <p><strong>Region oder Filiale auswählen</strong><br>Klicke auf einen Landkreis oder eine Filiale auf der Karte, um Details zu sehen.</p>
+        </div>
+        <div class="detail-content" id="detailContent"></div>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+(function() {
+    'use strict';
+
+    // =============================================
+    // CONFIGURATION
+    // =============================================
+    const GEOJSON_URLS = [
+        'https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/4_kreise/4_niedrig.geo.json',
+        'https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/4_kreise/3_mittel.geo.json',
+        'https://raw.githubusercontent.com/Praesklepios/geoGermany/main/geojson/Ebene_Kreise.geojson'
+    ];
+
+    const DIMENSIONS = [
+        { key: 'kaufkraft',   label: 'Kaufkraft',       weight: 0.25, color: '#0d9f6e' },
+        { key: 'lifestyle',   label: 'Lifestyle',        weight: 0.20, color: '#f59e0b' },
+        { key: 'fitness',     label: 'Fitness',           weight: 0.20, color: '#3b82f6' },
+        { key: 'demografie',  label: 'Demografie',        weight: 0.15, color: '#8b5cf6' },
+        { key: 'wettbewerb',  label: 'Wettbewerb',        weight: 0.10, color: '#06b6d4' },
+        { key: 'digital',     label: 'Digital',            weight: 0.10, color: '#ec4899' }
+    ];
+
+    // State
+    let activeDimensions = new Set(DIMENSIONS.map(d => d.key));
+    let regionData = {};
+    let rankedRegions = [];
+    let geoJsonLayer = null;
+    let selectedRegionId = null;
+    let map = null;
+    let storeClusterGroup = null;
+    let storesVisible = true;
+    let storeData = [];
+
+    // =============================================
+    // SEEDED RANDOM — for reproducible data
+    // =============================================
+    function mulberry32(a) {
+        return function() {
+            a |= 0; a = a + 0x6D2B79F5 | 0;
+            let t = Math.imul(a ^ a >>> 15, 1 | a);
+            t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+            return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        };
+    }
+
+    // =============================================
+    // SYNTHETIC DATA GENERATION
+    // =============================================
+    const METRO_BOOST = {
+        'Berlin': { kaufkraft: 15, lifestyle: 25, fitness: 22, demografie: 18, wettbewerb: -5, digital: 25 },
+        'München': { kaufkraft: 28, lifestyle: 22, fitness: 24, demografie: 15, wettbewerb: -8, digital: 22 },
+        'Hamburg': { kaufkraft: 20, lifestyle: 24, fitness: 20, demografie: 16, wettbewerb: -5, digital: 23 },
+        'Köln': { kaufkraft: 15, lifestyle: 20, fitness: 18, demografie: 14, wettbewerb: -3, digital: 18 },
+        'Frankfurt am Main': { kaufkraft: 25, lifestyle: 18, fitness: 16, demografie: 12, wettbewerb: -5, digital: 20 },
+        'Stuttgart': { kaufkraft: 22, lifestyle: 15, fitness: 18, demografie: 10, wettbewerb: -5, digital: 18 },
+        'Düsseldorf': { kaufkraft: 20, lifestyle: 18, fitness: 16, demografie: 10, wettbewerb: -3, digital: 17 },
+        'Nürnberg': { kaufkraft: 14, lifestyle: 12, fitness: 14, demografie: 8, wettbewerb: 2, digital: 14 },
+        'Hannover': { kaufkraft: 12, lifestyle: 12, fitness: 12, demografie: 8, wettbewerb: 3, digital: 14 },
+        'Leipzig': { kaufkraft: 5, lifestyle: 18, fitness: 16, demografie: 14, wettbewerb: 8, digital: 16 },
+        'Dresden': { kaufkraft: 5, lifestyle: 14, fitness: 14, demografie: 12, wettbewerb: 8, digital: 14 },
+        'Freiburg im Breisgau': { kaufkraft: 12, lifestyle: 20, fitness: 22, demografie: 14, wettbewerb: 5, digital: 12 },
+        'Münster': { kaufkraft: 12, lifestyle: 16, fitness: 18, demografie: 12, wettbewerb: 5, digital: 12 },
+        'Bonn': { kaufkraft: 16, lifestyle: 14, fitness: 14, demografie: 10, wettbewerb: 3, digital: 14 },
+        'Heidelberg': { kaufkraft: 16, lifestyle: 18, fitness: 16, demografie: 12, wettbewerb: 4, digital: 14 },
+        'Darmstadt': { kaufkraft: 18, lifestyle: 12, fitness: 12, demografie: 8, wettbewerb: 3, digital: 16 },
+        'Erlangen': { kaufkraft: 18, lifestyle: 14, fitness: 16, demografie: 10, wettbewerb: 5, digital: 16 },
+        'Regensburg': { kaufkraft: 14, lifestyle: 12, fitness: 14, demografie: 10, wettbewerb: 6, digital: 12 },
+        'Potsdam': { kaufkraft: 10, lifestyle: 14, fitness: 14, demografie: 12, wettbewerb: 6, digital: 14 },
+        'Augsburg': { kaufkraft: 12, lifestyle: 10, fitness: 12, demografie: 8, wettbewerb: 5, digital: 10 },
+        'Karlsruhe': { kaufkraft: 16, lifestyle: 14, fitness: 14, demografie: 10, wettbewerb: 4, digital: 16 },
+        'Mannheim': { kaufkraft: 14, lifestyle: 12, fitness: 12, demografie: 8, wettbewerb: 2, digital: 12 },
+        'Wiesbaden': { kaufkraft: 18, lifestyle: 12, fitness: 12, demografie: 8, wettbewerb: 2, digital: 14 },
+        'Mainz': { kaufkraft: 14, lifestyle: 14, fitness: 14, demografie: 10, wettbewerb: 3, digital: 14 },
+        'Aachen': { kaufkraft: 10, lifestyle: 14, fitness: 14, demografie: 12, wettbewerb: 5, digital: 12 },
+        'Rostock': { kaufkraft: 4, lifestyle: 10, fitness: 12, demografie: 8, wettbewerb: 8, digital: 8 },
+        'Jena': { kaufkraft: 6, lifestyle: 14, fitness: 14, demografie: 12, wettbewerb: 8, digital: 12 },
+        'Ulm': { kaufkraft: 16, lifestyle: 12, fitness: 14, demografie: 8, wettbewerb: 5, digital: 12 },
+        'Ingolstadt': { kaufkraft: 20, lifestyle: 8, fitness: 10, demografie: 6, wettbewerb: 5, digital: 10 },
+        'Wolfsburg': { kaufkraft: 18, lifestyle: 6, fitness: 8, demografie: 4, wettbewerb: 5, digital: 10 },
+    };
+
+    // Regional patterns (latitude/longitude-based biases)
+    function getRegionalBias(lat, lng) {
+        // South/West generally higher purchasing power — strong differentiation
+        const southFactor = (lat - 47.5) / 7.5; // 0 (south) to 1 (north)
+        const eastFactor = (lng - 6) / 9;        // 0 (west) to 1 (east)
+
+        return {
+            kaufkraft: (1 - southFactor) * 18 + (1 - eastFactor) * 10 - 8,
+            lifestyle: (lat < 50 ? 12 : lat < 52 ? 4 : -6) + (eastFactor < 0.4 ? 6 : -4),
+            fitness: (1 - southFactor) * 15 - 4,
+            demografie: (southFactor > 0.6 ? -12 : 5) + (eastFactor > 0.6 ? -10 : 3),
+            wettbewerb: (southFactor > 0.6 ? 8 : -3) + (eastFactor > 0.6 ? 6 : -2),
+            digital: (lat < 51 ? 8 : -4) + (eastFactor < 0.5 ? 5 : -5)
+        };
+    }
+
+    function generateRegionScores(name, id, centroid) {
+        const seed = hashString(id || name);
+        const rng = mulberry32(seed);
+        const [lng, lat] = centroid;
+
+        const bias = getRegionalBias(lat, lng);
+
+        // Check for metro boost
+        let metro = null;
+        for (const [city, boost] of Object.entries(METRO_BOOST)) {
+            if (name.includes(city) || name.startsWith(city)) {
+                metro = boost;
+                break;
+            }
+        }
+
+        // Also check for partial matches (e.g., "Region Hannover", "StadtRegion Aachen")
+        if (!metro) {
+            for (const [city, boost] of Object.entries(METRO_BOOST)) {
+                if (name.toLowerCase().includes(city.toLowerCase())) {
+                    metro = { ...boost };
+                    // Slightly reduce boost for surrounding regions
+                    Object.keys(metro).forEach(k => metro[k] *= 0.7);
+                    break;
+                }
+            }
+        }
+
+        const scores = {};
+        for (const dim of DIMENSIONS) {
+            let base = 10 + rng() * 65; // 10-75 base — wide spread
+            base += bias[dim.key] || 0;
+            if (metro) base += metro[dim.key] || 0;
+            // Strong noise for variety
+            base += (rng() - 0.5) * 25;
+            scores[dim.key] = Math.round(Math.max(5, Math.min(98, base)));
+        }
+
+        return scores;
+    }
+
+    function hashString(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0;
+        }
+        return Math.abs(hash);
+    }
+
+    // =============================================
+    // SCORE CALCULATION
+    // =============================================
+    function calcWeightedScore(scores) {
+        let totalWeight = 0;
+        let totalScore = 0;
+        for (const dim of DIMENSIONS) {
+            if (activeDimensions.has(dim.key)) {
+                totalWeight += dim.weight;
+                totalScore += scores[dim.key] * dim.weight;
+            }
+        }
+        if (totalWeight === 0) return 0;
+        return Math.round(totalScore / totalWeight);
+    }
+
+    function rankRegions() {
+        rankedRegions = Object.entries(regionData)
+            .map(([id, data]) => ({
+                id,
+                name: data.name,
+                scores: data.scores,
+                total: calcWeightedScore(data.scores),
+                centroid: data.centroid
+            }))
+            .sort((a, b) => b.total - a.total);
+
+        // Assign ranks
+        rankedRegions.forEach((r, i) => r.rank = i + 1);
+        // Update color range for relative spreading
+        recalcScoreRange();
+    }
+
+    // =============================================
+    // COLOR FUNCTIONS
+    // =============================================
+    // Min/Max tracking for relative color spreading
+    let scoreMin = 0, scoreMax = 100;
+
+    function recalcScoreRange() {
+        if (rankedRegions.length === 0) return;
+        const scores = rankedRegions.map(r => r.total);
+        scoreMin = Math.min(...scores);
+        scoreMax = Math.max(...scores);
+        // Add small padding so extremes aren't exactly 0/1
+        const pad = (scoreMax - scoreMin) * 0.05;
+        scoreMin = Math.max(0, scoreMin - pad);
+        scoreMax = Math.min(100, scoreMax + pad);
+    }
+
+    function scoreToColorRGB(t) {
+        // t is 0..1 → Red → Yellow → Green
+        let r, g, b;
+        if (t < 0.5) {
+            const s = t / 0.5;
+            r = Math.round(220 * (1 - s) + 240 * s);
+            g = Math.round(50 * (1 - s) + 190 * s);
+            b = Math.round(50 * (1 - s) + 20 * s);
+        } else {
+            const s = (t - 0.5) / 0.5;
+            r = Math.round(240 * (1 - s) + 22 * s);
+            g = Math.round(190 * (1 - s) + 180 * s);
+            b = Math.round(20 * (1 - s) + 80 * s);
+        }
+        return [r, g, b];
+    }
+
+    function scoreToColor(score) {
+        const range = scoreMax - scoreMin || 1;
+        const t = Math.max(0, Math.min(1, (score - scoreMin) / range));
+        const [r, g, b] = scoreToColorRGB(t);
+        return `rgb(${r},${g},${b})`;
+    }
+
+    function scoreToColorHex(score) {
+        const range = scoreMax - scoreMin || 1;
+        const t = Math.max(0, Math.min(1, (score - scoreMin) / range));
+        const [r, g, b] = scoreToColorRGB(t);
+        return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+
+    // =============================================
+    // CENTROID CALCULATION
+    // =============================================
+    function getCentroid(geometry) {
+        let coords = [];
+        if (geometry.type === 'Polygon') {
+            coords = geometry.coordinates[0];
+        } else if (geometry.type === 'MultiPolygon') {
+            // Use the largest polygon
+            let maxLen = 0;
+            for (const poly of geometry.coordinates) {
+                if (poly[0].length > maxLen) {
+                    maxLen = poly[0].length;
+                    coords = poly[0];
+                }
+            }
+        }
+        if (coords.length === 0) return [10.4, 51.1]; // center of Germany fallback
+
+        let sumLng = 0, sumLat = 0;
+        for (const [lng, lat] of coords) {
+            sumLng += lng;
+            sumLat += lat;
+        }
+        return [sumLng / coords.length, sumLat / coords.length];
+    }
+
+    // =============================================
+    // TOOLTIP HTML
+    // =============================================
+    function buildTooltipHTML(name, scores, total) {
+        let barsHTML = '';
+        for (const dim of DIMENSIONS) {
+            if (activeDimensions.has(dim.key)) {
+                barsHTML += `
+                    <div class="tt-bar-row">
+                        <span class="tt-bar-label">${dim.label}</span>
+                        <div class="tt-bar-track"><div class="tt-bar-fill" style="width:${scores[dim.key]}%;background:${dim.color}"></div></div>
+                        <span class="tt-bar-val">${scores[dim.key]}</span>
+                    </div>`;
+            }
+        }
+        return `
+            <div class="region-tooltip">
+                <div class="tt-header">
+                    <span class="tt-name">${name}</span>
+                    <span class="tt-score" style="background:${scoreToColor(total)}">${total}</span>
+                </div>
+                <div class="tt-bars">${barsHTML}</div>
+            </div>`;
+    }
+
+    // =============================================
+    // DETAIL PANEL
+    // =============================================
+    function showDetailPanel(id) {
+        selectedRegionId = id;
+        const data = regionData[id];
+        if (!data) return;
+
+        const ranked = rankedRegions.find(r => r.id === id);
+        const total = ranked ? ranked.total : calcWeightedScore(data.scores);
+        const rank = ranked ? ranked.rank : '—';
+        const totalRegions = rankedRegions.length;
+        const percentile = ranked ? Math.round((1 - (ranked.rank - 1) / totalRegions) * 100) : 0;
+
+        // Find strengths and weaknesses
+        const dimScores = DIMENSIONS.map(d => ({ ...d, score: data.scores[d.key] }));
+        dimScores.sort((a, b) => b.score - a.score);
+        const strengths = dimScores.slice(0, 2);
+        const weaknesses = dimScores.slice(-2).reverse();
+
+        const html = `
+            <div class="detail-header">
+                <div class="detail-region-name">${data.name}</div>
+                <div class="detail-region-type">${data.type}</div>
+            </div>
+            <div class="detail-score-hero">
+                <div class="detail-score-circle" style="background:${scoreToColor(total)}">${total}</div>
+                <div class="detail-score-meta">
+                    Gesamt-Score
+                    <span class="rank">#${rank} von ${totalRegions}</span>
+                    <span class="percentile">Top ${100 - percentile < 1 ? '1' : (100 - percentile)}%</span>
+                </div>
+            </div>
+            <div class="detail-dims">
+                <h4>Score-Breakdown</h4>
+                ${DIMENSIONS.map(dim => `
+                    <div class="dim-row" style="opacity: ${activeDimensions.has(dim.key) ? 1 : 0.3}">
+                        <span class="dim-row-label" style="color:${dim.color}">${dim.label}</span>
+                        <div class="dim-row-bar">
+                            <div class="dim-row-fill" style="width:${data.scores[dim.key]}%;background:${dim.color}"></div>
+                        </div>
+                        <span class="dim-row-val">${data.scores[dim.key]}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="detail-insights">
+                <h4>Stärken</h4>
+                ${strengths.map(s => `<span class="insight-tag strength">${s.label}: ${s.score}</span>`).join('')}
+                <h4 style="margin-top: 12px">Schwächen</h4>
+                ${weaknesses.map(w => `<span class="insight-tag weakness">${w.label}: ${w.score}</span>`).join('')}
+            </div>
+        `;
+
+        document.getElementById('detailContent').innerHTML = html;
+        document.getElementById('detailContent').classList.add('visible');
+        document.getElementById('detailPlaceholder').style.display = 'none';
+
+        // Update top cards active state
+        document.querySelectorAll('.top-card').forEach(c => {
+            c.classList.toggle('active', c.dataset.id === id);
+        });
+    }
+
+    // =============================================
+    // TOP 20 LIST
+    // =============================================
+    function renderTopList() {
+        const container = document.getElementById('topList');
+        const top20 = rankedRegions.slice(0, 20);
+
+        container.innerHTML = top20.map(r => {
+            const dimBars = DIMENSIONS
+                .filter(d => activeDimensions.has(d.key))
+                .map(d => `<div class="top-card-dim-bar" style="background:${d.color};opacity:${r.scores[d.key]/100}"></div>`)
+                .join('');
+
+            return `
+                <div class="top-card ${selectedRegionId === r.id ? 'active' : ''}" data-id="${r.id}" onclick="window._selectRegion('${r.id}')">
+                    <div class="top-card-rank">#${r.rank}</div>
+                    <div class="top-card-name" title="${r.name}">${r.name}</div>
+                    <div class="top-card-score">
+                        <div class="top-card-score-bar">
+                            <div class="top-card-score-fill" style="width:${r.total}%;background:${scoreToColor(r.total)}"></div>
+                        </div>
+                        <div class="top-card-score-val">${r.total}</div>
+                    </div>
+                    <div class="top-card-dims">${dimBars}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // =============================================
+    // MAP STYLING & INTERACTION
+    // =============================================
+    function styleFeature(feature) {
+        const id = feature.properties.ID_3 || feature.properties.NAME_3 || feature.properties.id || feature.properties.name;
+        const data = regionData[id];
+        if (!data) return { fillColor: '#e2e8f0', weight: 1, color: '#cbd5e1', fillOpacity: 0.7 };
+        const total = calcWeightedScore(data.scores);
+        return {
+            fillColor: scoreToColor(total),
+            weight: 1,
+            color: '#ffffff',
+            fillOpacity: 0.78,
+        };
+    }
+
+    function highlightStyle() {
+        return {
+            weight: 2.5,
+            color: '#1a2332',
+            fillOpacity: 0.9
+        };
+    }
+
+    function updateMapColors() {
+        if (!geoJsonLayer) return;
+        rankRegions();
+        geoJsonLayer.eachLayer(layer => {
+            layer.setStyle(styleFeature(layer.feature));
+            // Re-bind tooltip
+            const id = getFeatureId(layer.feature);
+            const data = regionData[id];
+            if (data) {
+                const total = calcWeightedScore(data.scores);
+                layer.unbindTooltip();
+                layer.bindTooltip(buildTooltipHTML(data.name, data.scores, total), {
+                    className: 'custom-tooltip',
+                    sticky: true,
+                    direction: 'top',
+                    offset: [0, -10]
+                });
+            }
+        });
+        renderTopList();
+        // Update detail panel if a region is selected
+        if (selectedRegionId) showDetailPanel(selectedRegionId);
+    }
+
+    function getFeatureId(feature) {
+        const p = feature.properties;
+        // isellsoap format: ID_3, NAME_3
+        // Praesklepios format: ARS, GEN
+        return p.ARS || p.ID_3 || p.NAME_3 || p.GEN || p.id || p.name || '';
+    }
+
+    function getFeatureName(feature) {
+        const p = feature.properties;
+        // isellsoap: NAME_3
+        // Praesklepios: GEN (+ BEZ for type)
+        return p.NAME_3 || p.GEN || p.name || 'Unbekannt';
+    }
+
+    // =============================================
+    // DIMENSION TOGGLE
+    // =============================================
+    window.toggleDimension = function(dimKey) {
+        const btn = document.querySelector(`.filter-btn[data-dim="${dimKey}"]`);
+        if (activeDimensions.has(dimKey)) {
+            // Don't allow deactivating all
+            if (activeDimensions.size <= 1) return;
+            activeDimensions.delete(dimKey);
+            btn.classList.remove('active');
+        } else {
+            activeDimensions.add(dimKey);
+            btn.classList.add('active');
+        }
+        updateMapColors();
+    };
+
+    // =============================================
+    // SELECT REGION (from top list)
+    // =============================================
+    window._selectRegion = function(id) {
+        showDetailPanel(id);
+        const data = regionData[id];
+        if (data && data.centroid) {
+            map.flyTo([data.centroid[1], data.centroid[0]], 9, { duration: 0.8 });
+        }
+        // Highlight on map
+        if (geoJsonLayer) {
+            geoJsonLayer.eachLayer(layer => {
+                const fId = getFeatureId(layer.feature);
+                if (fId === id) {
+                    layer.setStyle(highlightStyle());
+                    layer.bringToFront();
+                } else {
+                    layer.setStyle(styleFeature(layer.feature));
+                }
+            });
+        }
+    };
+
+    // =============================================
+    // INIT MAP
+    // =============================================
+    function initMap() {
+        map = L.map('map', {
+            center: [51.1657, 10.4515],
+            zoom: 6,
+            zoomControl: true,
+            maxZoom: 18,
+            minZoom: 5
+        });
+
+        // Dezente graue Tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Labels als separate Schicht (über den Regionen aber transparent)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 19,
+            pane: 'overlayPane'
+        }).addTo(map);
+    }
+
+    // =============================================
+    // LOAD GEOJSON & GENERATE DATA
+    // =============================================
+    async function fetchWithFallback(urls) {
+        for (const url of urls) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) continue;
+                const data = await response.json();
+                if (data && data.features && data.features.length > 50) {
+                    console.log(`GeoJSON loaded from: ${url} (${data.features.length} features)`);
+                    return data;
+                }
+            } catch (e) {
+                console.warn(`Failed to load ${url}:`, e.message);
+            }
+        }
+        throw new Error('Alle GeoJSON-Quellen fehlgeschlagen');
+    }
+
+    async function loadGeoJSON() {
+        try {
+            const geojson = await fetchWithFallback(GEOJSON_URLS);
+
+            // Generate data for each feature
+            const features = geojson.features || [];
+            features.forEach(feature => {
+                const id = getFeatureId(feature);
+                const name = getFeatureName(feature);
+                const type = feature.properties.BEZ || feature.properties.TYPE_3 || 'Landkreis';
+                const centroid = getCentroid(feature.geometry);
+                const scores = generateRegionScores(name, id, centroid);
+                regionData[id] = { name, type, scores, centroid };
+            });
+
+            // Rank and build top list
+            rankRegions();
+
+            // Add GeoJSON layer
+            geoJsonLayer = L.geoJSON(geojson, {
+                style: styleFeature,
+                onEachFeature: function(feature, layer) {
+                    const id = getFeatureId(feature);
+                    const data = regionData[id];
+                    if (!data) return;
+
+                    const total = calcWeightedScore(data.scores);
+
+                    // Tooltip
+                    layer.bindTooltip(buildTooltipHTML(data.name, data.scores, total), {
+                        className: 'custom-tooltip',
+                        sticky: true,
+                        direction: 'top',
+                        offset: [0, -10]
+                    });
+
+                    // Hover effects
+                    layer.on('mouseover', function() {
+                        this.setStyle({ weight: 2, color: '#1a2332', fillOpacity: 0.9 });
+                        this.bringToFront();
+                    });
+
+                    layer.on('mouseout', function() {
+                        if (selectedRegionId !== id) {
+                            this.setStyle(styleFeature(feature));
+                        }
+                    });
+
+                    // Click
+                    layer.on('click', function() {
+                        // Reset previous
+                        geoJsonLayer.eachLayer(l => l.setStyle(styleFeature(l.feature)));
+                        // Highlight this
+                        this.setStyle(highlightStyle());
+                        this.bringToFront();
+                        showDetailPanel(id);
+                    });
+                }
+            }).addTo(map);
+
+            // Fit bounds
+            map.fitBounds(geoJsonLayer.getBounds(), { padding: [20, 20] });
+
+            // Update UI
+            document.getElementById('regionCount').textContent = `${features.length} Regionen`;
+            renderTopList();
+
+            // Hide loading
+            document.getElementById('loadingOverlay').classList.add('hidden');
+
+        } catch (err) {
+            console.error('GeoJSON load error:', err);
+            document.getElementById('loadingOverlay').classList.add('hidden');
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    }
+
+    // =============================================
+    // STORE GENERATION
+    // =============================================
+    const GERMAN_CITIES = [
+        // [name, lat, lng, storeCount (approximate share of 1000)]
+        ['Berlin', 52.52, 13.405, 80],
+        ['Hamburg', 53.55, 9.993, 45],
+        ['München', 48.137, 11.576, 45],
+        ['Köln', 50.938, 6.960, 30],
+        ['Frankfurt', 50.110, 8.682, 28],
+        ['Stuttgart', 48.776, 9.183, 25],
+        ['Düsseldorf', 51.228, 6.774, 22],
+        ['Dortmund', 51.514, 7.468, 18],
+        ['Essen', 51.456, 7.012, 16],
+        ['Leipzig', 51.340, 12.375, 16],
+        ['Bremen', 53.079, 8.801, 14],
+        ['Dresden', 51.051, 13.738, 14],
+        ['Hannover', 52.376, 9.732, 16],
+        ['Nürnberg', 49.452, 11.077, 14],
+        ['Duisburg', 51.435, 6.763, 12],
+        ['Bochum', 51.482, 7.216, 10],
+        ['Wuppertal', 51.265, 7.186, 10],
+        ['Bielefeld', 52.022, 8.533, 9],
+        ['Bonn', 50.737, 7.099, 9],
+        ['Münster', 51.961, 7.626, 9],
+        ['Karlsruhe', 49.007, 8.404, 9],
+        ['Mannheim', 49.488, 8.467, 8],
+        ['Augsburg', 48.366, 10.898, 8],
+        ['Wiesbaden', 50.083, 8.240, 8],
+        ['Aachen', 50.776, 6.084, 8],
+        ['Braunschweig', 52.269, 10.522, 7],
+        ['Kiel', 54.323, 10.123, 7],
+        ['Chemnitz', 50.828, 12.921, 7],
+        ['Magdeburg', 52.131, 11.637, 7],
+        ['Freiburg', 47.999, 7.842, 7],
+        ['Lübeck', 53.870, 10.687, 6],
+        ['Erfurt', 50.979, 11.029, 6],
+        ['Rostock', 54.092, 12.099, 6],
+        ['Mainz', 49.993, 8.271, 6],
+        ['Kassel', 51.313, 9.497, 6],
+        ['Hagen', 51.361, 7.475, 5],
+        ['Saarbrücken', 49.234, 6.997, 6],
+        ['Potsdam', 52.400, 13.066, 6],
+        ['Oldenburg', 53.142, 8.214, 5],
+        ['Osnabrück', 52.279, 8.044, 5],
+        ['Regensburg', 49.014, 12.100, 5],
+        ['Heidelberg', 49.399, 8.673, 5],
+        ['Darmstadt', 49.873, 8.651, 5],
+        ['Würzburg', 49.794, 9.929, 5],
+        ['Ulm', 48.401, 9.988, 5],
+        ['Göttingen', 51.534, 9.936, 4],
+        ['Wolfsburg', 52.424, 10.786, 4],
+        ['Heilbronn', 49.142, 9.220, 4],
+        ['Ingolstadt', 48.766, 11.425, 4],
+        ['Pforzheim', 48.891, 8.699, 4],
+        ['Reutlingen', 48.493, 9.213, 4],
+        ['Konstanz', 47.660, 9.176, 3],
+        ['Passau', 48.574, 13.463, 3],
+        ['Trier', 49.756, 6.641, 4],
+        ['Jena', 50.928, 11.586, 4],
+        ['Schwerin', 53.629, 11.417, 4],
+        ['Cottbus', 51.756, 14.332, 3],
+        ['Bayreuth', 49.946, 11.578, 3],
+        ['Bamberg', 49.892, 10.887, 3],
+        ['Flensburg', 54.784, 9.436, 3],
+        ['Siegen', 50.875, 8.024, 3],
+        ['Paderborn', 51.719, 8.755, 4],
+        ['Gera', 50.880, 12.084, 3],
+        ['Neubrandenburg', 53.558, 13.261, 2],
+        ['Stralsund', 54.310, 13.089, 2],
+        ['Emden', 53.367, 7.206, 2],
+        ['Cuxhaven', 53.868, 8.694, 2],
+        ['Landshut', 48.537, 12.152, 3],
+        ['Ravensburg', 47.782, 9.612, 3],
+        ['Lörrach', 47.616, 7.661, 2],
+        ['Weiden', 49.677, 12.163, 2],
+        ['Nordhausen', 51.506, 10.789, 2],
+    ];
+
+    const STREET_NAMES = [
+        'Hauptstraße', 'Bahnhofstraße', 'Berliner Straße', 'Friedrichstraße',
+        'Schillerstraße', 'Goethestraße', 'Gartenstraße', 'Mühlenweg',
+        'Ringstraße', 'Schulstraße', 'Waldstraße', 'Kirchstraße',
+        'Industriestraße', 'Am Marktplatz', 'Lindenstraße', 'Rosenstraße',
+        'Bismarckstraße', 'Mozartstraße', 'Beethovenstraße', 'Lessingstraße',
+        'Eichendorffstraße', 'Theodor-Heuss-Str.', 'Konrad-Adenauer-Str.',
+        'Am Rathaus', 'Steinweg', 'Neue Straße', 'Lange Straße',
+        'Breite Straße', 'Marktstraße', 'Dorfstraße', 'Bergstraße',
+        'Parkstraße', 'Wiesenweg', 'Am Stadtpark', 'Hafenstraße',
+        'Königstraße', 'Schlossstraße', 'Brückenstraße', 'Rheinstraße',
+        'Am Bahnhof', 'Poststraße', 'Gewerbepark', 'Europastraße',
+    ];
+
+    // Simplified Germany border polygon (lat, lng pairs)
+    const GERMANY_BORDER = [
+        [54.85,8.4],[54.95,9.5],[54.5,10.2],[54.35,11.3],[54.15,12.1],[54.45,13.05],[54.7,13.4],
+        [54.3,14.2],[53.9,14.35],[53.1,14.45],[52.4,14.65],[52.1,14.7],[51.6,14.95],[51.3,15.0],
+        [51.05,14.95],[50.85,14.6],[50.65,14.3],[50.75,13.9],[50.55,13.55],[50.4,12.95],[50.3,12.5],
+        [50.2,12.1],[49.95,12.4],[49.8,12.7],[49.55,13.15],[49.3,13.35],[49.05,13.5],[48.75,13.75],
+        [48.55,13.5],[48.5,13.05],[48.3,12.75],[48.0,12.9],[47.7,13.0],[47.5,12.75],[47.55,12.2],
+        [47.5,11.4],[47.3,10.9],[47.55,10.2],[47.6,9.6],[47.55,9.5],[47.65,8.6],[47.8,8.2],
+        [47.65,7.65],[48.05,7.6],[48.3,7.8],[48.55,7.6],[48.85,8.1],[49.0,7.9],[49.15,7.35],
+        [49.2,6.7],[49.45,6.35],[49.8,6.4],[50.0,6.1],[50.3,6.0],[50.75,6.0],[50.95,5.9],
+        [51.1,5.95],[51.45,6.2],[51.85,6.7],[51.95,7.0],[52.2,6.7],[52.45,7.0],[52.6,7.05],
+        [52.85,7.1],[53.1,7.2],[53.4,7.1],[53.55,8.0],[53.7,8.5],[53.9,8.9],[54.3,8.6],
+        [54.85,8.4]
+    ];
+
+    function isInsideGermany(lat, lng) {
+        let inside = false;
+        const poly = GERMANY_BORDER;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            const [yi, xi] = poly[i];
+            const [yj, xj] = poly[j];
+            if (((yi > lat) !== (yj > lat)) && (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)) {
+                inside = !inside;
+            }
+        }
+        return inside;
+    }
+
+    function generateStores() {
+        const rng = mulberry32(42424242);
+        const stores = [];
+        let storeId = 0;
+
+        for (const [city, lat, lng, count] of GERMAN_CITIES) {
+            for (let i = 0; i < count; i++) {
+                const chain = rng() < 0.5 ? 'rewe' : 'edeka';
+                const chainName = chain === 'rewe' ? 'REWE' : 'EDEKA';
+
+                // Scatter around city center (bigger cities = wider spread)
+                const spread = Math.min(0.12, 0.03 + count * 0.0015);
+                let storeLat, storeLng, attempts = 0;
+                do {
+                    storeLat = lat + (rng() - 0.5) * spread * 2;
+                    storeLng = lng + (rng() - 0.5) * spread * 2.5;
+                    attempts++;
+                } while (!isInsideGermany(storeLat, storeLng) && attempts < 20);
+                if (!isInsideGermany(storeLat, storeLng)) { storeLat = lat; storeLng = lng; }
+
+                // Fake address
+                const street = STREET_NAMES[Math.floor(rng() * STREET_NAMES.length)];
+                const houseNr = Math.floor(rng() * 150) + 1;
+                const plz = String(10000 + Math.floor(rng() * 89999));
+
+                // Store size & details
+                const sqm = Math.round((400 + rng() * 2600) / 10) * 10;
+                const employees = Math.round(sqm / 40 + rng() * 15);
+                const openYear = 1985 + Math.floor(rng() * 38);
+                const storeNr = String(1000 + Math.floor(rng() * 9000));
+
+                // Generate store-level scores (influenced by city location)
+                const bias = getRegionalBias(storeLat, storeLng);
+                let metro = null;
+                for (const [mCity, boost] of Object.entries(METRO_BOOST)) {
+                    if (city.includes(mCity) || mCity.includes(city)) {
+                        metro = boost;
+                        break;
+                    }
+                }
+
+                const scores = {};
+                for (const dim of DIMENSIONS) {
+                    let base = 25 + rng() * 40;
+                    base += bias[dim.key] || 0;
+                    if (metro) base += (metro[dim.key] || 0) * 0.6;
+                    // Larger stores score slightly higher
+                    base += (sqm / 3000) * 5;
+                    base += (rng() - 0.5) * 12;
+                    scores[dim.key] = Math.round(Math.max(5, Math.min(99, base)));
+                }
+
+                stores.push({
+                    id: `store_${storeId++}`,
+                    chain,
+                    chainName,
+                    name: `${chainName} ${city}${count > 1 ? ' ' + (i + 1) : ''}`,
+                    city,
+                    lat: storeLat,
+                    lng: storeLng,
+                    address: `${street} ${houseNr}`,
+                    plz,
+                    sqm,
+                    employees,
+                    openYear,
+                    storeNr,
+                    scores,
+                    total: 0 // calculated later
+                });
+            }
+        }
+
+        // Fill remaining to reach ~1000 with scattered rural stores
+        const remaining = 1000 - stores.length;
+        for (let i = 0; i < remaining; i++) {
+            const chain = rng() < 0.5 ? 'rewe' : 'edeka';
+            const chainName = chain === 'rewe' ? 'REWE' : 'EDEKA';
+
+            // Random location — must be inside Germany
+            let storeLat, storeLng;
+            do {
+                storeLat = 47.3 + rng() * 7.5;
+                storeLng = 5.9 + rng() * 9.1;
+            } while (!isInsideGermany(storeLat, storeLng));
+
+            const street = STREET_NAMES[Math.floor(rng() * STREET_NAMES.length)];
+            const houseNr = Math.floor(rng() * 80) + 1;
+            const plz = String(10000 + Math.floor(rng() * 89999));
+            const sqm = Math.round((300 + rng() * 1200) / 10) * 10;
+            const employees = Math.round(sqm / 45 + rng() * 8);
+            const openYear = 1990 + Math.floor(rng() * 33);
+            const storeNr = String(1000 + Math.floor(rng() * 9000));
+
+            const bias = getRegionalBias(storeLat, storeLng);
+            const scores = {};
+            for (const dim of DIMENSIONS) {
+                let base = 20 + rng() * 35;
+                base += bias[dim.key] || 0;
+                base += (rng() - 0.5) * 10;
+                scores[dim.key] = Math.round(Math.max(5, Math.min(95, base)));
+            }
+
+            const nearestCity = GERMAN_CITIES.reduce((best, c) => {
+                const d = Math.hypot(c[1] - storeLat, c[2] - storeLng);
+                return d < best.d ? { name: c[0], d } : best;
+            }, { name: 'Umland', d: Infinity });
+
+            stores.push({
+                id: `store_${storeId++}`,
+                chain,
+                chainName,
+                name: `${chainName} ${nearestCity.name}-Umland ${i + 1}`,
+                city: nearestCity.name,
+                lat: storeLat,
+                lng: storeLng,
+                address: `${street} ${houseNr}`,
+                plz,
+                sqm,
+                employees,
+                openYear,
+                storeNr,
+                scores,
+                total: 0
+            });
+        }
+
+        return stores;
+    }
+
+    // =============================================
+    // STORE MARKERS
+    // =============================================
+    function createStoreMarkers() {
+        storeData = generateStores();
+        storeData.forEach(s => s.total = calcWeightedScore(s.scores));
+
+        storeClusterGroup = L.markerClusterGroup({
+            maxClusterRadius: 40,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: true,
+            iconCreateFunction: function(cluster) {
+                const count = cluster.getChildCount();
+                let size = 'small';
+                if (count > 50) size = 'large';
+                else if (count > 20) size = 'medium';
+                return L.divIcon({
+                    html: `<div><span>${count}</span></div>`,
+                    className: `marker-cluster marker-cluster-${size}`,
+                    iconSize: L.point(40, 40)
+                });
+            }
+        });
+
+        for (const store of storeData) {
+            const icon = L.divIcon({
+                className: '',
+                html: `<div class="store-marker ${store.chain}">${store.chain === 'rewe' ? 'R' : 'E'}</div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+
+            const marker = L.marker([store.lat, store.lng], { icon });
+
+            // Tooltip
+            marker.bindTooltip(`
+                <div class="store-tooltip">
+                    <div class="st-chain ${store.chain}">${store.chainName}</div>
+                    <div class="st-name">${store.name}</div>
+                    <div class="st-score">Score: <strong>${store.total}</strong> &middot; ${store.sqm} m&sup2;</div>
+                </div>
+            `, {
+                className: 'custom-tooltip',
+                direction: 'top',
+                offset: [0, -14]
+            });
+
+            // Click → show detail
+            marker.on('click', function() {
+                showStoreDetail(store);
+            });
+
+            storeClusterGroup.addLayer(marker);
+        }
+
+        map.addLayer(storeClusterGroup);
+    }
+
+    function showStoreDetail(store) {
+        selectedRegionId = null;
+        const total = calcWeightedScore(store.scores);
+
+        // Find rank among all stores
+        const sorted = [...storeData].sort((a, b) => calcWeightedScore(b.scores) - calcWeightedScore(a.scores));
+        const rank = sorted.findIndex(s => s.id === store.id) + 1;
+
+        const dimScores = DIMENSIONS.map(d => ({ ...d, score: store.scores[d.key] }));
+        dimScores.sort((a, b) => b.score - a.score);
+        const strengths = dimScores.slice(0, 2);
+        const weaknesses = dimScores.slice(-2).reverse();
+
+        const html = `
+            <div class="detail-header">
+                <div class="detail-region-name">${store.name}</div>
+                <div class="detail-region-type">
+                    <span class="store-detail-chain ${store.chain}">${store.chainName}</span>
+                    &nbsp; Filiale #${store.storeNr}
+                </div>
+            </div>
+            <div class="detail-score-hero">
+                <div class="detail-score-circle" style="background:${scoreToColor(total)}">${total}</div>
+                <div class="detail-score-meta">
+                    Sweet Spot Score
+                    <span class="rank">#${rank} von ${storeData.length} Filialen</span>
+                    <span class="percentile">Top ${Math.max(1, Math.round(rank / storeData.length * 100))}%</span>
+                </div>
+            </div>
+            <div class="store-info-grid">
+                <span class="label">Adresse</span>
+                <span class="value">${store.address}, ${store.plz} ${store.city}</span>
+                <span class="label">Verkaufsfläche</span>
+                <span class="value">${store.sqm.toLocaleString('de-DE')} m&sup2;</span>
+                <span class="label">Mitarbeiter</span>
+                <span class="value">~${store.employees}</span>
+                <span class="label">Eröffnet</span>
+                <span class="value">${store.openYear}</span>
+            </div>
+            <div class="detail-dims">
+                <h4>Score-Breakdown</h4>
+                ${DIMENSIONS.map(dim => `
+                    <div class="dim-row" style="opacity: ${activeDimensions.has(dim.key) ? 1 : 0.3}">
+                        <span class="dim-row-label" style="color:${dim.color}">${dim.label}</span>
+                        <div class="dim-row-bar">
+                            <div class="dim-row-fill" style="width:${store.scores[dim.key]}%;background:${dim.color}"></div>
+                        </div>
+                        <span class="dim-row-val">${store.scores[dim.key]}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="detail-insights">
+                <h4>Stärken</h4>
+                ${strengths.map(s => `<span class="insight-tag strength">${s.label}: ${s.score}</span>`).join('')}
+                <h4 style="margin-top: 12px">Schwächen</h4>
+                ${weaknesses.map(w => `<span class="insight-tag weakness">${w.label}: ${w.score}</span>`).join('')}
+            </div>
+        `;
+
+        document.getElementById('detailContent').innerHTML = html;
+        document.getElementById('detailContent').classList.add('visible');
+        document.getElementById('detailPlaceholder').style.display = 'none';
+    }
+
+    // Toggle stores on/off
+    window._toggleStores = function() {
+        const btn = document.getElementById('storeToggle');
+        if (storesVisible) {
+            map.removeLayer(storeClusterGroup);
+            btn.classList.remove('active');
+            storesVisible = false;
+        } else {
+            map.addLayer(storeClusterGroup);
+            btn.classList.add('active');
+            storesVisible = true;
+        }
+    };
+
+    // =============================================
+    // BOOT
+    // =============================================
+    initMap();
+    loadGeoJSON().then(() => {
+        createStoreMarkers();
+    });
+
+})();
+</script>
+</body>
+</html>
