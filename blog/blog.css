@@ -711,12 +711,27 @@ body {
 }
 
 .article-body figcaption {
-    margin-top: 0.6rem;
-    font-size: 0.78rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0;
+    padding: 0.65rem 1rem;
+    background: rgba(255, 59, 59, 0.05);
+    border-left: 2px solid rgba(255, 59, 59, 0.35);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.76rem;
     color: #64748b;
     font-style: italic;
-    text-align: center;
     line-height: 1.5;
+}
+
+.article-body figcaption::before {
+    content: "⚠";
+    font-style: normal;
+    font-size: 0.8rem;
+    color: rgba(255, 59, 59, 0.6);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
 }
 
 .article-body hr {
