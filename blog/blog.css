@@ -701,6 +701,24 @@ body {
     margin: 2rem 0;
 }
 
+.article-body figure {
+    margin: 2.5rem 0;
+}
+
+.article-body figure img {
+    margin: 0;
+    width: 100%;
+}
+
+.article-body figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: #64748b;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5;
+}
+
 .article-body hr {
     border: none;
     height: 1px;
