@@ -13,7 +13,7 @@ Dieser Moment ist gerade eingetreten. Und die KI-Branche hat ihn versagt.
 
 ## Was passiert ist
 
-Das US-Verteidigungsministerium, unter Kriegsminister Pete Hegseth inzwischen bezeichnenderweise wieder "Department of War" genannt, hat eine klare Ansage an alle KI-Unternehmen gemacht: Wer staatliche Verträge will, muss "any lawful use" seiner Modelle akzeptieren. Keine Ausnahmen. Keine roten Linien. Voller Zugriff.
+Das US-Verteidigungsministerium (unter Kriegsminister Pete Hegseth inzwischen bezeichnenderweise wieder "Department of War" genannt) hat eine klare Ansage an alle KI-Unternehmen gemacht: Wer staatliche Verträge will, muss "any lawful use" seiner Modelle akzeptieren. Keine Ausnahmen. Keine roten Linien. Voller Zugriff.
 
 Anthropic, das Unternehmen hinter Claude, hat genau zwei Ausnahmen gefordert:
 
