@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <filter id="glow-hard" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-text" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="divideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#39ff14;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#39ff14;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#39ff14;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff3b3b;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#ff3b3b;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#ff3b3b;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Background -->
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Left side: green glow blob (Anthropic) -->
+  <ellipse cx="220" cy="315" rx="300" ry="260" fill="#39ff14" opacity="0.03"/>
+  <!-- Right side: red glow blob (OpenAI/Pentagon) -->
+  <ellipse cx="980" cy="315" rx="300" ry="260" fill="#ff3b3b" opacity="0.05"/>
+
+  <!-- Vertical dividing line in the center -->
+  <rect x="597" y="80" width="2" height="470" fill="#39ff14" opacity="0.08"/>
+
+  <!-- Category badge -->
+  <rect x="80" y="72" width="110" height="30" rx="6" fill="#39ff14" opacity="0.12"/>
+  <rect x="80" y="72" width="110" height="30" rx="6" fill="none" stroke="#39ff14" stroke-width="0.8" opacity="0.4"/>
+  <text x="135" y="92" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="600" font-size="12" fill="#39ff14" text-anchor="middle" letter-spacing="1.5">AKTUELLES</text>
+
+  <!-- Main headline line 1 -->
+  <text x="80" y="210" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="800" font-size="72" fill="#f0f0f2" letter-spacing="-2">OpenAI hat den</text>
+
+  <!-- Main headline line 2 – "Pakt mit dem Teufel" mit rotem Akzent -->
+  <text x="80" y="302" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="800" font-size="72" fill="#f0f0f2" letter-spacing="-2">Pakt mit dem</text>
+
+  <!-- "Teufel" in red/orange -->
+  <text x="80" y="394" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="800" font-size="72" fill="#ff4444" letter-spacing="-2" filter="url(#glow-text)">Teufel geschlossen.</text>
+
+  <!-- Horizontal accent line below headline -->
+  <rect x="80" y="422" width="520" height="2" fill="url(#divideGrad)" rx="1"/>
+
+  <!-- Subtext -->
+  <text x="80" y="468" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="22" fill="#64748b">Anthropic sagt Nein. OpenAI unterschreibt.</text>
+  <text x="80" y="498" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="22" fill="#64748b">Was das für KI und Ethik bedeutet.</text>
+
+  <!-- Right side: visual element – two opposing blocks representing the split -->
+  <!-- Anthropic block (green) -->
+  <rect x="760" y="180" width="160" height="200" rx="12" fill="#111114" stroke="#39ff14" stroke-width="1" opacity="0.7"/>
+  <text x="840" y="258" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="700" font-size="13" fill="#39ff14" text-anchor="middle" letter-spacing="1">ANTHROPIC</text>
+  <text x="840" y="282" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="28" fill="#f0f0f2" text-anchor="middle">Nein.</text>
+  <text x="840" y="356" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="500" font-size="11" fill="#39ff14" text-anchor="middle" opacity="0.8">WE CAN'T AGREE</text>
+
+  <!-- OpenAI block (red) -->
+  <rect x="960" y="180" width="160" height="200" rx="12" fill="#110808" stroke="#ff4444" stroke-width="1" opacity="0.7"/>
+  <text x="1040" y="258" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="700" font-size="13" fill="#ff4444" text-anchor="middle" letter-spacing="1">OPENAI</text>
+  <text x="1040" y="282" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="28" fill="#f0f0f2" text-anchor="middle">Ja.</text>
+  <text x="1040" y="356" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="500" font-size="11" fill="#ff4444" text-anchor="middle" opacity="0.8">PENTAGON DEAL ✓</text>
+
+  <!-- Bottom: scale² branding -->
+  <text font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="700">
+    <tspan x="80" y="580" font-size="22" fill="#f0f0f2">scale</tspan><tspan font-size="13" fill="#39ff14" dy="-9" dx="2" filter="url(#glow-soft)">2</tspan>
+  </text>
+  <text x="135" y="580" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="14" fill="#2d3748">|</text>
+  <text x="148" y="580" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="14" fill="#64748b">scale-square.com/blog</text>
+
+  <!-- Date -->
+  <text x="1120" y="580" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-weight="400" font-size="14" fill="#64748b" text-anchor="end">28. Februar 2026</text>
+</svg>
