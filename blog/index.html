@@ -6,16 +6,23 @@
     <title>Blog – scale² | KI-Wissen für Unternehmer</title>
     <meta name="description" content="Praxisnahe Artikel über KI-Automatisierung, KI-Strategie und digitale Infrastruktur für etablierte Unternehmen. Klar, praxisnah und ohne Verkomplizierung.">
     <meta name="keywords" content="KI Blog, KI Automatisierung, KI Strategie, KI für Unternehmen, Künstliche Intelligenz Mittelstand">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://scale-square.com/blog/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://scale-square.com/blog/">
     <meta property="og:title" content="Blog – scale² | KI-Wissen für Unternehmer">
-    <meta property="og:description" content="Praxisnahe Artikel über KI-Automatisierung, KI-Strategie und digitale Infrastruktur für etablierte Unternehmen.">
+    <meta property="og:description" content="Praxisnahe Artikel über KI-Automatisierung, KI-Strategie und digitale Infrastruktur für etablierte Unternehmen. Klar, praxisnah und ohne Verkomplizierung.">
+    <meta property="og:image" content="https://scale-square.com/og-image.png">
     <meta property="og:locale" content="de_DE">
     <meta property="og:site_name" content="scale²">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog – scale² | KI-Wissen für Unternehmer">
+    <meta name="twitter:description" content="Praxisnahe Artikel über KI-Automatisierung, KI-Strategie und digitale Infrastruktur für etablierte Unternehmen. Klar, praxisnah und ohne Verkomplizierung.">
+    <meta name="twitter:image" content="https://scale-square.com/og-image.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -45,6 +52,12 @@
 
     <!-- Blog Hero -->
     <section class="blog-hero">
+        <div class="blog-hero-bg" aria-hidden="true">
+            <img src="images/solopreneur-milliardaer-preview.svg" alt="">
+            <img src="images/ki-datenschutz-1x1-preview.svg" alt="">
+            <img src="images/agentic-ai-stack-preview.svg" alt="">
+            <img src="images/marketing-agenturen-bluten-preview.svg" alt="">
+        </div>
         <div class="container">
             <div class="blog-hero-label">scale² Blog</div>
             <h1>KI-Wissen.<br><span class="gradient-text">Klar. Praxisnah. Umsetzbar.</span></h1>
@@ -52,32 +65,17 @@
         </div>
     </section>
 
-    <!-- Category Filter -->
+    <!-- Article Grid -->
     <section class="container">
         <div class="blog-filter">
             <button class="filter-btn active" data-category="all">Alle</button>
-                        <button class="filter-btn" data-category="Aktuelles">Aktuelles</button>
-            <button class="filter-btn" data-category="Automatisierung">Automatisierung</button>
-            <button class="filter-btn" data-category="Denkfehler">Denkfehler</button>
-            <button class="filter-btn" data-category="Strategie">Strategie</button>
-            <button class="filter-btn" data-category="Use Case">Use Case</button>
-            <button class="filter-btn" data-category="Verantwortung">Verantwortung</button>
+            <button class="filter-btn" data-category="Aktuelles">Aktuelles</button>
+            <button class="filter-btn" data-category="Basics">Basics</button>
+            <button class="filter-btn" data-category="Random">Random</button>
         </div>
-    </section>
-
-    <!-- Article Grid -->
-    <section class="container">
         <div class="blog-grid">
-                        <a href="openai-pentagon-deal-ki-ethik.html" class="blog-card reveal" data-category="Aktuelles">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
+            <a href="openai-pentagon-deal-ki-ethik.html" class="blog-card reveal" data-category="Aktuelles">
+                <img src="og-openai-pentagon-deal-ki-ethik.png" alt="OpenAI hat den Pakt mit dem Teufel geschlossen" class="blog-card-image">
                 <div class="blog-card-body">
                     <div class="blog-card-meta">
                         <span class="blog-card-category">Aktuelles</span>
@@ -86,232 +84,109 @@
                     <h2 class="blog-card-title">OpenAI hat den Pakt mit dem Teufel geschlossen</h2>
                     <p class="blog-card-description">Anthropic sagt Nein zum Pentagon. OpenAI unterschreibt. Was das für die Zukunft von KI bedeutet – und warum diese Weggabelung die gesamte Branche verändert.</p>
                     <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
+                        <span class="blog-card-readtime">6 Min. Lesezeit</span>
                         <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </div>
                 </div>
             </a>
-            <a href="5-prozesse-ki-automatisieren.html" class="blog-card reveal" data-category="Automatisierung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
+            <a href="solopreneur-milliardaer-2026.html" class="blog-card reveal" data-category="Aktuelles">
+                <img src="images/solopreneur-milliardaer-preview.svg" alt="Output pro Person – KI-augmentiertes Team vs. traditionelles Team im Zeitverlauf" class="blog-card-image">
                 <div class="blog-card-body">
                     <div class="blog-card-meta">
-                        <span class="blog-card-category">Automatisierung</span>
-                        <span class="blog-card-date">17. Februar 2026</span>
+                        <span class="blog-card-category">Aktuelles</span>
+                        <span class="blog-card-date">27. Februar 2026</span>
                     </div>
-                    <h2 class="blog-card-title">5 Prozesse, die jedes Unternehmen mit KI automatisieren kann</h2>
-                    <p class="blog-card-description">Du brauchst kein Tech-Team und kein Millionen-Budget. Diese 5 Prozesse lassen sich in fast jedem Unternehmen sofort mit KI automatisieren.</p>
+                    <h2 class="blog-card-title">2026: Der erste Solopreneur-Milliardär?</h2>
+                    <p class="blog-card-description">Sam Altman sagt, der erste Milliarden-Dollar-Solopreneur kommt bald. Ich habe lange gezweifelt, bis ich meine eigenen Zahlen gesehen habe. Drei Leute, Workload von 15+, und eine Entwicklung, die sich kaum noch linear anfühlt.</p>
                     <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
+                        <span class="blog-card-readtime">7 Min. Lesezeit</span>
                         <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </div>
                 </div>
             </a>
-            <a href="erste-ki-automation-schritt-fuer-schritt.html" class="blog-card reveal" data-category="Automatisierung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
+            <a href="unternehmen-braucht-keine-ki-sondern-system.html" class="blog-card reveal" data-category="Basics">
+                <img src="images/unternehmen-braucht-ki-system-preview.svg" alt="Tools ohne System = schnelleres Chaos – erst das System, dann KI" class="blog-card-image">
                 <div class="blog-card-body">
                     <div class="blog-card-meta">
-                        <span class="blog-card-category">Automatisierung</span>
-                        <span class="blog-card-date">16. Februar 2026</span>
-                    </div>
-                    <h2 class="blog-card-title">Von 40 Stunden Routinearbeit zu null: Deine erste KI-Automation Schritt für Schritt</h2>
-                    <p class="blog-card-description">Du willst KI-Automatisierung einführen, weißt aber nicht wo anfangen? Hier ist der pragmatische Fahrplan für deine erste Automation, die sofort Zeit spart.</p>
-                    <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
-                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="ki-email-automatisierung.html" class="blog-card reveal" data-category="Automatisierung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-category">Automatisierung</span>
-                        <span class="blog-card-date">15. Februar 2026</span>
-                    </div>
-                    <h2 class="blog-card-title">E-Mail-Chaos adé: Wie KI deinen Posteingang in 20 Minuten erledigt</h2>
-                    <p class="blog-card-description">Dein Team verbringt Stunden mit E-Mails sortieren, beantworten, weiterleiten. KI kann das in Minuten. So setzt du es um.</p>
-                    <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
-                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="ki-reporting-automatisieren.html" class="blog-card reveal" data-category="Automatisierung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-category">Automatisierung</span>
-                        <span class="blog-card-date">14. Februar 2026</span>
-                    </div>
-                    <h2 class="blog-card-title">Reporting ohne Aufwand: Wie KI deine Zahlen aufbereitet, während du schläfst</h2>
-                    <p class="blog-card-description">Schluss mit stundenlanigem Zusammenklicken von Reports. KI kann deine Daten automatisch aufbereiten, visualisieren und dir die wichtigsten Insights liefern.</p>
-                    <div class="blog-card-footer">
-                        <span class="blog-card-readtime">2 Min. Lesezeit</span>
-                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="ki-workflows-optimieren.html" class="blog-card reveal" data-category="Automatisierung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-category">Automatisierung</span>
-                        <span class="blog-card-date">13. Februar 2026</span>
-                    </div>
-                    <h2 class="blog-card-title">KI-Workflows, die sich selbst optimieren: Was nach der ersten Automation kommt</h2>
-                    <p class="blog-card-description">Deine erste Automation läuft. Und jetzt? Wie du von einzelnen Automationen zu einem System kommst, das sich selbst verbessert.</p>
-                    <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
-                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="ki-strategie-mittelstand.html" class="blog-card reveal" data-category="Strategie">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-category">Strategie</span>
-                        <span class="blog-card-date">12. Februar 2026</span>
-                    </div>
-                    <h2 class="blog-card-title">KI-Strategie für den Mittelstand: Wo anfangen, wenn alle KI schreien?</h2>
-                    <p class="blog-card-description">Jeder redet über KI, aber niemand sagt dir, wo du konkret anfangen sollst. Ein pragmatischer Leitfaden für Geschäftsführer, die Ergebnisse wollen.</p>
-                    <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
-                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="unternehmen-braucht-keine-ki-sondern-system.html" class="blog-card reveal" data-category="Denkfehler">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-card-meta">
-                        <span class="blog-card-category">Denkfehler</span>
-                        <span class="blog-card-date">11. Februar 2026</span>
+                        <span class="blog-card-category">Basics</span>
+                        <span class="blog-card-date">24. Februar 2026</span>
                     </div>
                     <h2 class="blog-card-title">Warum dein Unternehmen keine KI braucht (sondern ein System)</h2>
-                    <p class="blog-card-description">KI ist nicht die Antwort auf alles. Wer ohne System automatisiert, automatisiert nur sein Chaos. Warum Infrastruktur wichtiger ist als Technologie.</p>
+                    <p class="blog-card-description">KI macht gute Prozesse besser und schlechte Prozesse schneller schlecht. Warum die meisten Unternehmen kein KI-Problem haben, sondern ein Infrastruktur-Problem.</p>
                     <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
+                        <span class="blog-card-readtime">5 Min. Lesezeit</span>
                         <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </div>
                 </div>
             </a>
-            <a href="ki-kundenservice-autonomer-support.html" class="blog-card reveal" data-category="Use Case">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
+            <a href="ki-datenschutz-1x1.html" class="blog-card reveal" data-category="Basics">
+                <img src="images/ki-datenschutz-1x1-preview.svg" alt="Die 5 Schutzstufen für KI-Datenschutz – von extern bis On-Premise" class="blog-card-image">
                 <div class="blog-card-body">
                     <div class="blog-card-meta">
-                        <span class="blog-card-category">Use Case</span>
-                        <span class="blog-card-date">10. Februar 2026</span>
+                        <span class="blog-card-category">Basics</span>
+                        <span class="blog-card-date">24. Februar 2026</span>
                     </div>
-                    <h2 class="blog-card-title">KI im Kundenservice: Vom Ticket-Chaos zum autonomen Support</h2>
-                    <p class="blog-card-description">Dein Support-Team ertrinkt in Tickets. KI kann 60-80% der Anfragen automatisch lösen. So baust du einen Kundenservice, der skaliert, ohne neue Leute einzustellen.</p>
+                    <h2 class="blog-card-title">KI souverän einsetzen: Die 5 Schutzstufen für deine Daten</h2>
+                    <p class="blog-card-description">Weißt du, wo deine Daten landen, wenn du KI nutzt? Die 5 Stufen zeigen dir, welcher Anbieter wirklich zu deinen Anforderungen passt (von „einfach loslegen" bis „kein Byte verlässt das Haus").</p>
                     <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
+                        <span class="blog-card-readtime">7 Min. Lesezeit</span>
                         <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </div>
                 </div>
             </a>
-            <a href="dsgvo-ki-wettbewerbsvorteil.html" class="blog-card reveal" data-category="Verantwortung">
-                <div class="blog-card-image-placeholder">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                </div>
+            <a href="ki-agenturen-pubertierende-jungunternehmer.html" class="blog-card reveal" data-category="Random">
+                <img src="images/ki-agenturen-jungunternehmer-preview.svg" alt="Warum 90% aller KI-Agenturen keinen echten Business-Impact liefern" class="blog-card-image">
                 <div class="blog-card-body">
                     <div class="blog-card-meta">
-                        <span class="blog-card-category">Verantwortung</span>
-                        <span class="blog-card-date">9. Februar 2026</span>
+                        <span class="blog-card-category">Random</span>
+                        <span class="blog-card-date">22. Februar 2026</span>
                     </div>
-                    <h2 class="blog-card-title">DSGVO und KI: Warum Datenschutz dein größter Wettbewerbsvorteil ist</h2>
-                    <p class="blog-card-description">Die meisten sehen DSGVO als Bremse. Dabei ist europäischer Datenschutz der Grund, warum Kunden dir vertrauen. So wird Compliance zum Wettbewerbsvorteil.</p>
+                    <h2 class="blog-card-title">Warum 90% aller KI-Agenturen keinen echten Business-Impact liefern</h2>
+                    <p class="blog-card-description">Für eine erfolgreiche KI-Agentur braucht man kein tiefes KI-Wissen – sondern echtes Business-Verständnis. Warum das die meisten neuen Anbieter nicht haben. Und woran du sie erkennst.</p>
                     <div class="blog-card-footer">
-                        <span class="blog-card-readtime">3 Min. Lesezeit</span>
+                        <span class="blog-card-readtime">7 Min. Lesezeit</span>
+                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            <a href="marketing-agenturen-bluten-2026.html" class="blog-card reveal" data-category="Aktuelles">
+                <img src="images/marketing-agenturen-bluten-preview.svg" alt="Agentur-Relevanz sinkt während KI-Fähigkeit der Kunden steigt – Wendepunkt 2026" class="blog-card-image">
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">Aktuelles</span>
+                        <span class="blog-card-date">21. Februar 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Warum Marketing-Agenturen dieses Jahr bluten werden</h2>
+                    <p class="blog-card-description">Selfmade Copywriting mit ChatGPT war erst der Anfang. Warum KI-Agenten und Automationen das Agenturmodell 2026 grundlegend verändern – und was Agenturinhaber jetzt tun sollten.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-readtime">8 Min. Lesezeit</span>
+                        <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            <a href="agentic-ai-stack-erklaert.html" class="blog-card reveal" data-category="Basics">
+                <img src="images/agentic-ai-stack-preview.svg" alt="Die 4 Ebenen der agentischen KI-Infrastruktur" class="blog-card-image">
+                <div class="blog-card-body">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-category">Basics</span>
+                        <span class="blog-card-date">19. Februar 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Die 4 Ebenen der agentischen KI-Infrastruktur: ChatGPT war erst der Anfang</h2>
+                    <p class="blog-card-description">ChatGPT ist nicht KI. ChatGPT ist die Spitze des Eisbergs. Wer versteht, was darunter liegt, baut eine KI-Infrastruktur, die wirklich funktioniert, während alle anderen noch Copy-Pasten.</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-readtime">7 Min. Lesezeit</span>
                         <svg class="blog-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -324,7 +199,29 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
-            <div class="footer-logo">scale<sup>2</sup></div>
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 72" width="227" height="58" role="img" aria-label="scale² – Wachstumspartner für Brands">
+                  <defs>
+                    <filter id="footer-glow-hard" x="-80%" y="-80%" width="260%" height="260%">
+                      <feGaussianBlur stdDeviation="4" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="footer-glow-soft" x="-40%" y="-40%" width="180%" height="180%">
+                      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <rect x="0" y="8" width="56" height="56" rx="12" fill="#111114"/>
+                  <rect x="0" y="8" width="56" height="56" rx="12" fill="none" stroke="#39ff14" stroke-width="0.75" opacity="0.3"/>
+                  <rect x="8"  y="53" width="10" height="7"  rx="2"   fill="#39ff14" opacity="0.50"/>
+                  <rect x="23" y="40" width="10" height="20" rx="2"   fill="#39ff14" opacity="0.10"/>
+                  <rect x="38" y="15" width="11" height="45" rx="2.5" fill="#39ff14" filter="url(#footer-glow-hard)"/>
+                  <text font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700">
+                    <tspan x="70" y="47" font-size="36" fill="#f0f0f2">scale</tspan><tspan font-size="19" fill="#39ff14" dy="-13" dx="2" filter="url(#footer-glow-soft)">2</tspan>
+                  </text>
+                  <text x="71" y="62" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="400" font-size="8" fill="#64748b" letter-spacing="2">WACHSTUMSPARTNER FÜR BRANDS</text>
+                </svg>
+            </div>
             <div class="footer-text">Wachstumspartner für Brands – KI in EINFACH.</div>
             <div class="footer-links">
                 <a href="../impressum.html">Impressum</a>
