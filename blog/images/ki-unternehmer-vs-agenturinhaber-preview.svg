@@ -1,69 +1,127 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
   <defs>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#0a0a0d"/>
+    </radialGradient>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="glow-soft" x="-10%" y="-10%" width="120%" height="120%">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+    <filter id="glow-dot">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0b"/>
-      <stop offset="100%" style="stop-color:#0f0f12"/>
-    </linearGradient>
+    <filter id="glow-gray">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="800" height="400" fill="url(#bg)"/>
 
-  <!-- Subtle grid lines -->
-  <line x1="0" y1="315" x2="1200" y2="315" stroke="#39ff14" stroke-width="0.3" opacity="0.08"/>
-  <line x1="600" y1="0" x2="600" y2="630" stroke="#39ff14" stroke-width="0.3" opacity="0.08"/>
+  <!-- Subtle grid -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+  </g>
 
-  <!-- VS divider line -->
-  <line x1="600" y1="80" x2="600" y2="550" stroke="#39ff14" stroke-width="1.5" opacity="0.4" filter="url(#glow-soft)"/>
+  <!-- Center divider -->
+  <line x1="400" y1="40" x2="400" y2="360" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4,5"/>
 
-  <!-- Left side: KI-Unternehmer -->
-  <text x="300" y="160" font-family="Inter, sans-serif" font-weight="800" font-size="22" fill="#39ff14" text-anchor="middle" letter-spacing="3" opacity="0.8">KI-UNTERNEHMER</text>
-  <!-- Person icon left -->
-  <circle cx="300" cy="240" r="36" fill="none" stroke="#39ff14" stroke-width="2" opacity="0.6" filter="url(#glow-soft)"/>
-  <circle cx="300" cy="225" r="12" fill="#39ff14" opacity="0.7"/>
-  <path d="M265 285 Q300 260 335 285" fill="#39ff14" opacity="0.5"/>
-  <!-- KI node dots -->
-  <circle cx="200" cy="320" r="5" fill="#39ff14" opacity="0.5"/>
-  <circle cx="240" cy="360" r="5" fill="#39ff14" opacity="0.5"/>
-  <circle cx="360" cy="320" r="5" fill="#39ff14" opacity="0.5"/>
-  <circle cx="380" cy="370" r="5" fill="#39ff14" opacity="0.5"/>
-  <line x1="300" y1="276" x2="200" y2="320" stroke="#39ff14" stroke-width="1" opacity="0.3"/>
-  <line x1="300" y1="276" x2="240" y2="360" stroke="#39ff14" stroke-width="1" opacity="0.3"/>
-  <line x1="300" y1="276" x2="360" y2="320" stroke="#39ff14" stroke-width="1" opacity="0.3"/>
-  <line x1="300" y1="276" x2="380" y2="370" stroke="#39ff14" stroke-width="1" opacity="0.3"/>
+  <!-- ================================ -->
+  <!-- LEFT SIDE: KI-Unternehmer        -->
+  <!-- Hub-and-spoke: lean + efficient  -->
+  <!-- ================================ -->
 
-  <!-- Right side: Agenturinhaber -->
-  <text x="900" y="160" font-family="Inter, sans-serif" font-weight="800" font-size="22" fill="#f0f0f2" text-anchor="middle" letter-spacing="3" opacity="0.6">AGENTURINHABER</text>
-  <!-- Person icons right (multiple) -->
-  <circle cx="900" cy="230" r="28" fill="none" stroke="#64748b" stroke-width="1.5" opacity="0.7"/>
-  <circle cx="900" cy="218" r="10" fill="#64748b" opacity="0.6"/>
-  <path d="M875 265 Q900 248 925 265" fill="#64748b" opacity="0.4"/>
-  <!-- Smaller people around -->
-  <circle cx="820" cy="295" r="18" fill="none" stroke="#64748b" stroke-width="1" opacity="0.4"/>
-  <circle cx="980" cy="295" r="18" fill="none" stroke="#64748b" stroke-width="1" opacity="0.4"/>
-  <circle cx="850" cy="340" r="18" fill="none" stroke="#64748b" stroke-width="1" opacity="0.4"/>
-  <circle cx="950" cy="340" r="18" fill="none" stroke="#64748b" stroke-width="1" opacity="0.4"/>
-  <circle cx="790" cy="370" r="14" fill="none" stroke="#64748b" stroke-width="1" opacity="0.3"/>
-  <circle cx="1010" cy="370" r="14" fill="none" stroke="#64748b" stroke-width="1" opacity="0.3"/>
+  <!-- Spoke connections from center -->
+  <line x1="200" y1="200" x2="120" y2="120" stroke="#39ff14" stroke-width="1" opacity="0.25"/>
+  <line x1="200" y1="200" x2="110" y2="210" stroke="#39ff14" stroke-width="1" opacity="0.25"/>
+  <line x1="200" y1="200" x2="130" y2="295" stroke="#39ff14" stroke-width="1" opacity="0.25"/>
+  <line x1="200" y1="200" x2="285" y2="120" stroke="#39ff14" stroke-width="1" opacity="0.25"/>
+  <line x1="200" y1="200" x2="300" y2="285" stroke="#39ff14" stroke-width="1" opacity="0.25"/>
 
-  <!-- VS badge -->
-  <circle cx="600" cy="315" r="42" fill="#0a0a0b"/>
-  <circle cx="600" cy="315" r="42" fill="none" stroke="#39ff14" stroke-width="2" opacity="0.6" filter="url(#glow-soft)"/>
-  <text x="600" y="323" font-family="Inter, sans-serif" font-weight="900" font-size="28" fill="#39ff14" text-anchor="middle" filter="url(#glow-soft)">VS</text>
+  <!-- Satellite nodes -->
+  <circle cx="120" cy="120" r="6" fill="#0a0a0d" stroke="#39ff14" stroke-width="1.2" opacity="0.6"/>
+  <circle cx="110" cy="210" r="6" fill="#0a0a0d" stroke="#39ff14" stroke-width="1.2" opacity="0.6"/>
+  <circle cx="130" cy="295" r="6" fill="#0a0a0d" stroke="#39ff14" stroke-width="1.2" opacity="0.6"/>
+  <circle cx="285" cy="120" r="6" fill="#0a0a0d" stroke="#39ff14" stroke-width="1.2" opacity="0.6"/>
+  <circle cx="300" cy="285" r="6" fill="#0a0a0d" stroke="#39ff14" stroke-width="1.2" opacity="0.6"/>
 
-  <!-- Title -->
-  <text x="600" y="490" font-family="Inter, sans-serif" font-weight="800" font-size="38" fill="#f0f0f2" text-anchor="middle">Einer gegen 15 – wer baut das bessere Business?</text>
-  <text x="600" y="530" font-family="Inter, sans-serif" font-weight="400" font-size="18" fill="#64748b" text-anchor="middle">8 Disziplinen. Kein Schiedsrichter. Ehrliches Ergebnis.</text>
+  <!-- Central node glow halo -->
+  <circle cx="200" cy="200" r="32" fill="#39ff14" opacity="0.04" filter="url(#glow-green)"/>
+  <!-- Central node -->
+  <circle cx="200" cy="200" r="14" fill="#0a0a0d" stroke="#39ff14" stroke-width="2" filter="url(#glow-dot)"/>
+  <circle cx="200" cy="200" r="5" fill="#39ff14" opacity="0.9"/>
 
-  <!-- scale² watermark -->
-  <text x="1160" y="610" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#39ff14" text-anchor="end" opacity="0.4">scale²</text>
+  <!-- ================================ -->
+  <!-- RIGHT SIDE: Agenturinhaber       -->
+  <!-- Mesh: 15 nodes, denser structure -->
+  <!-- ================================ -->
+
+  <!-- Node positions (15 nodes spread across right half) -->
+  <!-- Row 1 -->
+  <!-- n1=480,100  n2=540,80  n3=610,110  n4=670,90  n5=720,130 -->
+  <!-- Row 2 -->
+  <!-- n6=460,185  n7=520,165  n8=590,190  n9=650,175  n10=710,200 -->
+  <!-- Row 3 -->
+  <!-- n11=480,270  n12=545,300  n13=615,280  n14=670,310  n15=720,260 -->
+
+  <!-- Mesh connections (selective, not all) -->
+  <g stroke="#64748b" stroke-width="0.8" opacity="0.3">
+    <line x1="480" y1="100" x2="540" y2="80"/>
+    <line x1="540" y1="80" x2="610" y2="110"/>
+    <line x1="610" y1="110" x2="670" y2="90"/>
+    <line x1="670" y1="90" x2="720" y2="130"/>
+    <line x1="480" y1="100" x2="460" y2="185"/>
+    <line x1="540" y1="80" x2="520" y2="165"/>
+    <line x1="610" y1="110" x2="590" y2="190"/>
+    <line x1="670" y1="90" x2="650" y2="175"/>
+    <line x1="720" y1="130" x2="710" y2="200"/>
+    <line x1="460" y1="185" x2="520" y2="165"/>
+    <line x1="520" y1="165" x2="590" y2="190"/>
+    <line x1="590" y1="190" x2="650" y2="175"/>
+    <line x1="650" y1="175" x2="710" y2="200"/>
+    <line x1="460" y1="185" x2="480" y2="270"/>
+    <line x1="520" y1="165" x2="545" y2="300"/>
+    <line x1="590" y1="190" x2="615" y2="280"/>
+    <line x1="650" y1="175" x2="670" y2="310"/>
+    <line x1="710" y1="200" x2="720" y2="260"/>
+    <line x1="480" y1="270" x2="545" y2="300"/>
+    <line x1="545" y1="300" x2="615" y2="280"/>
+    <line x1="615" y1="280" x2="670" y2="310"/>
+    <line x1="670" y1="310" x2="720" y2="260"/>
+    <!-- Cross connections -->
+    <line x1="480" y1="100" x2="590" y2="190"/>
+    <line x1="540" y1="80" x2="650" y2="175"/>
+    <line x1="520" y1="165" x2="615" y2="280"/>
+    <line x1="590" y1="190" x2="720" y2="260"/>
+  </g>
+
+  <!-- The 15 nodes -->
+  <circle cx="480" cy="100" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="540" cy="80"  r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="610" cy="110" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="670" cy="90"  r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="720" cy="130" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="460" cy="185" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="520" cy="165" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="590" cy="190" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="650" cy="175" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="710" cy="200" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="480" cy="270" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="545" cy="300" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="615" cy="280" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="670" cy="310" r="5" fill="#64748b" opacity="0.55"/>
+  <circle cx="720" cy="260" r="5" fill="#64748b" opacity="0.55"/>
+
+  <!-- Center/owner node on right side (slightly brighter) -->
+  <circle cx="590" cy="190" r="9" fill="#0a0a0d" stroke="#64748b" stroke-width="1.5" opacity="0.8" filter="url(#glow-gray)"/>
+  <circle cx="590" cy="190" r="3" fill="#64748b" opacity="0.9"/>
+
 </svg>
