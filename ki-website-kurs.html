@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KI Website Kurs · Hanna Marzian</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:     #160C05;
+      --charcoal:  #2A1608;
+      --dark:      #472B18;
+      --gold:      #D8622A;
+      --gold-l:    #E8894E;
+      --gold-p:    #F5CFA8;
+      --cream:     #F6F0E6;
+      --white:     #FBF7F2;
+      --mist:      #EDE4D7;
+      --gray:      #A0907E;
+      --serif:     'Cormorant', Georgia, serif;
+      --sans:      'Montserrat', system-ui, sans-serif;
+      --expo:      cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: var(--sans);
+      background: var(--black);
+      color: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1; opacity: 0.5;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 3rem;
+    }
+
+    .headline {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .subtext {
+      font-size: 0.875rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid rgba(216, 98, 42, 0.3);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .back-link:hover { color: var(--gold-l); }
+    .back-link svg { transition: transform 0.3s ease; }
+    .back-link:hover svg { transform: translateX(-3px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="logo">Hanna Marzian</p>
+
+    <div class="divider"></div>
+
+    <h1 class="headline">
+      Diese Seite ist<br>
+      <em>vorübergehend offline.</em>
+    </h1>
+
+    <p class="subtext">
+      Der KI Website Kurs ist derzeit nicht verfügbar.<br>
+      Für Updates folge Hanna auf Instagram oder melde dich für den Newsletter an.
+    </p>
+
+    <span class="badge">Bald wieder verfügbar</span>
+
+    <br>
+
+    <a href="https://hannamarzian.com" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+      </svg>
+      Zurück zur Startseite
+    </a>
+  </div>
+</body>
+</html>
